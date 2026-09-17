@@ -154,6 +154,7 @@
   .hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center; }
   @media (max-width:960px){ .hero-grid{ grid-template-columns:1fr; gap:40px; } }
   .hero h1{ font-size:clamp(2rem, 1.5rem + 2.4vw, 3.1rem); line-height:1.1; margin-bottom:20px; }
+  .hero-question{ margin-top:16px; color:var(--navy); font-size:1.16rem; font-weight:800; line-height:1.35; }
   .hero-ctas{ display:flex; gap:14px; margin-top:28px; flex-wrap:wrap; }
   .hero-subline{ margin-top:22px; font-size:.85rem; color:var(--text-muted); font-weight:600; letter-spacing:.02em; }
   .hero-subline .dot{ color:var(--border); margin:0 8px; }
@@ -164,6 +165,102 @@
     .hero-subline span:not(.dot)::after{ content:"•"; margin:0 8px; color:var(--border); }
     .hero-subline span:last-child::after{ content:""; margin:0; }
   }
+
+  /* vertical fit finder */
+  .sr-only{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+  .fit-finder{
+    background:linear-gradient(145deg,#fff 0%,#F7FBFF 100%); border:1px solid #CFE1F8; border-radius:20px;
+    padding:30px; box-shadow:0 18px 42px rgba(11,31,58,.12); position:relative;
+  }
+  .fit-finder::before{
+    content:""; position:absolute; inset:0 0 auto; height:4px; border-radius:20px 20px 0 0;
+    background:linear-gradient(90deg,var(--blue),#72B4FF);
+  }
+  .finder-kicker{ font-size:.72rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-bottom:8px; }
+  .finder-steps{ display:flex; align-items:center; gap:8px; margin:0 0 18px; color:var(--text-muted); font-size:.72rem; font-weight:800; letter-spacing:.04em; text-transform:uppercase; }
+  .finder-steps span{ display:inline-flex; align-items:center; gap:6px; }
+  .finder-steps b{ display:inline-grid; place-items:center; width:19px; height:19px; border-radius:50%; background:var(--navy); color:#fff; font-size:.65rem; }
+  .finder-steps i{ width:22px; height:1px; background:#B8CBE1; }
+  .fit-finder h2{ font-size:clamp(1.35rem,1.1rem + .7vw,1.75rem); margin-bottom:7px; }
+  .finder-intro{ color:var(--text-muted); font-size:.93rem; line-height:1.55; margin-bottom:18px; }
+  .finder-search{ position:relative; }
+  .finder-search input{
+    width:100%; padding:15px 46px 15px 16px; border:1.5px solid var(--border); border-radius:12px;
+    font:inherit; font-weight:600; color:var(--navy); background:#fff;
+  }
+  .finder-search input:focus{ outline:3px solid rgba(23,105,224,.2); border-color:var(--blue); }
+  .finder-search::after{ content:"⌕"; position:absolute; right:16px; top:10px; color:var(--blue); font-size:1.45rem; pointer-events:none; }
+  .finder-results{
+    position:absolute; z-index:12; left:0; right:0; top:calc(100% + 7px); margin:0; padding:7px;
+    list-style:none; background:#fff; border:1px solid var(--border); border-radius:12px; box-shadow:var(--shadow-md);
+    max-height:230px; overflow:auto;
+  }
+  .finder-results[hidden]{ display:none; }
+  .finder-option{ width:100%; appearance:none; border:0; border-radius:8px; background:transparent; color:var(--navy); cursor:pointer; font:inherit; font-weight:700; text-align:left; padding:11px 12px; }
+  .finder-option:hover, .finder-option.is-active, .finder-option:focus-visible{ background:var(--light-blue); outline:none; color:var(--blue-dark); }
+  .finder-no-result{ color:var(--text-muted); font-size:.9rem; padding:11px 12px; }
+  .quick-picks-label{ margin:18px 0 9px; font-size:.78rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--text-muted); }
+  .quick-picks{ display:flex; flex-wrap:wrap; gap:8px; }
+  .quick-pick{
+    border:1px solid var(--border); border-radius:999px; background:var(--light-gray); color:var(--navy);
+    cursor:pointer; padding:8px 11px; font:inherit; font-weight:700; font-size:.78rem;
+  }
+  .quick-pick:hover, .quick-pick:focus-visible, .quick-pick.is-selected{ border-color:var(--blue); background:var(--light-blue); color:var(--blue-dark); outline:none; }
+  .fit-result{ margin-top:24px; padding:22px; border:1px solid #CFE1F8; border-radius:14px; background:#fff; box-shadow:var(--shadow-sm); }
+  .fit-result[hidden]{ display:none; }
+  .fit-result-eyebrow{ color:var(--blue); font-weight:800; font-size:.76rem; letter-spacing:.07em; text-transform:uppercase; margin-bottom:7px; }
+  .fit-result h3{ font-size:1.35rem; margin-bottom:10px; }
+  .fit-moment{ color:var(--text-muted); font-size:.94rem; line-height:1.55; }
+  .fit-signals{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:18px 0; }
+  .fit-signal{ padding:13px; background:var(--light-gray); border-radius:10px; border:1px solid #E7EDF5; }
+  .fit-signal strong{ display:block; color:var(--navy); font-size:.8rem; margin-bottom:4px; }
+  .fit-signal span{ color:var(--text-muted); display:block; font-size:.8rem; line-height:1.45; }
+  .fit-path{ border-left:3px solid var(--blue); background:var(--light-blue); padding:13px 14px; border-radius:0 10px 10px 0; margin-bottom:16px; }
+  .fit-path strong{ color:var(--navy); display:block; font-size:.88rem; margin-bottom:4px; }
+  .fit-path p{ color:var(--text-muted); font-size:.85rem; line-height:1.45; }
+  .fit-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+  .fit-actions .btn{ padding:11px 16px; font-size:.86rem; }
+  @media (max-width:520px){ .fit-finder{ padding:24px 20px; } .fit-result{ padding:18px; } .fit-signals{ grid-template-columns:1fr; } }
+
+  /* selected vertical panels */
+  .role-panel, .hotel-suite-panel{
+    max-width:940px; margin:0 auto; border-radius:18px; padding:34px; background:#fff; box-shadow:var(--shadow-md); border:1px solid var(--border);
+  }
+  .role-panel{ display:grid; grid-template-columns:auto 1fr; gap:22px; align-items:start; }
+  .role-mark{
+    width:72px; height:72px; border-radius:50%; background:var(--navy); color:#fff; display:flex;
+    align-items:center; justify-content:center; font-weight:800; font-size:1.5rem;
+  }
+  .role-panel h3, .hotel-suite-panel h3{ font-size:clamp(1.35rem,1.1rem + .7vw,1.8rem); margin-bottom:8px; }
+  .role-panel p, .hotel-suite-panel p{ color:var(--text-muted); line-height:1.65; }
+  .role-label{ color:var(--blue); font-weight:800; font-size:.76rem; text-transform:uppercase; letter-spacing:.07em; margin-bottom:7px; }
+  .role-prompt{ color:var(--text-muted); font-weight:600; }
+  .hotel-suite-panel{ background:linear-gradient(140deg,#fff 0%,#EAF3FF 100%); }
+  .hotel-suite-panel.is-selected{ border-color:var(--blue); box-shadow:0 0 0 4px rgba(23,105,224,.12),var(--shadow-md); }
+  .hotel-suite-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:24px 0; }
+  .hotel-suite-item{ padding:13px 10px; border-radius:10px; background:rgba(255,255,255,.78); border:1px solid #BFDBFE; font-size:.84rem; font-weight:700; color:var(--navy); text-align:center; }
+  .hotel-suite-note{ margin-top:18px; padding:12px 14px; border-radius:10px; background:#fff; border-left:3px solid var(--blue); font-weight:700; color:var(--navy) !important; }
+  @media (max-width:700px){ .role-panel{ grid-template-columns:1fr; } .hotel-suite-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  .recommendation-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:0 auto 42px; max-width:1100px; }
+  .recommendation-grid[hidden]{ display:none; }
+  .recommendation-card{ padding:22px; border-radius:14px; background:var(--navy); color:#fff; box-shadow:var(--shadow-sm); }
+  .recommendation-card:nth-child(2){ background:var(--blue-dark); } .recommendation-card:nth-child(3){ background:#34506E; }
+  .recommendation-card p{ color:rgba(255,255,255,.79); font-size:.88rem; line-height:1.5; margin-top:8px; }
+  .recommendation-card h3{ color:#fff; font-size:1.02rem; }
+  @media (max-width:760px){ .recommendation-grid{ grid-template-columns:1fr; } }
+
+  .explore-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; max-width:1200px; margin:0 auto; }
+  .explore-button{ min-height:108px; border:1px solid var(--border); background:var(--light-gray); color:var(--navy); border-radius:12px; cursor:pointer; padding:18px 14px; font:inherit; font-weight:800; text-align:left; transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease; }
+  .explore-button:hover,.explore-button:focus-visible{ border-color:var(--blue); box-shadow:var(--shadow-sm); transform:translateY(-2px); outline:none; }
+  .explore-button span{ display:block; color:var(--text-muted); font-size:.77rem; font-weight:600; line-height:1.35; margin-top:6px; }
+  @media (max-width:960px){ .explore-grid{ grid-template-columns:repeat(3,1fr); } }
+  @media (max-width:600px){ .explore-grid{ grid-template-columns:repeat(2,1fr); } .explore-button{ min-height:100px; } }
+
+  .booking-disabled{ opacity:.62; cursor:not-allowed; pointer-events:none; }
 
   /* flow diagram (hero + section 5 share styling) */
   .flow-card{
@@ -351,22 +448,35 @@
   .vis-flow .stage-arrow svg{ width:30px; height:18px; }
   @media (max-width:640px){ .vis-flow .stage-arrow svg{ transform:rotate(90deg); } }
   .vis-panel{
-    background:#fff; border:0; border-radius:var(--radius); box-shadow:var(--shadow-md);
+    background:#fff; border:1px solid #D6E1EE; border-radius:18px; box-shadow:0 18px 38px rgba(11,31,58,.12);
     overflow:hidden;
   }
+  .vis-dashboard-bar{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:15px 24px; background:linear-gradient(100deg,var(--navy),#153A69); color:#fff; }
+  .vis-dashboard-bar strong{ font-size:.86rem; letter-spacing:.06em; text-transform:uppercase; }
+  .vis-dashboard-bar span{ display:inline-flex; align-items:center; gap:7px; color:#D7E7FA; font-size:.75rem; font-weight:700; }
+  .vis-dashboard-bar span::before{ content:""; width:7px; height:7px; border-radius:50%; background:#67E8A7; box-shadow:0 0 0 3px rgba(103,232,167,.16); }
   .vis-row{
-    display:grid; grid-template-columns:1.4fr 1fr 1.4fr; gap:16px; align-items:center;
-    padding:24px 34px; border-bottom:1px solid var(--border); font-size:1.08rem;
+    display:grid; grid-template-columns:1.25fr .85fr 1.25fr .8fr; gap:16px; align-items:center;
+    padding:19px 28px; border-bottom:1px solid var(--border); font-size:1rem;
+    transition:background .15s ease;
   }
+  .vis-row:not(.head):hover{ background:#F8FBFF; }
   .vis-row:last-child{ border-bottom:none; }
   .vis-row.head{ background:var(--navy); font-weight:800; color:#fff; font-size:.85rem; letter-spacing:.05em; text-transform:uppercase; }
   .vis-row:not(.head) > span:first-child{ color:var(--navy); font-weight:700; }
+  .vis-call{ display:flex; align-items:center; gap:10px; }
+  .vis-call::before{ content:""; width:9px; height:9px; border-radius:50%; background:var(--blue); box-shadow:0 0 0 4px rgba(23,105,224,.11); flex:none; }
+  .vis-outcome{ color:var(--charcoal); font-weight:700; }
+  .vis-action{ display:inline-flex; justify-content:center; min-width:74px; padding:5px 8px; border-radius:6px; background:#EDF5FF; color:var(--blue-dark); font-size:.78rem; font-weight:800; }
+  .vis-action.review{ background:var(--amber-bg); color:var(--amber); }
   @media (max-width:640px){
+    .vis-dashboard-bar{ padding:14px 18px; }
     .vis-row{ grid-template-columns:1fr; gap:6px; padding:16px 20px; }
     .vis-row.head{ display:none; }
     .vis-row > span::before{ content: attr(data-label) ": "; font-weight:700; color:var(--text-muted); }
   }
-  .vis-badge{ display:inline-flex; align-items:center; gap:6px; font-weight:700; font-size:.95rem; padding:6px 14px; border-radius:999px; }
+  .vis-badge{ display:inline-flex; align-items:center; gap:6px; font-weight:700; font-size:.88rem; padding:6px 12px; border-radius:999px; }
+  .vis-badge::before{ content:""; width:6px; height:6px; border-radius:50%; background:currentColor; }
   .vis-badge.ok{ background:var(--light-blue); color:var(--blue-dark); }
   .vis-badge.warn{ background:var(--amber-bg); color:var(--amber); }
   .vis-questions{ display:flex; gap:28px; flex-wrap:wrap; margin:34px 0; justify-content:center; }
@@ -427,7 +537,7 @@
 
 <header>
   <nav class="nav" aria-label="Main">
-    <a class="brand" href="#top">
+    <a class="brand" href="#find-your-fit">
       <picture>
         <source srcset="assets/dassa-logo.webp" type="image/webp">
         <img class="brand-logo" src="assets/dassa-logo.png" alt="Dassa Solutions">
@@ -438,14 +548,15 @@
       <span aria-hidden="true"></span>
     </button>
     <ul class="nav-links" id="navLinks">
+      <li><a href="#find-your-fit">Find Your Fit</a></li>
+      <li><a href="#virtual-roles">Virtual Roles</a></li>
+      <li><a href="#hotel-phone-suite">Hotel Phone Suite</a></li>
       <li><a href="#solutions">Solutions</a></li>
-      <li><a href="#industries">Industries</a></li>
-      <li><a href="#why-dassa">Why Dassa</a></li>
       <li><a href="#calculator">Calculator</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-cta">
-      <a class="btn btn-primary" href="#contact">Let's&nbsp;Talk</a>
+      <a class="btn btn-primary" href="#find-your-fit">Find&nbsp;Your&nbsp;Fit</a>
     </div>
   </nav>
 </header>
@@ -453,15 +564,16 @@
 <main id="main">
 
   <!-- ============ HERO ============ -->
-  <section class="hero" id="top">
+  <section class="hero" id="find-your-fit">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">Business Communications That Protect Opportunity</p>
-        <h1>What Happens When Someone Tries to Reach Your Business?</h1>
+        <p class="eyebrow">Dassa Solutions</p>
+        <h1>Business Communications That Protect Opportunity</h1>
         <p class="lede">You can spend thousands generating leads and lose revenue right away with a missed call, poor routing, bad follow-up, unreliable connectivity, or an outdated communication system. Dassa Solutions helps businesses protect the opportunities their marketing already creates.</p>
+        <p class="hero-question">What happens when someone tries to reach your business?</p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="#calculator">Find My Communication Gaps</a>
-          <a class="btn btn-secondary" href="#solutions">Explore Solutions</a>
+          <a class="btn btn-primary" href="#fitFinder">Find My Business Fit</a>
+          <a class="btn btn-secondary" href="#proof">See Why It Matters</a>
         </div>
         <p class="hero-subline">
           <span>Phones</span><span class="dot">•</span>
@@ -473,36 +585,32 @@
         </p>
       </div>
 
-      <div class="flow-card" role="img" aria-label="Diagram: marketing generates a customer call to your business, which then splits into a successful path — answered, right person, follow-up, revenue — or a failure path — missed, no follow-up, opportunity lost.">
-        <div class="flow-row">
-          <span class="flow-node">Marketing</span>
-          <span class="flow-arrow" aria-hidden="true">
-            <svg viewBox="0 0 22 14"><path d="M0 7h18M13 1l7 6-7 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <span class="flow-node">Customer Calls</span>
-          <span class="flow-arrow" aria-hidden="true">
-            <svg viewBox="0 0 22 14"><path d="M0 7h18M13 1l7 6-7 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <span class="flow-node">Your Business</span>
+      <div class="fit-finder" id="fitFinder">
+        <p class="finder-kicker">Dassa Business Fit Finder</p>
+        <h2>What kind of business do you run?</h2>
+        <p class="finder-intro">Choose your business type. We will show the communication pressure worth examining first.</p>
+        <p class="finder-steps" aria-label="Two-step diagnostic: select your business, then see your communication diagnosis."><span><b>1</b>Select your business</span><i aria-hidden="true"></i><span><b>2</b>See your diagnosis</span></p>
+        <label class="sr-only" for="verticalSearch">Search for your business type</label>
+        <div class="finder-search">
+          <input id="verticalSearch" type="search" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="verticalResults" aria-activedescendant="" placeholder="Search your business type" autocomplete="off">
+          <ul class="finder-results" id="verticalResults" role="listbox" aria-label="Business type matches" hidden></ul>
         </div>
-        <div class="flow-split">
-          <div class="flow-path success">
-            <div class="flow-pulse" aria-hidden="true"></div>
-            <p class="flow-path-label">Answered Path</p>
-            <div class="flow-steps">
-              <p class="flow-step">Answered</p>
-              <p class="flow-step">Right Person</p>
-              <p class="flow-step">Follow-Up</p>
-              <p class="flow-step">Revenue</p>
-            </div>
+        <p class="quick-picks-label">Popular starting points</p>
+        <div class="quick-picks" id="quickPicks" aria-label="Popular business types"></div>
+        <p class="sr-only" id="finderStatus" aria-live="polite"></p>
+        <div class="fit-result" id="fitResult" aria-live="polite" hidden>
+          <p class="fit-result-eyebrow" id="fitResultEyebrow">Your Dassa fit</p>
+          <h3 id="fitResultTitle"></h3>
+          <p class="fit-moment" id="fitResultMoment"></p>
+          <div class="fit-signals">
+            <div class="fit-signal"><strong>What can break</strong><span id="fitResultBreakdown"></span></div>
+            <div class="fit-signal"><strong>Why it matters</strong><span id="fitResultConsequence"></span></div>
           </div>
-          <div class="flow-path fail">
-            <p class="flow-path-label">Missed Path</p>
-            <div class="flow-steps">
-              <p class="flow-step">Missed</p>
-              <p class="flow-step">No Follow-Up</p>
-              <p class="flow-step">Opportunity Lost</p>
-            </div>
+          <div class="fit-path"><strong>What Dassa would examine</strong><p id="fitResultCommunication"></p></div>
+          <div class="fit-actions">
+            <a class="btn btn-primary booking-disabled" data-audit-booking aria-disabled="true">Calendar booking coming soon</a>
+            <a class="btn btn-secondary" href="#virtual-roles">Meet the role built for this pressure</a>
+            <a class="btn btn-secondary" href="#calculator">Use this business's calculator assumptions</a>
           </div>
         </div>
       </div>
@@ -534,7 +642,7 @@
   </section>
 
   <!-- ============ REAL-WORLD PROOF ============ -->
-  <section>
+  <section id="proof">
     <div class="wrap">
       <div class="section-head">
         <h2>The Marketing Can Work — and the Opportunity Can Still Be Lost.</h2>
@@ -580,11 +688,54 @@
     </div>
   </section>
 
+  <!-- ============ VIRTUAL ROLES ============ -->
+  <section class="bg-light-blue" id="virtual-roles" aria-labelledby="virtualRolesHead">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Virtual roles</p>
+        <h2 id="virtualRolesHead">Not a Generic Virtual Agent.</h2>
+        <p class="lede" style="margin-top:10px;">A familiar role, named for the communication pressure in the business you run.</p>
+      </div>
+      <div class="role-panel" id="rolePanel" aria-live="polite">
+        <div class="role-mark" aria-hidden="true">+</div>
+        <div>
+          <p class="role-label">Choose a business type above</p>
+          <h3 id="roleTitle">The role should feel familiar before the technology is discussed.</h3>
+          <p id="roleDetail" class="role-prompt">Dassa starts with the work that is piling up on the counter, in the office, or in the field—then frames virtual support around the job the business already understands.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HOTEL PHONE SUITE ============ -->
+  <section id="hotel-phone-suite" aria-labelledby="hotelPhoneSuiteHead">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">For hotels and motels</p>
+        <h2 id="hotelPhoneSuiteHead">Hotel &amp; Motel Phone Suite</h2>
+        <p class="lede" style="margin-top:10px;">A dedicated look at the guest operation—not a generic phone-system card.</p>
+      </div>
+      <div class="hotel-suite-panel" id="hotelSuitePanel" aria-live="polite">
+        <p class="role-label">Guest operations</p>
+        <h3>Keep the front desk connected to the rest of the property.</h3>
+        <p>Reservations, guest requests, and department handoffs need a path that holds together through check-in, check-out, and every shift in between.</p>
+        <div class="hotel-suite-grid" aria-label="Hotel Phone Suite focus areas">
+          <div class="hotel-suite-item">Reservations</div>
+          <div class="hotel-suite-item">Front-desk peaks</div>
+          <div class="hotel-suite-item">Guest requests</div>
+          <div class="hotel-suite-item">Department routing</div>
+        </div>
+        <p class="hotel-suite-note" id="hotelSuiteNote">Select Hotels &amp; Motels in the Fit Finder to see how this connects with a Virtual Guest Services Desk.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ CALCULATOR ============ -->
   <section class="bg-light-gray" id="calculator">
     <div class="wrap">
       <div class="section-head">
         <h2>How Much Could Missed Calls Be Costing You?</h2>
+        <p class="lede" id="calculatorContext" style="margin-top:10px;">Use your own assumptions. Values stay in your browser and are never sent anywhere.</p>
       </div>
       <form class="calc-wrap" id="calcForm" novalidate>
         <div class="calc-inputs">
@@ -631,12 +782,12 @@
           <div class="calc-result-summary">
             <div class="calc-result-block">
               <p class="calc-result-label">Potential Revenue at Risk</p>
-              <p class="calc-result-value"><span id="calcRisk">$0</span><span> / month</span></p>
+              <p class="calc-result-value"><span id="calcRisk">$1,800</span><span> / month</span></p>
             </div>
             <div class="calc-divider"></div>
             <div class="calc-result-block">
               <p class="calc-result-label">Potential Recoverable Revenue</p>
-              <p class="calc-result-value"><span id="calcRecoverable">$0</span><span> / month</span></p>
+              <p class="calc-result-value"><span id="calcRecoverable">$900</span><span> / month</span></p>
             </div>
           </div>
           <div class="calc-result-footer">
@@ -741,8 +892,10 @@
   <section id="solutions">
     <div class="wrap">
       <div class="section-head">
-        <h2>One Place for Business Communications</h2>
+        <h2 id="solutionsHeading">One Place for Business Communications</h2>
+        <p class="lede" id="solutionsIntro" style="margin-top:10px;">Products follow the business problem. Choose a business type to see where Dassa would start.</p>
       </div>
+      <div class="recommendation-grid" id="recommendationGrid" aria-live="polite" hidden></div>
       <div class="card-grid">
 
         <div class="solution-card">
@@ -826,30 +979,36 @@
         <span class="vis-flow-node">Opportunity</span>
       </div>
       <div class="vis-panel" role="table" aria-label="Example anonymous call log rows">
+        <div class="vis-dashboard-bar"><strong>Call visibility</strong><span>Illustrative operating view</span></div>
         <div class="vis-row head" role="row">
           <span role="columnheader">Call</span>
           <span role="columnheader">Status</span>
           <span role="columnheader">Outcome</span>
+          <span role="columnheader">Next step</span>
         </div>
         <div class="vis-row" role="row">
-          <span data-label="Call" role="cell">Inbound Call</span>
+          <span class="vis-call" data-label="Call" role="cell">Inbound Call</span>
           <span data-label="Status" role="cell"><span class="vis-badge ok">Answered</span></span>
-          <span data-label="Outcome" role="cell">New Lead</span>
+          <span class="vis-outcome" data-label="Outcome" role="cell">New Lead</span>
+          <span data-label="Next step" role="cell"><span class="vis-action">Captured</span></span>
         </div>
         <div class="vis-row" role="row">
-          <span data-label="Call" role="cell">Inbound Call</span>
+          <span class="vis-call" data-label="Call" role="cell">Inbound Call</span>
           <span data-label="Status" role="cell"><span class="vis-badge warn">Missed</span></span>
-          <span data-label="Outcome" role="cell">Follow-Up Needed</span>
+          <span class="vis-outcome" data-label="Outcome" role="cell">Follow-Up Needed</span>
+          <span data-label="Next step" role="cell"><span class="vis-action review">Review</span></span>
         </div>
         <div class="vis-row" role="row">
-          <span data-label="Call" role="cell">Inbound Call</span>
+          <span class="vis-call" data-label="Call" role="cell">Inbound Call</span>
           <span data-label="Status" role="cell"><span class="vis-badge ok">Answered</span></span>
-          <span data-label="Outcome" role="cell">Appointment Scheduled</span>
+          <span class="vis-outcome" data-label="Outcome" role="cell">Appointment Scheduled</span>
+          <span data-label="Next step" role="cell"><span class="vis-action">Captured</span></span>
         </div>
         <div class="vis-row" role="row">
-          <span data-label="Call" role="cell">Inbound Call</span>
+          <span class="vis-call" data-label="Call" role="cell">Inbound Call</span>
           <span data-label="Status" role="cell"><span class="vis-badge ok">Answered</span></span>
-          <span data-label="Outcome" role="cell">Repeat Caller</span>
+          <span class="vis-outcome" data-label="Outcome" role="cell">Repeat Caller</span>
+          <span data-label="Next step" role="cell"><span class="vis-action">Captured</span></span>
         </div>
       </div>
       <div class="vis-questions">
@@ -863,22 +1022,15 @@
     </div>
   </section>
 
-  <!-- ============ INDUSTRIES ============ -->
+  <!-- ============ EXPLORE BUSINESS TYPES ============ -->
   <section id="industries">
     <div class="wrap">
       <div class="section-head">
+        <p class="eyebrow">Explore more fits</p>
         <h2>Communication Problems Are Different in Every Business.</h2>
+        <p class="lede" style="margin-top:10px;">Choose a business type to bring its operating pressure, communication priorities, and familiar virtual role into view.</p>
       </div>
-      <div class="industry-grid">
-        <div class="industry-card"><h3>Pool / High-Ticket Home Improvement</h3><p>One missed call could represent a major project.</p></div>
-        <div class="industry-card"><h3>Roofing &amp; Home Improvement</h3><p>The homeowner may call the next contractor immediately.</p></div>
-        <div class="industry-card"><h3>HVAC / Plumbing / Electrical</h3><p>Customers often move quickly to whoever answers first.</p></div>
-        <div class="industry-card"><h3>Legal</h3><p>The first professional response may win the client.</p></div>
-        <div class="industry-card"><h3>Hotels &amp; Hospitality</h3><p>Communication failure can affect both service and safety.</p></div>
-        <div class="industry-card"><h3>Medical</h3><p>Poor call handling can affect appointments and patient experience.</p></div>
-        <div class="industry-card"><h3>Property Management</h3><p>Calls may involve leasing, tenants, maintenance, or emergencies.</p></div>
-        <div class="industry-card"><h3>Multi-Location Businesses</h3><p>Locations should work together instead of operating like separate islands.</p></div>
-      </div>
+      <div class="explore-grid" id="exploreGrid" aria-label="Available Dassa business types"></div>
     </div>
   </section>
 
@@ -967,7 +1119,7 @@
       <h2 id="finalCtaHead">What Happens When Someone Tries to Reach Your Business?</h2>
       <p class="lede">Let's look at your phones, routing, connectivity, missed calls, after-hours coverage, and communication workflow — and find where opportunities may be disappearing.</p>
       <div class="final-cta-btns">
-        <a class="btn btn-on-navy" href="#calculator">Find My Communication Gaps</a>
+        <a class="btn btn-on-navy booking-disabled" data-audit-booking aria-disabled="true">Calendar booking coming soon</a>
         <a class="btn btn-outline-on-navy" href="tel:+14073692856">Call (407) 369-2856</a>
         <a class="btn btn-outline-on-navy" href="mailto:edassa@dassasolutions.com">Talk to Dassa Solutions</a>
       </div>
@@ -983,10 +1135,12 @@
       <a href="tel:+14073692856">(407) 369-2856</a>
       <a href="mailto:edassa@dassasolutions.com">edassa@dassasolutions.com</a>
     </span>
-    <span><a href="#top">Back to top</a></span>
+    <span id="strategyPartnersLink" hidden></span>
+    <span><a href="#find-your-fit">Back to top</a></span>
   </div>
 </footer>
 
+<script src="verticals.js"></script>
 <script>
 (function () {
   'use strict';
@@ -1019,6 +1173,10 @@
     risk: document.getElementById('calcRisk'),
     recoverable: document.getElementById('calcRecoverable'),
     error: document.getElementById('calcError')
+  };
+  var genericCalculator = {
+    missed: els.missed.value, opportunity: els.opportunity.value, close: els.close.value,
+    sale: els.sale.value, recovery: els.recovery.value
   };
 
   function currency(n) {
@@ -1067,6 +1225,289 @@
 
   form.addEventListener('input', recalc);
   form.addEventListener('submit', function (e) { e.preventDefault(); });
+
+  /* Dassa Business Fit Finder */
+  var verticals = Array.isArray(window.DASSA_VERTICALS) ? window.DASSA_VERTICALS : [];
+  var bookingUrl = typeof window.DASSA_BOOKING_URL === 'string' ? window.DASSA_BOOKING_URL.trim() : '';
+  var finder = {
+    input: document.getElementById('verticalSearch'),
+    results: document.getElementById('verticalResults'),
+    status: document.getElementById('finderStatus'),
+    quick: document.getElementById('quickPicks'),
+    result: document.getElementById('fitResult'),
+    eyebrow: document.getElementById('fitResultEyebrow'),
+    title: document.getElementById('fitResultTitle'),
+    moment: document.getElementById('fitResultMoment'),
+    breakdown: document.getElementById('fitResultBreakdown'),
+    consequence: document.getElementById('fitResultConsequence'),
+    communication: document.getElementById('fitResultCommunication')
+  };
+  var roleTitle = document.getElementById('roleTitle');
+  var roleDetail = document.getElementById('roleDetail');
+  var rolePanel = document.getElementById('rolePanel');
+  var hotelSuitePanel = document.getElementById('hotelSuitePanel');
+  var hotelSuiteNote = document.getElementById('hotelSuiteNote');
+  var calculatorContext = document.getElementById('calculatorContext');
+  var solutionsHeading = document.getElementById('solutionsHeading');
+  var solutionsIntro = document.getElementById('solutionsIntro');
+  var recommendationGrid = document.getElementById('recommendationGrid');
+  var exploreGrid = document.getElementById('exploreGrid');
+  var bookingButtons = document.querySelectorAll('[data-audit-booking]');
+  var selectedVertical = null;
+  var visibleMatches = [];
+  var activeMatch = -1;
+
+  function bookingReady() {
+    return /^https:\/\//i.test(bookingUrl);
+  }
+
+  function setBookingButtons(vertical) {
+    Array.prototype.forEach.call(bookingButtons, function (button) {
+      button.classList.remove('booking-disabled');
+      if (bookingReady()) {
+        button.href = bookingUrl;
+        button.textContent = vertical ? 'Book a ' + vertical.label.replace(' & Motels', '') + ' Communication Audit' : 'Book a Communication Audit';
+        button.removeAttribute('aria-disabled');
+      } else {
+        button.removeAttribute('href');
+        button.classList.add('booking-disabled');
+        button.setAttribute('aria-disabled', 'true');
+        button.textContent = 'Calendar booking coming soon';
+      }
+    });
+  }
+
+  function setCalculatorPreset(preset) {
+    els.missed.value = preset.missed;
+    els.opportunity.value = preset.opportunity;
+    els.close.value = preset.close;
+    els.sale.value = preset.sale;
+    els.recovery.value = preset.recovery;
+    recalc();
+  }
+
+  function element(tag, className, text) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (typeof text === 'string') node.textContent = text;
+    return node;
+  }
+
+  function renderRecommendations(vertical) {
+    var items = [
+      { title: 'Customer call coverage', text: 'Make it clear who receives the call when the business is busiest.' },
+      { title: 'Routing and workflow', text: vertical.communication },
+      { title: 'Visibility and follow-up', text: 'Know what happened, then make the next customer step easier to complete.' }
+    ];
+    recommendationGrid.replaceChildren();
+    items.forEach(function (item) {
+      var card = element('article', 'recommendation-card');
+      card.appendChild(element('h3', '', item.title));
+      card.appendChild(element('p', '', item.text));
+      recommendationGrid.appendChild(card);
+    });
+    recommendationGrid.hidden = false;
+  }
+
+  function updateSurface(vertical) {
+    finder.eyebrow.textContent = vertical.label + ' communication diagnosis';
+    finder.title.textContent = 'This is where communication can get expensive.';
+    finder.moment.textContent = vertical.trigger;
+    finder.breakdown.textContent = vertical.breakdown;
+    finder.consequence.textContent = vertical.consequence;
+    finder.communication.textContent = vertical.communication;
+    finder.result.hidden = false;
+
+    rolePanel.querySelector('.role-mark').textContent = '✦';
+    rolePanel.querySelector('.role-label').textContent = vertical.label + ' virtual role';
+    roleTitle.textContent = vertical.role.name;
+    roleDetail.textContent = vertical.role.detail;
+
+    if (vertical.hotelSuite) {
+      hotelSuitePanel.classList.add('is-selected');
+      hotelSuiteNote.textContent = 'For Hotels & Motels, Phone Suite and the Virtual Guest Services Desk work as two connected conversations: one for property communication, one for front-desk overflow and guest-service pressure.';
+    } else {
+      hotelSuitePanel.classList.remove('is-selected');
+      hotelSuiteNote.textContent = 'Select Hotels & Motels in the Fit Finder to see how this connects with a Virtual Guest Services Desk.';
+    }
+
+    calculatorContext.textContent = 'Starting assumptions for ' + vertical.label + '. Change any value to reflect your business; nothing is sent anywhere.';
+    solutionsHeading.textContent = 'What Dassa Would Examine for ' + vertical.label;
+    solutionsIntro.textContent = 'The first priorities come from the way this business operates. The broader communications catalog remains available below.';
+    renderRecommendations(vertical);
+    setCalculatorPreset(vertical.calculator);
+    setBookingButtons(vertical);
+  }
+
+  function resetSurface() {
+    selectedVertical = null;
+    finder.result.hidden = true;
+    rolePanel.querySelector('.role-mark').textContent = '+';
+    rolePanel.querySelector('.role-label').textContent = 'Choose a business type above';
+    roleTitle.textContent = 'The role should feel familiar before the technology is discussed.';
+    roleDetail.textContent = 'Dassa starts with the work that is piling up on the counter, in the office, or in the field—then frames virtual support around the job the business already understands.';
+    hotelSuitePanel.classList.remove('is-selected');
+    hotelSuiteNote.textContent = 'Select Hotels & Motels in the Fit Finder to see how this connects with a Virtual Guest Services Desk.';
+    calculatorContext.textContent = 'Use your own assumptions. Values stay in your browser and are never sent anywhere.';
+    solutionsHeading.textContent = 'One Place for Business Communications';
+    solutionsIntro.textContent = 'Products follow the business problem. Choose a business type to see where Dassa would start.';
+    recommendationGrid.replaceChildren();
+    recommendationGrid.hidden = true;
+    setCalculatorPreset(genericCalculator);
+    setBookingButtons(null);
+  }
+
+  function setSelectedButtons() {
+    var buttons = document.querySelectorAll('[data-vertical]');
+    Array.prototype.forEach.call(buttons, function (button) {
+      button.classList.toggle('is-selected', !!selectedVertical && button.getAttribute('data-vertical') === selectedVertical.id);
+    });
+  }
+
+  function closeResults() {
+    finder.results.hidden = true;
+    finder.input.setAttribute('aria-expanded', 'false');
+    finder.input.removeAttribute('aria-activedescendant');
+    activeMatch = -1;
+  }
+
+  function getMatches(value) {
+    var query = value.trim().toLowerCase();
+    if (!query) return verticals.slice();
+    return verticals.filter(function (vertical) {
+      return [vertical.label].concat(vertical.searchTerms || []).some(function (term) {
+        return term.toLowerCase().indexOf(query) !== -1;
+      });
+    });
+  }
+
+  function renderResults(matches) {
+    visibleMatches = matches;
+    finder.results.replaceChildren();
+    if (!matches.length) {
+      finder.results.appendChild(element('li', 'finder-no-result', 'No matching business type yet.'));
+    } else {
+      matches.forEach(function (vertical, index) {
+        var item = document.createElement('li');
+        item.setAttribute('role', 'presentation');
+        var button = element('button', 'finder-option', vertical.label);
+        button.type = 'button';
+        button.id = 'vertical-option-' + vertical.id;
+        button.setAttribute('role', 'option');
+        button.setAttribute('aria-selected', selectedVertical && selectedVertical.id === vertical.id ? 'true' : 'false');
+        button.setAttribute('data-vertical', vertical.id);
+        if (index === activeMatch) button.classList.add('is-active');
+        button.addEventListener('click', function () { selectVertical(vertical, true); });
+        item.appendChild(button);
+        finder.results.appendChild(item);
+      });
+    }
+    finder.results.hidden = false;
+    finder.input.setAttribute('aria-expanded', 'true');
+  }
+
+  function showResults() {
+    activeMatch = -1;
+    renderResults(getMatches(finder.input.value));
+  }
+
+  function setActiveMatch(index) {
+    if (!visibleMatches.length) return;
+    activeMatch = (index + visibleMatches.length) % visibleMatches.length;
+    renderResults(visibleMatches);
+    var active = finder.results.querySelector('.is-active');
+    if (active) {
+      finder.input.setAttribute('aria-activedescendant', active.id);
+      active.scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  function updateUrl(vertical, mode) {
+    if (!mode) return;
+    var url = new URL(window.location.href);
+    url.searchParams.set('vertical', vertical.id);
+    window.history.pushState({ vertical: vertical.id }, '', url.pathname + url.search + url.hash);
+  }
+
+  function selectVertical(vertical, updateHistory) {
+    selectedVertical = vertical;
+    finder.input.value = vertical.label;
+    finder.status.textContent = vertical.label + ' selected. Your communication diagnosis is now visible.';
+    closeResults();
+    updateSurface(vertical);
+    setSelectedButtons();
+    updateUrl(vertical, updateHistory);
+  }
+
+  function renderQuickPicks() {
+    verticals.filter(function (vertical) { return vertical.quick; }).forEach(function (vertical) {
+      var button = element('button', 'quick-pick', vertical.label);
+      button.type = 'button';
+      button.setAttribute('data-vertical', vertical.id);
+      button.addEventListener('click', function () { selectVertical(vertical, true); });
+      finder.quick.appendChild(button);
+    });
+  }
+
+  function renderExploreGrid() {
+    verticals.forEach(function (vertical) {
+      var button = element('button', 'explore-button', vertical.label);
+      button.type = 'button';
+      button.setAttribute('data-vertical', vertical.id);
+      button.appendChild(element('span', '', vertical.role.name));
+      button.addEventListener('click', function () {
+        selectVertical(vertical, true);
+        document.getElementById('find-your-fit').scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      });
+      exploreGrid.appendChild(button);
+    });
+  }
+
+  finder.input.addEventListener('focus', showResults);
+  finder.input.addEventListener('input', showResults);
+  finder.input.addEventListener('keydown', function (event) {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (finder.results.hidden) showResults();
+      setActiveMatch(activeMatch + 1);
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (finder.results.hidden) showResults();
+      setActiveMatch(activeMatch - 1);
+    } else if (event.key === 'Enter') {
+      if (activeMatch >= 0 && visibleMatches[activeMatch]) {
+        event.preventDefault();
+        selectVertical(visibleMatches[activeMatch], true);
+      } else if (visibleMatches.length === 1) {
+        event.preventDefault();
+        selectVertical(visibleMatches[0], true);
+      }
+    } else if (event.key === 'Escape') {
+      closeResults();
+    } else if (event.key === 'Tab') {
+      closeResults();
+    }
+  });
+  document.addEventListener('click', function (event) {
+    if (!document.getElementById('fitFinder').contains(event.target)) closeResults();
+  });
+  window.addEventListener('popstate', function () {
+    var requested = new URLSearchParams(window.location.search).get('vertical');
+    var match = verticals.filter(function (vertical) { return vertical.id === requested; })[0];
+    if (match) selectVertical(match, false);
+    else resetSurface();
+  });
+
+  renderQuickPicks();
+  renderExploreGrid();
+  var requestedVertical = new URLSearchParams(window.location.search).get('vertical');
+  var initialVertical = verticals.filter(function (vertical) { return vertical.id === requestedVertical; })[0];
+  if (initialVertical) {
+    selectVertical(initialVertical, false);
+  } else {
+    resetSurface();
+    if (requestedVertical) finder.status.textContent = 'That business type is not available yet. Choose one of the current Dassa fits.';
+  }
   recalc();
 })();
 </script>
