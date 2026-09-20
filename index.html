@@ -117,8 +117,10 @@
     border-bottom:1px solid var(--border);
   }
   .nav{ display:flex; align-items:center; justify-content:space-between; padding:10px 24px; max-width:var(--maxw); margin:0 auto; gap:20px; }
-  .brand{ display:flex; align-items:center; color:var(--navy); text-decoration:none; flex:none; }
-  .brand-logo{ display:block; width:200px; height:82px; object-fit:contain; }
+ .brand{ display:flex; align-items:center; color:var(--navy); text-decoration:none; flex:none; }
+ .brand-lockup{ display:flex; flex-direction:column; align-items:center; width:138px; line-height:0; }
+ .brand-logo{ display:block; width:100%; height:auto; object-fit:contain; }
+ .brand-values{ display:block; width:92%; height:auto; margin-top:-3px; }
   .nav-links{ display:flex; gap:30px; list-style:none; margin:0; padding:0; }
   .nav-links a{ text-decoration:none; color:var(--charcoal); font-weight:600; font-size:.95rem; padding:6px 2px; border-bottom:2px solid transparent; transition:border-color .15s ease, color .15s ease; }
   .nav-links a:hover, .nav-links a:focus-visible{ color:var(--blue); border-bottom-color:var(--blue); }
@@ -140,12 +142,12 @@
   }
   @media (max-width:640px){
     .nav{ padding:8px 16px; gap:12px; }
-    .brand-logo{ width:168px; height:69px; }
+ .brand-lockup{ width:124px; }
     .nav-cta .btn{ width:auto; padding:11px 14px; font-size:.86rem; }
   }
   @media (max-width:360px){
     .nav{ padding:6px 12px; gap:9px; }
-    .brand-logo{ width:150px; height:62px; }
+ .brand-lockup{ width:110px; }
     .nav-cta .btn{ padding:10px 11px; font-size:.82rem; }
   }
 
@@ -537,11 +539,11 @@
 
 <header>
   <nav class="nav" aria-label="Main">
-    <a class="brand" href="#find-your-fit">
-      <picture>
-        <source srcset="assets/dassa-logo.webp" type="image/webp">
-        <img class="brand-logo" src="assets/dassa-logo.png" alt="Dassa Solutions">
-      </picture>
+ <a class="brand" href="#find-your-fit">
+ <span class="brand-lockup">
+ <img class="brand-logo" src="assets/dassa-logo-full.png" alt="Dassa Solutions — Ideas, Systems, Real Results">
+ <img class="brand-values" src="assets/dassa-values-strip.png" alt="Ideas, Systems, Growth, Solutions, Results">
+ </span>
     </a>
     <button class="nav-toggle" type="button" id="navToggle" aria-expanded="false" aria-controls="navLinks">
       <span class="visually-hidden">Menu</span>
