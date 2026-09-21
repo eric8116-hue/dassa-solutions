@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "libraryVersion": "pilot-1",
+  "entries": {
+    "auto-repair": {
+      "status": "reviewed-for-dassa-pilot",
+      "sourceRefs": [
+        "auto-repair-playbook",
+        "auto-repair-vbr",
+        "auto-repair-opening-rush-email",
+        "auto-repair-status-calls-email",
+        "auto-repair-flyer"
+      ],
+      "trigger": "Your service writer is checking in drivers, moving vehicles, and taking payments when appointment and estimate calls arrive.",
+      "breakdown": "Booking inquiries compete with repair-update calls and estimate follow-up while the counter team is already helping customers.",
+      "consequence": "A driver who cannot reach someone may try another shop. Existing customers can be left waiting while the service writer spends time chasing the next step.",
+      "customerReason": "A driver calling during the opening rush needs a clear next step for an appointment, estimate, or repair update, even when the counter cannot answer.",
+      "workflowReason": "Repair updates and estimate phone tag interrupt check-ins and payments. Give each request a callback owner so the service writer knows what still needs attention.",
+      "roleDetail": "The Virtual Service Advisor is the familiar role around which we plan your overflow service-request and follow-up path. Its exact tasks are confirmed during the audit.",
+      "coverage": "When the counter cannot answer, define how the request, contact details, and reason for calling reach the responsible person. Agree who follows up and how the team knows the request has been handled.",
+      "communication": "Map where appointment, estimate, and repair-update calls get stuck, who owns the next step, and what happens during the opening rush or after closing.",
+      "auditLabel": "Book an Auto Repair Communication Audit"
+    },
+    "spas": {
+      "status": "reviewed-for-dassa-pilot",
+      "sourceRefs": [
+        "spas-playbook",
+        "spas-vbr",
+        "spas-email",
+        "spas-flyer"
+      ],
+      "trigger": "Your front desk is welcoming a guest or taking payment when a booking or reschedule call arrives.",
+      "breakdown": "Reception has to balance personal attention in a quiet space with incoming calls. Membership and package follow-up can be pushed aside during the rush.",
+      "consequence": "A booking inquiry can go unanswered, a guest can be interrupted, and an existing guest can be left waiting for follow-up.",
+      "customerReason": "Give booking and reschedule inquiries a clear next step without making reception choose between the caller and the guest in front of them.",
+      "workflowReason": "Membership renewals and package follow-up can depend on someone remembering after the rush. Assign an owner and next step so those requests do not get forgotten.",
+      "roleDetail": "The Virtual Spa Concierge is the familiar role around which we plan your guest-inquiry and follow-up path. Its exact tasks are confirmed during the audit.",
+      "coverage": "Define how booking inquiries and guest follow-up requests are captured and assigned when reception is occupied or closed. Your team keeps responsibility for confirming appointments and completing follow-up.",
+      "communication": "Map what happens to booking, reschedule, and guest follow-up requests when reception is busy or closed, including who owns membership and package follow-up.",
+      "auditLabel": "Book a Spa Communication Audit"
+    }
+  },
+  "sourceNeeded": [
+    {
+      "id": "gyms",
+      "business": "Gyms",
+      "reason": "A reviewed vertical playbook and confirmed Virtual Role are needed before adding public content."
+    }
+  ]
+}

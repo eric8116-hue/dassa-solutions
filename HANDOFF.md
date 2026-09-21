@@ -1,3 +1,13 @@
+## Current B4 status ? September 20, 2026
+
+B4 passed 32 browser QA checks and awaits Eric review. Auto Repair and Spas use the external reviewed response library; Gyms is source-needed. All four audit buttons prefill the existing Calendly preparation question with the selected business/example/audit focus. Preserve all existing uncommitted work.
+
+Private preview now uses C:\Users\eric1\Dassa-private-preview\site at http://127.0.0.1:8802/. Its local Node service binds only 127.0.0.1; no SSH tunnel or ailand process is needed. Launcher: C:\Users\eric1\Dassa-private-preview\start-preview.ps1. A current-user Startup shortcut starts it hidden at sign-in. It serves a tested copy, not the editable development tree. Copy all dependencies when updating. Never run deploy.ps1 for a private-preview update; it publicly deploys.
+
+Build records: DS-2026.09.20-004, tested-awaiting-review. B3 remains the last user-approved build. No GitHub push/public deployment. See design-qa.md for results and evidence. Finished user-facing documents still belong directly on Eric's OneDrive Desktop with the time/B4 identifier first.
+
+---
+
 # Dassa Solutions — Current Website Handoff
 
 **Last updated:** 2026-09-14  
@@ -36,6 +46,10 @@ The surrounding parent workspace has unrelated changes. Do not interpret its bro
 ## Locked positioning
 
 Dassa Solutions helps businesses find and fix communication gaps that turn marketing spend and customer intent into missed opportunities, poor customer experience, workflow breakdowns, and lost revenue.
+
+### Locked operating principle
+
+A business phone system is not only a marketing or lead-capture tool. It is part of the business's customer-service and operating system: how an office serves existing customers, patients, guests, and clients; how it prevents avoidable relationship loss; and how it keeps staff workflows running smoothly. In a medical practice, for example, a missed, poorly routed, or poorly handled call can affect patient experience and retention—not merely a new lead. Every Dassa page, vertical diagnosis, and solution explanation should balance opportunity protection with customer service, workflow reliability, and operational continuity.
 
 Primary question:
 
@@ -130,6 +144,23 @@ The homepage is a single self-contained `index.html` with semantic HTML, inline 
 3. Before printing any flyer, open its matching `dassa-audit-flyer.html?vertical=<slug>` page and scan the QR code to confirm it reaches the same selected Dassa Fit Finder.
 
 ## Next review
+
+### Headline and positioning bank — preserve for the next communications-benefits section
+
+These are working options for Eric to choose from later; they are not all approved for live use and should not be treated as replacement copy until selected.
+
+- **Your Phone System Should Protect the Business—Not Create More Leaks.**
+- **Find the leaks. Build the right path. Help every important call reach a clear next step.**
+- **We protect the opportunity your marketing creates, the customer relationships you already have, and the workflow your team depends on.**
+- **In 2026, a business phone system is an investment in how your company captures opportunity, serves customers, supports employees, and keeps work moving.**
+- **When calls are missed, routed poorly, left without ownership, or handled inconsistently, the business leaks money, customers, time, and trust.**
+- **Dassa Solutions identifies communication leaks, designs the right response path, and helps put the pieces in place.**
+- **One Partner. One Bill. Fewer Moving Parts.**
+- **Instead of juggling separate internet providers, VoIP vendors, and equipment-finance invoices at every location, Dassa can structure qualified business communication solutions around one coordinated relationship and one consolidated bill.**
+- **What Your Business May Be Missing When Calls Rely Only on Cell Phones.**
+- **Together, these communication paths are designed to help protect the value of your marketing, support your team during busy periods, and give customers a clearer path to timely help.**
+
+The future section must balance lead protection with customer service, retention, workflow, employee experience, smart routing, follow-up ownership, and the voice/internet foundation. A phone system is positioned as a business investment, not merely a technical purchase or lead-generation tool.
 
 - Review the Fit Finder at desktop, tablet, and mobile widths, including long vertical text and the keyboard interaction.
 - Confirm the tone and role naming for all ten launch types before adding more types.

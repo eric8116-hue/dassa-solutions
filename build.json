@@ -1,0 +1,20 @@
+{
+  "product": "Dassa Solutions Website",
+  "build": "DS-2026.09.20-004",
+  "status": "tested-awaiting-review",
+  "date": "2026-09-20",
+  "description": "Unified business summaries, sourced Auto Repair and Spas pilots, context-aware audit booking, and verified responsive/keyboard fixes.",
+  "qa": {
+    "checksPassed": 32,
+    "checksTotal": 32,
+    "widths": [
+      320,
+      390,
+      430,
+      768,
+      1024,
+      1440
+    ]
+  },
+  "previewUrl": "http://127.0.0.1:8802/"
+}
