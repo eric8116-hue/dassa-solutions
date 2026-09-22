@@ -42,7 +42,9 @@
     if (!Array.isArray(entry.reasons) || entry.reasons.length !== 2) return 'reasons must be exactly 2';
     if (entry.reasons[0].kind !== 'customer' || entry.reasons[1].kind !== 'workflow') return 'reasons must be customer then workflow';
     if (!entry.reasons.every(function (r) { return text(r.label) && text(r.text); })) return 'reason missing label or text';
+    if (entry.reasons.some(function (r) { return r.help !== undefined && !text(r.help); })) return 'reason.help must be a non-empty string when present';
     if (!entry.role || !text(entry.role.intro) || !text(entry.role.overflow)) return 'role intro/overflow incomplete';
+    if (entry.role.lead !== undefined && !text(entry.role.lead)) return 'role.lead must be a non-empty string when present';
     if (!Array.isArray(entry.role.catches) || entry.role.catches.length < 1 || entry.role.catches.length > 3 ||
         !entry.role.catches.every(text)) return 'role.catches must be 1-3 strings';
     if (entry.calculator !== null && entry.calculator !== undefined) {

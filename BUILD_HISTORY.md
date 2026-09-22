@@ -17,6 +17,8 @@ Build numbers use `DS-YYYY.MM.DD-NNN`. Build numbers identify revisions; approva
 | DS-2026.09.22-011 | Approved by Eric 2026-09-22 | Search ghost text "Choose your business type"; placeholder contrast fixed. |
 | DS-2026.09.22-012 | Draft, awaiting review | The "car wash" funnel: staged progressive reveal, drifting band, schema v2, batch-1 content (8 real, 44 honest fallback). |
 | DS-2026.09.22-013 | Draft, tested 154/154 | Stages crossfade in one fixed frame; carousel off the home scroll; header-clip and focus-ring fixes. |
+| DS-2026.09.22-014 | Draft, tested 154/154 | Three-depth band with industry icons; blur on the stage crossfade. |
+| DS-2026.09.22-015 | Draft, tested 199/199 | The ride starts in the hero: choose, and page 1 materializes in place; four pages crossfade with no document scroll. |
 
 The current build is also recorded in `build.json` and displayed on the website as a fixed preview badge.
 
@@ -340,3 +342,94 @@ as the baseline (`6577154`); 013 is the diff against it.
 - Detector: 36 (down from 38). The frame's `overflow:hidden` during the crossfade is recorded
   as a sanctioned `clipped-overflow-container` exception.
 - Private preview remains loopback-only at http://127.0.0.1:8802/. Nothing pushed or deployed.
+
+## DS-2026.09.22-014 — draft, tested, awaiting Eric review
+
+Eric: "build the band and blur now." The two zero-asset moves that the Emil pass and the
+Impeccable detector — run independently — both pointed at for the "too plain" hero.
+
+- **Band depth.** A third `.biz-row.is-back` sits behind the two interactive rows: a shuffled copy
+  of all 52, `position:absolute` centred on the band, `scale(1.42)`, `opacity:.16`, `blur(3.5px)`,
+  drifting at 72s (the real rows stay at 48s/56s so the three never lock step). It is `<span>`s
+  inside `aria-hidden` tracks, so the suite's "52 real chips, one tab stop" contract is untouched.
+  Hidden entirely under reduced motion. First attempt placed it *above* the real rows with 34px of
+  padding and it read as a third row of ghosts, not depth; moved it behind and larger.
+- **Icons.** Every chip carries `agent.icon` (already in the catalog) at 17px blue; chips get a
+  white fill so the icon has ground. 15px on phones.
+- **Blur crossfade.** `.funnel .stage` transitions `filter` alongside opacity/transform: enters
+  from `blur(4px)`, leaves to `blur(6px)`. Removed under reduced motion.
+- **Regression caught and fixed.** The back row's `left:-10%; right:-10%` overhang leaked past the
+  viewport on phones (`.biz-row` clips, the band did not); the suite's overflow check caught it
+  before any screenshot did. `overflow:hidden` on `.biz-band`.
+- Tests 154/154 clean. Detector 35 (down from 36).
+- Private preview remains loopback-only at http://127.0.0.1:8802/. Nothing pushed or deployed.
+
+## DS-2026.09.22-015 — draft, tested, awaiting Eric review
+
+Eric rejected 014's structure, not its idea: *"It's turning into a scroll down to see it, which I
+don't want. I want it all to happen once they go into the hero and choose the business type...
+everything should appear in front of them. Materialize."* This build makes the hero the ride.
+
+### What changed
+- **The hero is the frame.** `section.hero` holds two layers: `#heroSign` (the sign headline
+  "Choose your business type here.", the band, Eric's verbatim sub-line, the search, the booking
+  note) and `#ride` (a rail plus five absolutely-stacked pages). Frame height is the viewport minus
+  the real header height (measured from `.site-header.offsetHeight`, ~148px on desktop, not the
+  106px the CSS guessed), clamped 500–860px, using `100svh` where supported.
+- **Materialize.** On choose the sign dissolves (380ms fade/shrink/blur, band pauses), the sign
+  layer goes `inert` + `aria-hidden`, and page 1 washes in with the existing choreography (trigger
+  @480, sweep @720, paragraph @840, actions @1500). No scroll. Escape and "Get off the ride" reverse
+  it and replay the sign.
+- **Four pages, rail labels exactly as Eric named them:** The problem → Why it matters → Your
+  Virtual helper (the rail shows the real role name once reached) → Wrap up. Page 2 is new
+  (`#reasons`): the two reason cards moved here, each with a "What changes" line. Page 3 gains a
+  lead-in and ends in two doors (`#doorCalculator` "Put a number on it", `#doorContact` "Skip to
+  the wrap-up"). Page 4 is whichever door they took; the calculator continues to the wrap-up, and
+  the wrap-up's Back returns to wherever they came from.
+- **Below-the-fold entry** (carousel CTA, nav Revenue Math) scrolls the document to the top first
+  (instantly — smooth scrolling is suspended for the ride's lifetime), then materializes.
+- **Schema v2 + two optional fields.** `reasons[].help` and `role.lead`, validated only when
+  present. `reasonHelp()` falls back to `role.catches[i]` (catch 0 pairs with the customer reason,
+  catch 1 with workflow) and `roleLead()` to a fixed sentence, so all 8 reviewed entries render
+  today. The 24 lines of real copy are deferred to 016.
+- **Unapproved businesses** skip page 2 (rail marks it skipped), get the fallback on page 1, and
+  the HIPAA note stays hidden because no flag is known.
+- The no-results link in the search now books (it pointed at `#contact`, which is a hidden page).
+- The 640px "degrade to stacked flow" rule is gone; the frame model holds on phones with tighter
+  page typography and the dashboard PNG hidden on page 3.
+
+### The scroll bug, and what it actually was
+Choosing from the search scrolled the document ~750px on every viewport, then my pin dragged it
+back — a visible flinch. Seven hypotheses were wrong (heading focus, the dissolve transform, the
+absolute layer flip, the dropdown hiding, `overflow-anchor` on `html`, ordering of my own
+`scrollTo`, a deferred `closeResults`). A CSS bisect and a Chrome trace found it: closing the
+`position:absolute` results box shifted the hero's layout, and Chrome's **scroll anchoring**
+(`ScrollAnchor::FindAnchor` in the trace) chose an anchor *inside* the hero, so `html
+{overflow-anchor:none}` never applied. The cure the controls proved: the results box is
+`position:fixed`, placed under the field by JS, and **reparented to `<body>`** — the last part
+because `.agent-search-shell` (z-index 4) and the animated `.hero-sign` each open a stacking
+context, so no z-index inside them could ever rise above the sticky header, which is why the
+box flipped above the field on phones and the click landed on the nav. Peak scrollY during
+choose is now 0 on every path.
+
+### Other defects found only by rendering or by the suite
+- On a 320×640 phone the frame's 520px floor overflowed the viewport by 7px under a 127px header;
+  floor is now 500 and the frame is `box-sizing:border-box`.
+- After escape the hero shrank back to the sign and left the document scrolled 173px; escape pins
+  to the top.
+- The async library re-render used to reset the open page; it now re-renders copy in place, and a
+  cold `#reasons` deep link no longer routes around page 2 before the library has loaded.
+- The results box repositioned on every scroll event, and the band's drift fires those on phones,
+  so Playwright saw it as unstable; it now only moves when the field actually moves.
+
+### Tests
+`tests/dassa-qa.spec.js` rewritten: 39 tests × 7 projects. Full matrix: see `build.json`.
+Three earlier full runs were valid diagnostics, not results (159/40, 180/19, 196/3), each
+narrowing to the stacking-context cause above.
+
+### Still needs Eric's eyes
+The materialize and the sign on his own screens; the hero now fills the desktop viewport at
+rest; whether page 3 should keep a booking button alongside the two doors; and the deferred
+per-vertical `help`/`lead` copy. The animation-skill passes on the sign and materialize (the
+"fancy skills" Eric asked for) are the next step once the structure is approved.
+Private preview remains loopback-only at http://127.0.0.1:8802/. Nothing pushed or deployed.

@@ -1,18 +1,18 @@
 {
   "product": "Dassa Solutions Website",
-  "build": "DS-2026.09.22-013",
+  "build": "DS-2026.09.22-015",
   "status": "draft-tested",
   "date": "2026-09-22",
-  "description": "The funnel becomes one fixed frame. On top of 012: the four stages (Diagnosis, Virtual Role, Revenue Math, Book) now crossfade in place inside #funnel instead of stacking down the page; Back on every stage after Diagnosis and a Start-over on Book; the browse-all-industries carousel is off the home scroll and opens only from the Virtual Roles nav tab. Two rendering defects found by screenshot and fixed: every stage opened with its heading under the sticky header (stages now top-aligned with scroll-margin), and the heading focus ring spanned the full row (now hugs the text). Refocusing a search box that already holds the chosen business no longer pops the results dropdown over a later stage.",
+  "description": "The ride starts in the hero. Choosing a business type no longer scrolls anywhere: the sign, band and search dissolve in place and page 1 materializes in the same hero frame, then four pages crossfade there - The problem, Why it matters (two reasons, each with a 'what changes' line, plus booking), Your Virtual helper (lead-in, role, three catches, overflow line; ends in two doors), and Wrap up as either the calculator or the booking summary. Every page has Escape; the wrap-up has Get off the ride. Carousel stays behind the Virtual Roles nav tab. New hero copy is Eric's verbatim: 'Choose your business type here.' with his sub-line. Schema v2 gains two optional fields (reasons[].help, role.lead) with a derived fallback so all 8 reviewed entries render today.",
   "approvedBuild": {
     "build": "DS-2026.09.22-011",
     "approvedDate": "2026-09-22",
-    "note": "011 remains the approved build. 012 was committed as the baseline (6577154); 013 is the crossfade-frame revision Eric asked for and needs his eyes-on review."
+    "note": "011 remains the approved build. Baselines committed: 012 (6577154), 013 (9c01cd6). 014 (band+blur) and 015 (the ride) are uncommitted and need Eric's eyes-on review."
   },
   "qa": {
-    "checksPassed": 154,
-    "checksTotal": 154,
-    "note": "Playwright, tests/dassa-qa.spec.js, 27 tests x 7 viewport projects, run 2026-09-22: 154 passed, 0 failed, 35 skipped (pointer-only or touch-only by design). Tests updated for the frame model: only the active stage is visible, earlier stages are marked done on the rail; the carousel tests open the Virtual Roles panel first (via the hamburger below 860px); the keyboard walk stops when Tab wraps and exempts the calculator's copy-column button. Two earlier full runs were invalid: one was interrupted by test edits mid-flight, one failed 106 tests with ERR_CONNECTION_REFUSED because an ad-hoc screenshot server was holding port 8850. Still needs Eric: the crossfade as perceived, the band, and the hero direction the critique passes are producing."
+    "checksPassed": 199,
+    "checksTotal": 199,
+    "note": "Playwright, tests/dassa-qa.spec.js, rewritten for the ride (39 tests x 7 viewport projects), run 2026-09-22: 199 passed, 0 failed, the rest skipped by design (pointer-only / touch-only). Verified: no document scroll on choose from search, band chip, or the below-fold carousel CTA (which scrolls to the top first, then rides); page 1 fits the viewport with no internal scroll on desktop and tablet (phones may scroll inside a page, never the document); the sign pulses then settles and is static under reduced motion; page 2 shows two reasons each with a help line; the two doors on page 3; honest fallback skips page 2 and hides the HIPAA note; deep links to every page land at scrollY 0; browser back walks the rail; escape restores the sign and clears the search; Get off the ride keeps the search value without reopening results; the sign layer is inert while riding; rail has the four exact labels. Detector 31. Still needs Eric: the materialize and the sign as perceived on his own screens, the hero now filling the desktop viewport at rest, and the page-3 booking button decision."
   },
   "previewUrl": "http://127.0.0.1:8802/"
 }

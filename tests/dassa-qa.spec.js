@@ -1,11 +1,11 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
-// Build DS-2026.09.22-012: the "car wash" funnel. Choose a business type, and
-// the page reveals Diagnosis -> Virtual Role -> Revenue Math -> Book as one
-// progressive-reveal scrolling page. Earlier builds' checks that still apply
-// (mobile stacking, keyboard order, press feedback) are kept; the retired
-// summary-card checks from 006 are replaced by the stage checks below.
+// Build DS-2026.09.22-015: the ride in the hero. Choose a business type and the
+// hero itself becomes page 1; four pages crossfade in place (The problem, Why it
+// matters, Your Virtual helper, Wrap up) with no document scroll at any point.
+// Earlier builds' checks that still apply (band, mobile stacking, keyboard order,
+// press feedback) are kept.
 
 const TOUCH_PROJECTS = ['mobile-430-touch', 'mobile-390-touch', 'mobile-320-touch', 'mobile-390-reduced-motion'];
 const MOBILE_STACK_PROJECTS = [...TOUCH_PROJECTS, 'tablet-768'];
@@ -22,8 +22,9 @@ async function chooseBusiness(page, query, expectedLabel) {
   await page.fill('#agentSearch', query);
   const first = page.locator('#agentSearchResults .agent-search-result').first();
   await expect(first).toContainText(expectedLabel);
-  await first.click();
-  await expect(page.locator('#diagnosis')).toBeVisible({ timeout: 4000 });
+  await first.click({ force: true });
+  await expect(page.locator('.hero')).toHaveClass(/is-riding/, { timeout: 4000 });
+  await expect(page.locator('#diagnosis')).toBeVisible();
   await expect(page.locator('#diagnosisBusiness')).toHaveText(expectedLabel);
 }
 
@@ -79,49 +80,106 @@ test.describe('Core funnel regression', () => {
   });
 });
 
-test.describe('Stages: the car wash (Build 012)', () => {
-  test('choosing a business reveals Diagnosis with that business, and only Diagnosis', async ({ page }) => {
+test.describe('The ride in the hero (Build 015)', () => {
+  test('choosing a business materializes page 1 in the hero, with no document scroll', async ({ page }, testInfo) => {
     await page.goto('/');
-    await expect(page.locator('#diagnosis')).toBeHidden();
-    await expect(page.locator('#virtual-role')).toBeHidden();
-    await expect(page.locator('#calculator')).toBeHidden();
+    await expect(page.locator('#ride')).toBeHidden();
     await chooseBusiness(page, 'mechanic', 'Auto Repair');
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    await expect(page.locator('#heroSign')).toBeHidden();
+    await expect(page.locator('#agentSearchResults')).toBeHidden();
     await expect(page.locator('#diagnosisApproved')).toBeVisible();
     await expect(page.locator('#diagnosisFallback')).toBeHidden();
     await expect(page.locator('#diagnosisParagraph')).not.toBeEmpty();
-    await expect(page.locator('#diagnosisReasons .reason-card')).toHaveCount(2);
+    await expect(page.locator('#reasons')).toBeHidden();
     await expect(page.locator('#virtual-role')).toBeHidden();
-    await expect(page.locator('#calculator')).toBeHidden();
     await expect(page.locator('#stageRail li[aria-current="step"]')).toHaveAttribute('data-stage', 'diagnosis');
+    if (!isReduced(testInfo)) await expect(page.locator('#diagnosis')).toHaveClass(/is-settled/, { timeout: 6000 });
+    expect(await page.evaluate(() => window.scrollY), 'the ride must never scroll the document').toBe(0);
   });
 
-  test('Next walks Diagnosis -> Virtual Role -> Revenue Math and lands focus on each heading', async ({ page }, testInfo) => {
+  test('page 1 fits the viewport on every project', async ({ page }, testInfo) => {
+    await page.goto('/?vertical=towing');
+    await expect(page.locator('#diagnosis')).toBeVisible();
+    if (!isReduced(testInfo)) await expect(page.locator('#diagnosis')).toHaveClass(/is-settled/, { timeout: 6000 });
+    const m = await page.evaluate(() => {
+      const s = document.getElementById('diagnosis'); const r = s.getBoundingClientRect();
+      const h = document.querySelector('.site-header').getBoundingClientRect();
+      return { top: r.top, bottom: r.bottom, inner: innerHeight, headerBottom: h.bottom, scrollH: s.scrollHeight, clientH: s.clientHeight, scrollY: window.scrollY };
+    });
+    expect(m.scrollY).toBe(0);
+    expect(m.top, 'page must start below the sticky header').toBeGreaterThanOrEqual(m.headerBottom - 1);
+    expect(m.bottom, 'page frame must end inside the viewport').toBeLessThanOrEqual(m.inner + 1);
+    // Eric's rule: the DOCUMENT never scrolls; a page's own content may scroll inside its frame on a phone.
+    // On desktop and tablet the full page must fit with no internal scroll.
+    if (!isProject(testInfo, TOUCH_PROJECTS)) {
+      expect(m.scrollH, 'page 1 content must not overflow its frame').toBeLessThanOrEqual(m.clientH + 1);
+    }
+  });
+
+  test('Next walks The problem -> Why it matters -> Your Virtual helper -> Wrap up, focus on each heading', async ({ page }, testInfo) => {
     await page.goto('/');
     await chooseBusiness(page, 'towing', 'Towing');
     await page.waitForTimeout(isReduced(testInfo) ? 100 : 400);
     await expect(page.locator('#diagnosisTitle')).toBeFocused();
 
     await page.locator('#diagnosisApproved .stage-next').click();
+    await expect(page.locator('#reasons')).toBeVisible();
+    await expect(page.locator('#diagnosisReasons .reason-card')).toHaveCount(2);
+    const helps = page.locator('#diagnosisReasons .reason-help');
+    await expect(helps).toHaveCount(2);
+    for (const t of await helps.allTextContents()) expect(t.trim().length).toBeGreaterThan(10);
+    await expect(page.locator('#reasons [data-booking]')).toBeVisible();
+    await page.waitForTimeout(isReduced(testInfo) ? 100 : 500);
+    await expect(page.locator('#reasonsTitle')).toBeFocused();
+
+    await page.locator('#reasons .stage-next').click();
     await expect(page.locator('#virtual-role')).toBeVisible();
+    await expect(page.locator('#roleLead')).not.toBeEmpty();
     await expect(page.locator('#roleName')).toHaveText('Virtual Dispatch Coordinator');
     await expect(page.locator('#roleCatches li')).toHaveCount(3);
     await expect(page.locator('#roleOverflow')).toContainText('answer first');
     await expect(page.locator('#roleHipaa')).toBeHidden();
-    await page.waitForTimeout(isReduced(testInfo) ? 100 : 400);
+    await expect(page.locator('#doorCalculator')).toBeVisible();
+    await expect(page.locator('#doorContact')).toBeVisible();
+    await expect(page.locator('#railRoleLabel')).toHaveText('Virtual Dispatch Coordinator');
+    await page.waitForTimeout(isReduced(testInfo) ? 100 : 500);
     await expect(page.locator('#roleTitle')).toBeFocused();
 
-    await page.locator('#virtual-role .stage-next').click();
+    await page.locator('#doorCalculator').click();
     await expect(page.locator('#calculator')).toBeVisible();
     await expect(page.locator('#presetNote')).toHaveAttribute('data-preset', 'business');
     await expect(page.locator('#calcMissed')).toHaveValue('132');
-    await expect(page.locator('#usePreset')).toBeVisible();
-    await page.waitForTimeout(isReduced(testInfo) ? 100 : 400);
+    await page.waitForTimeout(isReduced(testInfo) ? 100 : 500);
     await expect(page.locator('#calcTitle')).toBeFocused();
     expect(page.url()).toContain('vertical=towing');
     expect(page.url()).toContain('#calculator');
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
   });
 
-  test('an unapproved business gets the honest fallback, never boilerplate', async ({ page }) => {
+  test('page 3 has two doors: skip to the wrap-up, or the calculator then the wrap-up', async ({ page }) => {
+    await page.goto('/?vertical=towing#virtual-role');
+    await expect(page.locator('#virtual-role')).toBeVisible();
+    await page.locator('#doorContact').click();
+    await expect(page.locator('#contact')).toBeVisible();
+    await expect(page.locator('#calculator')).toBeHidden();
+    await expect(page.locator('#contactBusiness')).toHaveText('Towing');
+    await expect(page.locator('#stageStatus')).toContainText('Page 4 of 4');
+    await expect(page.locator('#stageRail li[aria-current="step"]')).toHaveAttribute('data-stage', 'wrap');
+    expect(page.url()).toContain('#contact');
+
+    await page.goto('/?vertical=towing#virtual-role');
+    await page.locator('#doorCalculator').click();
+    await expect(page.locator('#calculator')).toBeVisible();
+    await expect(page.locator('#stageStatus')).toContainText('Page 4 of 4');
+    await page.locator('#calculator .stage-next').click();
+    await expect(page.locator('#contact')).toBeVisible();
+    // Back from the wrap-up returns to wherever the visitor came from.
+    await page.locator('#contact .stage-back').click();
+    await expect(page.locator('#calculator')).toBeVisible();
+  });
+
+  test('an unapproved business gets the honest fallback and skips Why it matters', async ({ page }) => {
     await page.goto('/?vertical=dental');
     await expect(page.locator('#diagnosis')).toBeVisible();
     await expect(page.locator('#diagnosisFallback')).toBeVisible();
@@ -129,30 +187,44 @@ test.describe('Stages: the car wash (Build 012)', () => {
     await expect(page.locator('#diagnosisFallback')).toContainText('rather ask');
     await expect(page.locator('#fallbackRole')).toHaveText('Virtual Patient Coordinator');
     await expect(page.locator('#diagnosisFallback [data-booking]')).toBeVisible();
-    // The fallback's only forward path is the calculator, which reports no preset.
+    await expect(page.locator('#stageRail li[data-stage="reasons"]')).toHaveAttribute('data-skipped', 'true');
     await page.locator('#diagnosisFallback .stage-next').click();
+    await expect(page.locator('#virtual-role')).toBeVisible();
+    await expect(page.locator('#reasons')).toBeHidden();
+    // No reviewed entry means no HIPAA flag is known, so the note stays hidden rather than guessing.
+    await expect(page.locator('#roleHipaa')).toBeHidden();
+    await page.locator('#doorCalculator').click();
     await expect(page.locator('#calculator')).toBeVisible();
     await expect(page.locator('#presetNote')).toHaveAttribute('data-preset', 'none');
     await expect(page.locator('#usePreset')).toBeHidden();
-    // Defaults are never blanked to $0.
     await expect(page.locator('#calcAnnual')).not.toHaveText('$0');
+    // Back from the helper skips the reasons page too.
+    await page.locator('#calculator .stage-back').click();
+    await expect(page.locator('#virtual-role')).toBeVisible();
+    await page.locator('#virtual-role .stage-back').click();
+    await expect(page.locator('#diagnosis')).toBeVisible();
   });
 
-  test('deep link lands on Diagnosis; a hash deep link reveals every stage up to it', async ({ page }) => {
+  test('deep links land on the right page with no scroll; the rail marks earlier pages done', async ({ page }) => {
     await page.goto('/?vertical=auto-repair');
     await expect(page.locator('#diagnosis')).toBeVisible();
     await expect(page.locator('#diagnosisBusiness')).toHaveText('Auto Repair');
     await expect(page.locator('#agentSearch')).toHaveValue('Auto Repair');
-    await expect(page.locator('#virtual-role')).toBeHidden();
+    await expect(page.locator('#heroSign')).toBeHidden();
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+
+    await page.goto('/?vertical=towing#reasons');
+    await expect(page.locator('#reasons')).toBeVisible();
+    await expect(page.locator('#stageRail li[aria-current="step"]')).toHaveAttribute('data-stage', 'reasons');
+    await expect(page.locator('#stageRail li[data-stage="diagnosis"]')).toHaveAttribute('data-done', 'true');
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
 
     await page.goto('/?vertical=towing#calculator');
     await expect(page.locator('#calculator')).toBeVisible();
-    // One frame, one stage: the earlier stages are passed (rail marks them done), not on screen.
     await expect(page.locator('#diagnosis')).toBeHidden();
-    await expect(page.locator('#virtual-role')).toBeHidden();
-    await expect(page.locator('#stageRail li[aria-current="step"]')).toHaveAttribute('data-stage', 'calculator');
-    await expect(page.locator('#stageRail li[data-stage="diagnosis"]')).toHaveAttribute('data-done', 'true');
+    await expect(page.locator('#stageRail li[aria-current="step"]')).toHaveAttribute('data-stage', 'wrap');
     await expect(page.locator('#stageRail li[data-stage="virtual-role"]')).toHaveAttribute('data-done', 'true');
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
   });
 
   test('legacy ?vertical=pool-spa resolves through the single resolver', async ({ page }) => {
@@ -161,64 +233,122 @@ test.describe('Stages: the car wash (Build 012)', () => {
     await expect(page.locator('#fallbackRole')).toHaveText('Virtual Service Desk');
   });
 
-  test('back button walks the stages back and the rail follows', async ({ page }) => {
+  test('browser back walks the pages back and the rail follows', async ({ page }) => {
     await page.goto('/');
     await chooseBusiness(page, 'tire', 'Tire Shops');
     await page.locator('#diagnosisApproved .stage-next').click();
+    await expect(page.locator('#reasons')).toBeVisible();
+    await page.locator('#reasons .stage-next').click();
     await expect(page.locator('#virtual-role')).toBeVisible();
-    await page.locator('#virtual-role .stage-next').click();
-    await expect(page.locator('#calculator')).toBeVisible();
     await page.goBack();
-    await expect(page).toHaveURL(/#virtual-role$/);
-    await expect(page.locator('#stageRail li[aria-current="step"]')).toHaveAttribute('data-stage', 'virtual-role');
+    await expect(page).toHaveURL(/#reasons$/);
+    await expect(page.locator('#stageRail li[aria-current="step"]')).toHaveAttribute('data-stage', 'reasons');
     await page.goBack();
     await expect(page).toHaveURL(/#diagnosis$/);
-    await expect(page.locator('#stageRail li[aria-current="step"]')).toHaveAttribute('data-stage', 'diagnosis');
     await expect(page.locator('#diagnosis')).toBeVisible();
   });
 
-  test('changing business resets the downstream stages', async ({ page }) => {
-    await page.goto('/');
-    await chooseBusiness(page, 'towing', 'Towing');
-    await page.locator('#diagnosisApproved .stage-next').click();
+  test('changing business restarts the ride at page 1', async ({ page }) => {
+    await page.goto('/?vertical=towing#virtual-role');
     await expect(page.locator('#virtual-role')).toBeVisible();
+    await page.locator('#virtual-role .stage-escape').click();
+    await expect(page.locator('.hero')).not.toHaveClass(/is-riding/, { timeout: 3000 });
     await chooseBusiness(page, 'spa', 'Spas');
     await expect(page.locator('#virtual-role')).toBeHidden();
-    await expect(page.locator('#calculator')).toBeHidden();
     await expect(page.locator('#roleName')).toHaveText('Virtual Spa Concierge');
   });
 
+  test('escape returns the hero to its sign state, no scroll', async ({ page }, testInfo) => {
+    await page.goto('/?vertical=towing#reasons');
+    await expect(page.locator('#reasons')).toBeVisible();
+    await page.locator('#reasons .stage-escape').click();
+    await expect(page.locator('.hero')).not.toHaveClass(/is-riding/, { timeout: 3000 });
+    await expect(page.locator('#ride')).toBeHidden();
+    await expect(page.locator('#heroSign')).toBeVisible();
+    await expect(page.locator('#heroSignTitle')).toBeVisible();
+    await expect(page.locator('#agentSearch')).toHaveValue('');
+    expect(page.url()).not.toContain('vertical=');
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    if (!isReduced(testInfo)) await expect(page.locator('.hero')).toHaveClass(/is-signing/);
+    if (!isProject(testInfo, TOUCH_PROJECTS)) await expect(page.locator('#agentSearch')).toBeFocused();
+  });
+
+  test('"Get off the ride" restores the hero, keeps the search value, and does not reopen results', async ({ page }) => {
+    await page.goto('/?vertical=towing#contact');
+    await expect(page.locator('#contact')).toBeVisible();
+    await page.locator('#rideExit').click();
+    await expect(page.locator('.hero')).not.toHaveClass(/is-riding/, { timeout: 3000 });
+    await expect(page.locator('#heroSign')).toBeVisible();
+    await expect(page.locator('#agentSearch')).toHaveValue('Towing');
+    await page.locator('#agentSearch').focus();
+    await page.waitForTimeout(200);
+    await expect(page.locator('#agentSearchResults')).toBeHidden();
+  });
+
+  test('the rail has exactly the four page labels', async ({ page }) => {
+    await page.goto('/?vertical=towing');
+    const labels = (await page.locator('#stageRail li').allTextContents()).map((t) => t.trim());
+    expect(labels).toEqual(['The problem', 'Why it matters', 'Your Virtual helper', 'Wrap up']);
+  });
+
   test('booking links carry the business into the Calendly prefill', async ({ page }) => {
-    await page.goto('/');
-    await chooseBusiness(page, 'body shop', 'Auto Body');
-    const href = await page.locator('#diagnosisApproved [data-booking]').getAttribute('href');
+    await page.goto('/?vertical=auto-body#reasons');
+    await expect(page.locator('#reasons')).toBeVisible();
+    const href = await page.locator('#reasons [data-booking]').getAttribute('href');
     expect(href).toContain('calendly.com');
     const prefill = new URL(href || '').searchParams.get('a1') || '';
     expect(prefill).toContain('Business type: Auto Body');
     expect(prefill).toContain('Audit focus:');
-    await expect(page.locator('#diagnosisApproved [data-booking]')).toHaveText('Book an Auto Body Communication Audit');
+    await expect(page.locator('#reasons [data-booking]')).toHaveText('Book an Auto Body Communication Audit');
   });
 
-  test('carousel browsing never starts the wash or pushes history', async ({ page }) => {
+  test('carousel browsing never starts the ride; its CTA scrolls to the top then rides', async ({ page }) => {
     await page.goto('/');
     await openRolesPanel(page);
     const before = page.url();
     await page.locator('#agentNext').click();
     await page.locator('.agent-industry-tab').nth(2).click();
-    await expect(page.locator('#diagnosis')).toBeHidden();
+    await expect(page.locator('#ride')).toBeHidden();
     expect(page.url()).toBe(before);
-    // The carousel CTA is the one path in.
     const cta = page.locator('#agentRoleCta');
     await expect(cta).toContainText('Start with');
+    await cta.scrollIntoViewIfNeeded();
+    expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
     await cta.click();
+    await expect(page.locator('.hero')).toHaveClass(/is-riding/, { timeout: 5000 });
+    await expect.poll(() => page.evaluate(() => window.scrollY), { timeout: 3000 }).toBe(0);
     await expect(page.locator('#diagnosis')).toBeVisible();
+  });
+
+  test('the sign layer is inert while riding', async ({ page }, testInfo) => {
+    test.skip(isProject(testInfo, TOUCH_PROJECTS), 'keyboard concern');
+    await page.goto('/?vertical=towing#calculator');
+    await expect(page.locator('#calculator')).toBeVisible();
+    const landed = [];
+    for (let i = 0; i < 25; i++) {
+      await page.keyboard.press('Tab');
+      landed.push(await page.evaluate(() => { const a = document.activeElement; return (a && (a.id || a.className)) || ''; }));
+    }
+    expect(landed.some((x) => x === 'agentSearch' || /biz-chip/.test(x))).toBe(false);
+  });
+
+  test('the sign pulses then settles; static under reduced motion', async ({ page }, testInfo) => {
+    await page.goto('/');
+    const h1 = page.locator('#heroSignTitle');
+    if (isReduced(testInfo)) {
+      expect(await h1.evaluate((el) => getComputedStyle(el).animationName)).toBe('none');
+      expect(await page.evaluate(() => getComputedStyle(document.querySelector('.sign-here'), '::after').transform)).not.toBe('none');
+      return;
+    }
+    await expect(page.locator('.hero')).toHaveClass(/is-signing/);
+    expect(await h1.evaluate((el) => getComputedStyle(el).animationName)).toBe('signPulse');
+    await expect(page.locator('.hero')).toHaveClass(/sign-settled/, { timeout: 7000 });
   });
 
   test('the diagnosis choreography is wired and settles', async ({ page }, testInfo) => {
     await page.goto('/');
     await chooseBusiness(page, 'mechanic', 'Auto Repair');
     if (isReduced(testInfo)) {
-      // Reduced motion: everything is visible immediately, no delays survive.
       const delays = await page.$$eval('#diagnosis .wash-item', (els) => els.map((el) => getComputedStyle(el).animationDelay));
       expect(delays.every((d) => d === '0s')).toBe(true);
       await expect(page.locator('#diagnosisParagraph')).toBeVisible({ timeout: 500 });
@@ -253,9 +383,11 @@ test.describe('Hero band (Build 012)', () => {
   test('a band chip enters the funnel', async ({ page }) => {
     await page.goto('/');
     await page.locator('#businessBand .biz-chip[data-business-id="auto-salvage"]').first().evaluate((el) => el.click());
+    await expect(page.locator('.hero')).toHaveClass(/is-riding/, { timeout: 4000 });
     await expect(page.locator('#diagnosis')).toBeVisible();
     await expect(page.locator('#diagnosisBusiness')).toHaveText('Auto Salvage');
     await expect(page.locator('#agentSearch')).toHaveValue('Auto Salvage');
+    expect(await page.evaluate(() => window.scrollY)).toBe(0);
   });
 
   test('the band drifts, pauses on hover, and is static under reduced motion', async ({ page }, testInfo) => {
@@ -299,7 +431,7 @@ test.describe('Mobile stacking (Build 005)', () => {
 
   test('reason cards stack on phones', async ({ page }, testInfo) => {
     test.skip(!isProject(testInfo, TOUCH_PROJECTS), 'phone-only check');
-    await page.goto('/?vertical=towing');
+    await page.goto('/?vertical=towing#reasons');
     await expect(page.locator('#diagnosisReasons')).toBeVisible();
     const cols = await page.evaluate(() => getComputedStyle(document.getElementById('diagnosisReasons')).gridTemplateColumns.split(' ').length);
     expect(cols).toBe(1);
@@ -370,10 +502,10 @@ test.describe('Keyboard (Build 005 + 012)', () => {
   test('screen-reader status announces each stage', async ({ page }) => {
     await page.goto('/');
     await chooseBusiness(page, 'dealership', 'Dealerships');
-    await expect(page.locator('#stageStatus')).toContainText('Stage 2 of 5');
+    await expect(page.locator('#stageStatus')).toContainText('Page 1 of 4');
     await expect(page.locator('#stageStatus')).toContainText('Dealerships');
     await page.locator('#diagnosisApproved .stage-next').click();
-    await expect(page.locator('#stageStatus')).toContainText('Stage 3 of 5');
+    await expect(page.locator('#stageStatus')).toContainText('Page 2 of 4');
   });
 });
 
@@ -404,8 +536,8 @@ test.describe('Press feedback + hover-lift fix (Build 007)', () => {
     test.skip(isProject(testInfo, TOUCH_PROJECTS), 'hover is gated to (hover:hover) and (pointer:fine) — desktop only, by design');
     // The nav CTA is display:none below 860px. Hover (not press) the diagnosis stage's
     // secondary .btn: it exists at every width and hovering a link never navigates.
-    await page.goto('/?vertical=towing');
-    const button = page.locator('#diagnosisApproved .btn.btn-secondary');
+    await page.goto('/?vertical=towing#reasons');
+    const button = page.locator('#reasons .btn.btn-secondary').first();
     await expect(button).toBeVisible();
     await button.scrollIntoViewIfNeeded();
     await page.waitForTimeout(3600);
