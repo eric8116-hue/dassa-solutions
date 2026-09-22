@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "D:/Dev/onecloud-sales/dassa-solutions-site/index.html"
+        ],
+        "createdAt": "2026-09-22T07:31:48.264Z",
+        "reason": "Eric decided 2026-09-22: the drifting business-type band is the hero texture, not the CTA; it pauses on hover and focus, renders static under reduced-motion, and is a single tab stop with roving arrows"
+      }
+    ]
+  }
+}

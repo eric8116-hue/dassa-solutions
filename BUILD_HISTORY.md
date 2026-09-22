@@ -15,6 +15,7 @@ Build numbers use `DS-YYYY.MM.DD-NNN`. Build numbers identify revisions; approva
 | DS-2026.09.22-009 | Approved by Eric 2026-09-22 | Impeccable pass: kickers, side-tab borders, card accent bars and resting glows removed. |
 | DS-2026.09.22-010 | Approved by Eric 2026-09-22 | Schibsted Grotesk replaces Inter; "Example call flow"; one business-finder label. |
 | DS-2026.09.22-011 | Approved by Eric 2026-09-22 | Search ghost text "Choose your business type"; placeholder contrast fixed. |
+| DS-2026.09.22-012 | Draft, awaiting review | The "car wash" funnel: staged progressive reveal, drifting band, schema v2, batch-1 content (8 real, 44 honest fallback). |
 
 The current build is also recorded in `build.json` and displayed on the website as a fixed preview badge.
 
@@ -203,3 +204,109 @@ the design and copy decisions. It is not a statement that any check passed.
 Everything in `build.json` under `qa.note` is still outstanding, including the visible changes nobody has
 looked at yet - the Inter to Schibsted Grotesk swap, eight headings losing their label line, and five
 blocks losing their accent bars. Nothing has been pushed or publicly deployed at any point.
+
+## DS-2026.09.22-012 — draft, awaiting Eric review
+
+The "car wash" funnel restructure Eric designed on 2026-09-22 — which turned out to be the
+556B4 handoff's own journey (business type → problem + valid business reasons → named Virtual
+Role → ROI → audit). Starts from `835a0d7`. A structural rebuild of the top of the page;
+everything below the funnel (proof, call flow, carousel, what-we-examine, footer) keeps its
+content.
+
+### Page
+- **New order:** Hero (band + search) → Diagnosis → Virtual Role → Revenue Math → Book, then
+  Proof → Call flow → Browse all industries → What we examine. Stages 2-4 are `hidden` until the
+  prior one is completed. The exit (`#contact`) is never hidden.
+- **Hero** is single-column: new headline ("Tell me your business. I'll tell you where the calls
+  are leaking."), a drifting band of all 52 business types (two rows, opposite directions, seamless
+  loop, pauses on hover/focus, static wrap under reduced motion, ONE tab stop with roving arrows),
+  the search field as the primary action, and a quiet booking link. The old "Not a Generic Bot"
+  dark search section and the three quick-link chips are gone.
+- **Diagnosis** renders the reviewed Trigger sentence, a 60-120 word paragraph, and exactly two
+  valid business reasons (one customer-facing, one workflow) as cards; *Next* → Virtual Role.
+- **Honest fallback** is a distinct DOM branch (`#diagnosisFallback`), never boilerplate. An
+  unapproved business gets "We'd rather ask than guess," its real role name, a booking link, and
+  "Run the numbers anyway" into the calculator.
+- **Virtual Role** reuses the dark hero treatment and PNG: "Meet your Virtual <Role>", the intro,
+  three things it catches, and the overflow line ("your people answer first"). The HIPAA note
+  renders only when the entry's `hipaa` flag is true (9 of 52). Float badges now read "Your team
+  answers first" / "Overflow caught and routed".
+- **Revenue Math** moved after the role stage. The preset auto-applies on reveal with three
+  honest states on `#presetNote[data-preset]`: `business` (example numbers loaded, Re-apply
+  button), `none` (generic defaults, labelled), `unselected` (nav force-reveal with no business).
+  Fields are never blanked to $0.
+- **Book** is personalised with the business name; the Calendly `a1` prefill carries the Trigger
+  and `auditFocus`.
+- Progress rail (`#stageRail`, `aria-current="step"`) and a screen-reader status line
+  (`#stageStatus`: "Stage 2 of 5. Diagnosis for Towing.") on every reveal.
+- **Carousel demoted to browse-only.** Arrows, tabs, dots and swipe no longer start the funnel or
+  push history. Its CTA now reads "Start with <business>" and is the one path in.
+- **Reveal is visibility-triggered.** `scrollThenReveal` scrolls, then reveals on an
+  IntersectionObserver at 50% with a 2500 ms safety that reveals *without* scrolling — so the
+  entrance can never complete off-screen, which is exactly what the 006 timer version did on
+  laptop and every phone (measured by the 011 test suite).
+- **Diagnosis choreography** (the one authored moment): panel rise 32px/960ms → business name
+  locks in from the left with an underline → Trigger rises → a soft gradient "wash sweep" crosses
+  the paragraph → paragraph rises → the two reason cards stagger 240 ms apart → actions. About
+  2.9 s, transform/opacity only, `--ease-out`, `both` fill, then settles to `.is-settled`.
+  Stages 3-4 get a lighter three-item stagger. The fallback gets only the panel rise.
+- Heading focus lands inside the reveal callback — the 011 suite's `fixme` ("focus set then lost
+  ~300 ms later") is now a passing assertion on every stage.
+
+### Data
+- `approved-vertical-response-library.json` → **schemaVersion 2**, `libraryVersion funnel-1`.
+  Entry: status, batch, sourceRef, sourceBuild, reviewedOn, roleName, hipaa, diagnosis
+  {trigger, paragraph}, reasons ×2 {kind, label, text}, role {intro, catches[], overflow},
+  calculator, calculatorSource, auditLabel, auditFocus.
+- `business-summaries.js` rewritten: the base record carries identity only (no more copied
+  `verticals.js` prose, no industry-level boilerplate). Accepts v2 only; validates every entry
+  and rejects incomplete ones wholesale with a `console.warn` naming the reason (previously
+  silent). Role name must match the catalog (drift guard). Adds `window.DassaResolveBusinessId`,
+  the single `?vertical=` resolver both scripts now use.
+- **Batch 1 content (8 entries)** drafted from the public OC VBRS files per the plan's checklist:
+  auto-repair, window-tint, auto-body, dealerships, tire-shops, towing, auto-salvage, and spas
+  (carried over from healthcare so nothing that worked in 011 regresses). Paragraphs 100-108
+  words. Calculator presets for all 8 derived from `briefs/<vertical>/roi.md` Inputs
+  (missed = per-day × 22; plan/price lines excluded). Banned-term scan clean outside `sourceRef`.
+  Status `reviewed-for-dassa-pilot`. **Review notes are in
+  `content-review/batch1-automotive-review-notes.md`** — the six original bullets per vertical
+  with the two chosen marked, so Eric can swap.
+- **Pool & Spa Services role corrected** to "Virtual Service Desk" (the flyer table) in
+  `agent-catalog.js` and `verticals.js`; the catalog said "Virtual Route Dispatcher".
+
+### Defects fixed in passing
+- Duplicate `var selectedVertical` and two unused vars in Script A.
+- `#agentFamilyCounter` hardcoded "1 of 7" (there are 8).
+- Dead CSS with zero markup matches removed (`.role-*`, `.conversation`, `.message`,
+  `.hotel-note`, `.quick-pick`, `.fit-*`, `.finder-*`, `.summary-role*`, `.vr-quick-link*`).
+- Two different `?vertical` resolvers (flash on legacy links) → one.
+- Reduced-motion rule now also zeroes `animation-delay` / `transition-delay`, so a stagger
+  cannot pop in over ~3 s for users who asked for no motion.
+- `.summary-note` no longer uses `!important`.
+- Navy-on-navy: retagging the call-flow headings had let the global `h3,h4{color:navy}` paint
+  invisible text on the dark diagram; the two selectors now follow the tags.
+- Stale `animation-demo.html` removed from the preview copy.
+
+### Tests — `tests/dassa-qa.spec.js` rewritten for the funnel
+27 tests × 7 viewport projects. Keeps fuzzy search, industry tabs, console-clean, mobile
+stacking, keyboard order, and the 007 press/hover checks (press now targets `#usePreset`, a
+same-page button — the previous target had become a live Calendly link and the test was
+navigating off-site). Adds: library loads with the reviewed batch and zero rejections;
+choose → only Diagnosis; Next walk with focus on each heading; honest fallback for
+`?vertical=dental`; deep link and hash deep link; legacy `pool-spa`; back button walks the
+rail; business change resets downstream; booking prefill; carousel decoupled; choreography
+wired and settles; band has 52 chips / one tab stop / arrows / drifts / pauses on hover / static
+under reduced motion; no overflow with every stage open; role stage single-column and reason
+cards stacked on phones; screen-reader status per stage.
+- desktop-1440: 22 passed, 0 failed, 5 skipped (touch-only). Full matrix: see `build.json`.
+
+### Detector
+Impeccable mechanical findings 38 (unchanged from 011 once the navy fix landed). The band's
+infinite loop is recorded as a sanctioned `marquee` exception with Eric's reasoning.
+
+### Still needs Eric's eyes
+The wash choreography on laptop-1024 and a real phone (this was the whole point of the
+visibility trigger); the band's drift speed and chip density at 390; whether the 8 diagnosis
+paragraphs read in his voice (the review notes list the alternates); and the Pool & Spa role,
+which the site and the printed flyer now agree on only because the catalog changed.
+Private preview remains loopback-only at http://127.0.0.1:8802/. Nothing pushed or deployed.

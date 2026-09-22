@@ -1,18 +1,18 @@
 {
   "product": "Dassa Solutions Website",
-  "build": "DS-2026.09.22-011",
-  "status": "approved-qa-outstanding",
+  "build": "DS-2026.09.22-012",
+  "status": "draft-tested",
   "date": "2026-09-22",
-  "description": "Empty-state guidance, on top of 010. Eric chose ghost text in the search field over pre-filling the summary card with a default business. The search placeholder now reads 'Choose your business type' instead of the example list. Also fixed a placeholder colour failing WCAG AA at 4.23:1.",
+  "description": "The car-wash funnel. The top of the page is now a staged progressive reveal: choose a business type (drifting band of all 52 + search) -> Diagnosis (reviewed trigger, 60-120 word paragraph, two valid business reasons) -> Meet your Virtual Role (overflow-first framing, HIPAA note only where flagged) -> Revenue Math with the preset auto-applied -> Book. Response library moved to schemaVersion 2 with a validating adapter and an honest 'we would rather ask than guess' fallback instead of boilerplate. Batch 1 content is in: 8 businesses drafted from the public OC VBRS files (automotive x7 + Spas), 44 show the honest fallback. Pool & Spa role corrected to Virtual Service Desk. Carousel demoted to browse-only. Reveal is visibility-triggered so the entrance can no longer complete off-screen.",
   "approvedBuild": {
     "build": "DS-2026.09.22-011",
     "approvedDate": "2026-09-22",
-    "note": "Eric approved builds 005 through 011 together on 2026-09-22, in conversation, after having each change described to him. This supersedes 004 as the approved build. Recorded honestly: unlike 004, this approval was NOT preceded by a live review pass in the Site Preview Screen tool, and no browser QA was run on any of 005-011. It is approval of the design and copy decisions, not a statement that the checks below passed."
+    "note": "011 remains the approved build. 012 is a structural rebuild of the top of the page and needs Eric's eyes-on review before approval."
   },
   "qa": {
-    "checksPassed": null,
-    "checksTotal": null,
-    "note": "NOT RUN. The 32/32 pass still refers to Build 004 only. Outstanding and unverified across the approved 005-011: mobile stacking 320-1440px and keyboard tab order after the 005 DOM move; the scrollend fallback in a browser without scrollend support, and the reduced-motion path (006); press feedback and the un-stuck hover lift on a real touch device (007); carousel direction across the last-to-first wrap, search dropdown entrance against its own overflow:auto clipping, mobile nav open/close on a real phone, and the call-flow auto-play firing exactly once (008); and wrapping of every heading, button and label at 320/390/1440px now that Schibsted Grotesk sets wider than Inter (010). 38 mechanical detector findings also remain, all needing rendered output to judge."
+    "checksPassed": 153,
+    "checksTotal": 154,
+    "note": "Playwright, tests/dassa-qa.spec.js, 27 tests x 7 viewport projects (desktop-1440, laptop-1024, tablet-768, mobile-430/390/320 touch, mobile-390 reduced-motion), run 2026-09-22 against the source tree. Full matrix: 153 passed, 1 failed, 35 skipped (each skip is a test that is by design pointer-only or touch-only). The one failure was test-side: the hover check targeted the nav CTA, which is display:none at 768px. Retargeted to the diagnosis stage's secondary button and re-run on all three pointer projects: 69 passed, 0 failed. Net: every test passes on every project it applies to. Verified: search->diagnosis, Next walk with heading focus on every stage (the 011 fixme is now a passing assertion), honest fallback, deep link + hash deep link, legacy pool-spa, back button and rail, business change resets downstream, Calendly prefill, carousel decoupled from the funnel, choreography wired and settles, reduced-motion zero-delay, band 52 chips / one tab stop / roving arrows / pause on hover / static under reduced motion, no horizontal overflow with every stage open at 320-1440, single-column role stage and stacked reason cards on phones, screen-reader status per stage, press and hover feedback, no console errors, zero library rejections. NOT verified by automation and still needs Eric: the wash choreography as actually perceived on laptop-1024 and a real phone, band drift speed and chip density at 390, and whether the 8 diagnosis paragraphs read in his voice (alternates in content-review/batch1-automotive-review-notes.md)."
   },
   "previewUrl": "http://127.0.0.1:8802/"
 }
