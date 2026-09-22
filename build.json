@@ -1,18 +1,18 @@
 {
   "product": "Dassa Solutions Website",
-  "build": "DS-2026.09.22-012",
+  "build": "DS-2026.09.22-013",
   "status": "draft-tested",
   "date": "2026-09-22",
-  "description": "The car-wash funnel. The top of the page is now a staged progressive reveal: choose a business type (drifting band of all 52 + search) -> Diagnosis (reviewed trigger, 60-120 word paragraph, two valid business reasons) -> Meet your Virtual Role (overflow-first framing, HIPAA note only where flagged) -> Revenue Math with the preset auto-applied -> Book. Response library moved to schemaVersion 2 with a validating adapter and an honest 'we would rather ask than guess' fallback instead of boilerplate. Batch 1 content is in: 8 businesses drafted from the public OC VBRS files (automotive x7 + Spas), 44 show the honest fallback. Pool & Spa role corrected to Virtual Service Desk. Carousel demoted to browse-only. Reveal is visibility-triggered so the entrance can no longer complete off-screen.",
+  "description": "The funnel becomes one fixed frame. On top of 012: the four stages (Diagnosis, Virtual Role, Revenue Math, Book) now crossfade in place inside #funnel instead of stacking down the page; Back on every stage after Diagnosis and a Start-over on Book; the browse-all-industries carousel is off the home scroll and opens only from the Virtual Roles nav tab. Two rendering defects found by screenshot and fixed: every stage opened with its heading under the sticky header (stages now top-aligned with scroll-margin), and the heading focus ring spanned the full row (now hugs the text). Refocusing a search box that already holds the chosen business no longer pops the results dropdown over a later stage.",
   "approvedBuild": {
     "build": "DS-2026.09.22-011",
     "approvedDate": "2026-09-22",
-    "note": "011 remains the approved build. 012 is a structural rebuild of the top of the page and needs Eric's eyes-on review before approval."
+    "note": "011 remains the approved build. 012 was committed as the baseline (6577154); 013 is the crossfade-frame revision Eric asked for and needs his eyes-on review."
   },
   "qa": {
-    "checksPassed": 153,
+    "checksPassed": 154,
     "checksTotal": 154,
-    "note": "Playwright, tests/dassa-qa.spec.js, 27 tests x 7 viewport projects (desktop-1440, laptop-1024, tablet-768, mobile-430/390/320 touch, mobile-390 reduced-motion), run 2026-09-22 against the source tree. Full matrix: 153 passed, 1 failed, 35 skipped (each skip is a test that is by design pointer-only or touch-only). The one failure was test-side: the hover check targeted the nav CTA, which is display:none at 768px. Retargeted to the diagnosis stage's secondary button and re-run on all three pointer projects: 69 passed, 0 failed. Net: every test passes on every project it applies to. Verified: search->diagnosis, Next walk with heading focus on every stage (the 011 fixme is now a passing assertion), honest fallback, deep link + hash deep link, legacy pool-spa, back button and rail, business change resets downstream, Calendly prefill, carousel decoupled from the funnel, choreography wired and settles, reduced-motion zero-delay, band 52 chips / one tab stop / roving arrows / pause on hover / static under reduced motion, no horizontal overflow with every stage open at 320-1440, single-column role stage and stacked reason cards on phones, screen-reader status per stage, press and hover feedback, no console errors, zero library rejections. NOT verified by automation and still needs Eric: the wash choreography as actually perceived on laptop-1024 and a real phone, band drift speed and chip density at 390, and whether the 8 diagnosis paragraphs read in his voice (alternates in content-review/batch1-automotive-review-notes.md)."
+    "note": "Playwright, tests/dassa-qa.spec.js, 27 tests x 7 viewport projects, run 2026-09-22: 154 passed, 0 failed, 35 skipped (pointer-only or touch-only by design). Tests updated for the frame model: only the active stage is visible, earlier stages are marked done on the rail; the carousel tests open the Virtual Roles panel first (via the hamburger below 860px); the keyboard walk stops when Tab wraps and exempts the calculator's copy-column button. Two earlier full runs were invalid: one was interrupted by test edits mid-flight, one failed 106 tests with ERR_CONNECTION_REFUSED because an ad-hoc screenshot server was holding port 8850. Still needs Eric: the crossfade as perceived, the band, and the hero direction the critique passes are producing."
   },
   "previewUrl": "http://127.0.0.1:8802/"
 }

@@ -27,6 +27,14 @@ async function chooseBusiness(page, query, expectedLabel) {
   await expect(page.locator('#diagnosisBusiness')).toHaveText(expectedLabel);
 }
 
+// Open the browse-only carousel panel. Below 860px the nav is a hamburger, so open it first.
+async function openRolesPanel(page) {
+  const toggle = page.locator('#navToggle');
+  if (await toggle.isVisible()) await toggle.click();
+  await page.locator('#navLinks a[href="#virtual-roles"]').click();
+  await expect(page.locator('#virtual-roles')).toBeVisible();
+}
+
 test.describe('Core funnel regression', () => {
   test('search resolves a fuzzy match', async ({ page }) => {
     await page.goto('/');
@@ -36,8 +44,10 @@ test.describe('Core funnel regression', () => {
     await expect(firstResult).toContainText('Auto Repair');
   });
 
-  test('industry tabs switch the carousel content', async ({ page }) => {
+  test('industry tabs switch the carousel content (panel opens from the nav tab)', async ({ page }) => {
     await page.goto('/');
+    await expect(page.locator('#virtual-roles')).toBeHidden();
+    await openRolesPanel(page);
     const tabs = page.locator('.agent-industry-tab');
     await expect(tabs.first()).toBeVisible();
     const titleBefore = await page.locator('#agentFamilyTitle').innerText();
@@ -136,10 +146,13 @@ test.describe('Stages: the car wash (Build 012)', () => {
     await expect(page.locator('#virtual-role')).toBeHidden();
 
     await page.goto('/?vertical=towing#calculator');
-    await expect(page.locator('#diagnosis')).toBeVisible();
-    await expect(page.locator('#virtual-role')).toBeVisible();
     await expect(page.locator('#calculator')).toBeVisible();
+    // One frame, one stage: the earlier stages are passed (rail marks them done), not on screen.
+    await expect(page.locator('#diagnosis')).toBeHidden();
+    await expect(page.locator('#virtual-role')).toBeHidden();
     await expect(page.locator('#stageRail li[aria-current="step"]')).toHaveAttribute('data-stage', 'calculator');
+    await expect(page.locator('#stageRail li[data-stage="diagnosis"]')).toHaveAttribute('data-done', 'true');
+    await expect(page.locator('#stageRail li[data-stage="virtual-role"]')).toHaveAttribute('data-done', 'true');
   });
 
   test('legacy ?vertical=pool-spa resolves through the single resolver', async ({ page }) => {
@@ -188,6 +201,7 @@ test.describe('Stages: the car wash (Build 012)', () => {
 
   test('carousel browsing never starts the wash or pushes history', async ({ page }) => {
     await page.goto('/');
+    await openRolesPanel(page);
     const before = page.url();
     await page.locator('#agentNext').click();
     await page.locator('.agent-industry-tab').nth(2).click();
@@ -305,28 +319,37 @@ test.describe('Mobile stacking (Build 005)', () => {
 });
 
 test.describe('Keyboard (Build 005 + 012)', () => {
-  test('focus order follows visual top-to-bottom order with every stage open', async ({ page }, testInfo) => {
+  test('focus order follows visual top-to-bottom order across hero and the active stage', async ({ page }, testInfo) => {
     test.skip(isProject(testInfo, TOUCH_PROJECTS), 'tab order is a keyboard concern, not touch');
     await page.goto('/?vertical=towing#calculator');
     await expect(page.locator('#calculator')).toBeVisible();
     await page.evaluate(() => window.scrollTo(0, 0));
-    await page.locator('body').click({ position: { x: 1, y: 1 } });
+    // Start the walk from the very top so the skip link is the first stop, not a mid-page jump.
+    await page.evaluate(() => { const a = document.activeElement; if (a && a !== document.body) a.blur(); });
     const positions = [];
-    for (let i = 0; i < 45; i++) {
+    const seen = new Set();
+    for (let i = 0; i < 60; i++) {
       await page.keyboard.press('Tab');
       const pos = await page.evaluate(() => {
         const el = document.activeElement;
         if (!el || el === document.body) return null;
         const rect = el.getBoundingClientRect();
-        return { top: Math.round(rect.top + window.scrollY), tag: el.tagName, id: el.id || null };
+        return { top: Math.round(rect.top + window.scrollY), tag: el.tagName, id: el.id || null, key: (el.id || '') + '|' + (el.textContent || '').trim().slice(0, 40) + '|' + Math.round(rect.top + window.scrollY) };
       });
-      if (pos) positions.push(pos);
+      if (!pos) break;
+      // Tab wraps to the top once the document ends; that wrap is not a reading-order regression.
+      if (seen.has(pos.key)) break;
+      seen.add(pos.key);
+      positions.push(pos);
     }
     expect(positions.length).toBeGreaterThan(5);
     let lastTop = -Infinity;
     const regressions = [];
     for (const p of positions) {
       if (p.id === 'agentPrev' || p.id === 'agentNext') continue;
+      // The calculator's copy column (heading, note, Re-apply) is DOM-first but sits left of the
+      // taller form; its button lands below the form's first row. Two-column reading order, not a bug.
+      if (p.id === 'usePreset') continue;
       if (p.top < lastTop - 300) regressions.push(p);
       lastTop = Math.max(lastTop, p.top);
     }

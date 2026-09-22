@@ -16,6 +16,7 @@ Build numbers use `DS-YYYY.MM.DD-NNN`. Build numbers identify revisions; approva
 | DS-2026.09.22-010 | Approved by Eric 2026-09-22 | Schibsted Grotesk replaces Inter; "Example call flow"; one business-finder label. |
 | DS-2026.09.22-011 | Approved by Eric 2026-09-22 | Search ghost text "Choose your business type"; placeholder contrast fixed. |
 | DS-2026.09.22-012 | Draft, awaiting review | The "car wash" funnel: staged progressive reveal, drifting band, schema v2, batch-1 content (8 real, 44 honest fallback). |
+| DS-2026.09.22-013 | Draft, tested 154/154 | Stages crossfade in one fixed frame; carousel off the home scroll; header-clip and focus-ring fixes. |
 
 The current build is also recorded in `build.json` and displayed on the website as a fixed preview badge.
 
@@ -310,3 +311,32 @@ visibility trigger); the band's drift speed and chip density at 390; whether the
 paragraphs read in his voice (the review notes list the alternates); and the Pool & Spa role,
 which the site and the printed flyer now agree on only because the catalog changed.
 Private preview remains loopback-only at http://127.0.0.1:8802/. Nothing pushed or deployed.
+
+## DS-2026.09.22-013 — draft, tested, awaiting Eric review
+
+Eric's revision of 012 after seeing it: "instead of a scroll down, I want it to appear in the same
+window, then click next... it will just fade out, the next image will come in." Committed 012 first
+as the baseline (`6577154`); 013 is the diff against it.
+
+- **One fixed frame.** `#funnel` holds Diagnosis, Virtual Role, Revenue Math and Book stacked
+  absolutely; `showStage()` replaces the scroll-and-reveal engine. The leaving stage fades out and
+  lifts 10px, the entering stage fades in and rises 12px, both 420ms `--ease-out`, sequenced so the
+  new stage enters after the old one is gone. The frame scrolls into view once, on first open; no
+  scrolling between stages. Below 640px the frame releases to normal flow (stages stack, one
+  visible) since a fixed-height frame on a phone would trap the content.
+- **Back and Start over.** Back on Virtual Role, Revenue Math and Book; Book also has "Choose a
+  different business", which clears the URL, closes the frame and returns focus to the search.
+- **Carousel off the home page.** `#virtual-roles` is `hidden` and opens only from the nav tab
+  (which opens the hamburger first on narrow widths). The Virtual Role *stage* is still in the
+  sequence, as Eric specified.
+- **Two defects found only by rendering** (no test caught them): every stage opened with its
+  "Stage N of 5" line and heading under the 145px sticky header, because the frame is a `<div>`
+  (no `scroll-margin-top`) and the stage content was vertically centred — fixed by top-aligning
+  stage content with 56px top padding and adding the scroll margin; and the `h2` focus ring drew a
+  full-width box — fixed with `width:fit-content`.
+- **Search dropdown no longer reopens over a later stage.** Tab-focusing the pre-filled search
+  box used to re-run the search and pop results over the calculator on a deep link or Back.
+- Tests: 154/154 on the clean run (see `build.json` for the two invalid runs and why).
+- Detector: 36 (down from 38). The frame's `overflow:hidden` during the crossfade is recorded
+  as a sanctioned `clipped-overflow-container` exception.
+- Private preview remains loopback-only at http://127.0.0.1:8802/. Nothing pushed or deployed.

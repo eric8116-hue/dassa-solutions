@@ -11,6 +11,15 @@
         ],
         "createdAt": "2026-09-22T07:31:48.264Z",
         "reason": "Eric decided 2026-09-22: the drifting business-type band is the hero texture, not the CTA; it pauses on hover and focus, renders static under reduced-motion, and is a single tab stop with roving arrows"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "D:/Dev/onecloud-sales/dassa-solutions-site/index.html"
+        ],
+        "createdAt": "2026-09-22T08:00:17.656Z",
+        "reason": "Eric decided 2026-09-22: the funnel is one fixed frame whose stages crossfade in place; overflow:hidden clips the leaving stage during the 420ms fade by design"
       }
     ]
   }

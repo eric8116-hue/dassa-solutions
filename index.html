@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="application-version" content="DS-2026.09.22-012">
+  <meta name="application-version" content="DS-2026.09.22-013">
   <title>Dassa Solutions — Protect the Opportunity Behind Every Call</title>
   <meta name="description" content="Dassa Solutions helps businesses find and fix communication gaps between marketing spend and revenue — missed calls, poor routing, failed follow-up, and unreliable connectivity.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,8 @@
     .calc-error{order:4}
     .estimator-output{padding:20px 24px}
     /* Virtual-role section hero and industry carousel */
-    .roles{padding:0;background:#fff;color:var(--navy);overflow:hidden}
+    .roles{padding:0 0 40px;background:#fff;color:var(--navy);overflow:hidden}
+    .roles[hidden]{display:none!important}
     .agent-browser-title{margin:0 0 16px;font-size:1.35rem}
     .vr-section-hero{position:relative;padding:92px 0;background:#071626;color:#fff;border-top:1px solid rgba(255,255,255,.06);overflow:hidden}
     .vr-section-hero::after{content:'';position:absolute;inset:auto -12% -55% 42%;height:520px;border-radius:50%;background:rgba(0,102,204,.12);filter:blur(80px);pointer-events:none}
@@ -176,13 +177,27 @@
     /* Stages */
     .stage-count{display:block;margin-bottom:10px;color:var(--blue);font-size:.78rem;font-weight:800;letter-spacing:.06em}
     .stage-count-light{color:#79c5ff}
-    .stage-panel{animation:panelRise 960ms var(--ease-out) both}
-    @keyframes panelRise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
-    .stage h2:focus{outline:3px solid #0075bf;outline-offset:6px}
+    /* The funnel is one fixed frame; stages are stacked in it and crossfade. */
+    .funnel{position:relative;min-height:clamp(560px,78vh,860px);overflow:hidden;background:var(--pale-blue-2);scroll-margin-top:116px}
+    .funnel .stage{position:absolute;inset:0;display:flex;align-items:flex-start;overflow:auto;padding:0;opacity:0;transition:opacity 420ms var(--ease-out),transform 420ms var(--ease-out);transform:translateY(12px);pointer-events:none}
+    .funnel .stage.is-active{opacity:1;transform:translateY(0);pointer-events:auto}
+    .funnel .stage.is-leaving{opacity:0;transform:translateY(-10px);pointer-events:none}
+    .funnel .stage[hidden]{display:flex!important;visibility:hidden}
+    .funnel .stage.is-active[hidden],.funnel .stage.is-leaving[hidden]{visibility:visible}
+    .funnel .stage>.wrap,.funnel .stage>.stage-panel{width:min(var(--max),calc(100% - 48px));margin-inline:auto;padding-block:56px 48px}
+    .stage-panel{animation:none}
+    .stage-diagnosis,.stage-role,.estimator,.final-cta{padding:0}
+    .funnel .final-cta{align-items:center}
+    .funnel .final-cta>.wrap{padding-block:48px}
+    .stage-restart{margin:26px 0 0;color:#b9cce0;font-size:.86rem}
+    .link-button{padding:0;border:0;background:transparent;color:inherit;font:inherit;font-weight:800;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+    .stage-back{min-height:48px}
+    @media(max-width:640px){.funnel{min-height:auto}.funnel .stage{position:relative;inset:auto}.funnel .stage[hidden]{display:none!important}.funnel .stage>.wrap,.funnel .stage>.stage-panel{padding-block:40px}}
+    .stage h2:focus{outline:3px solid #0075bf;outline-offset:6px;width:fit-content;max-width:100%}
     .stage-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
     .stage-actions .btn{min-height:48px}
 
-    .stage-diagnosis{padding:72px 0 64px;background:var(--pale-blue-2)}
+    .stage-diagnosis{background:var(--pale-blue-2)}
     .stage-diagnosis .stage-panel{max-width:860px}
     .stage-business{display:block;font-size:clamp(2rem,4vw,3rem);line-height:1.07}
     .diagnosis-trigger{margin:22px 0 14px;color:var(--navy);font-size:1.3rem;font-weight:800;line-height:1.35;letter-spacing:-.02em}
@@ -195,7 +210,7 @@
     .reason-card strong{display:block;margin-bottom:6px;color:var(--navy);font-size:.92rem}
     .reason-card span{color:var(--muted);font-size:.92rem;line-height:1.55}
     .reason-card small{display:block;margin-bottom:8px;color:var(--blue);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-    @media(max-width:640px){.reason-grid{grid-template-columns:1fr}.stage-diagnosis{padding:52px 0 48px}}
+    @media(max-width:640px){.reason-grid{grid-template-columns:1fr}}
 
     /* Wash choreography: only runs once the stage is confirmed in view. */
     .wash-item{opacity:0}
@@ -277,6 +292,7 @@
     </ol>
     <p class="sr-only" id="stageStatus" role="status"></p>
 
+    <div class="funnel" id="funnel" hidden>
     <section class="stage stage-diagnosis" id="diagnosis" aria-labelledby="diagnosisTitle" hidden>
       <div class="wrap stage-panel">
         <h2 id="diagnosisTitle" tabindex="-1"><span class="stage-count">Stage 2 of 5</span><span class="stage-business" id="diagnosisBusiness"></span></h2>
@@ -314,7 +330,7 @@
           <p class="role-overflow wash-item" id="roleOverflow" style="--d:820ms;--y:20px"></p>
           <p class="role-hipaa" id="roleHipaa" hidden>For medical and dental practices this role works without recording calls or storing protected health information. Clinical questions always go to your staff.</p>
           <div class="stage-actions wash-item" style="--d:1100ms;--y:16px">
-            <a class="btn btn-primary stage-next" href="#calculator">Put a number on it <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></a>
+            <button class="btn btn-secondary stage-back" type="button" data-back="diagnosis">Back</button><a class="btn btn-primary stage-next" href="#calculator">Put a number on it <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></a>
             <a class="btn btn-secondary vr-book" data-booking href="https://calendly.com/edassa-dassasolutions/30min">Book a Communication Audit</a>
           </div>
         </div>
@@ -332,9 +348,10 @@
       <div class="field"><label for="calcMissed">Missed calls per month</label><div class="field-shell"><span class="material-symbols-rounded" aria-hidden="true">phone_missed</span><input id="calcMissed" type="number" min="0" step="1" value="20" inputmode="numeric"></div></div>
       <div class="field"><label for="calcOpportunity">Real opportunity percentage</label><div class="field-shell"><span class="material-symbols-rounded" aria-hidden="true">pie_chart</span><input id="calcOpportunity" type="number" min="0" max="100" step="1" value="60" inputmode="decimal"></div></div>
       <div class="field"><label for="calcSale">Average sale value</label><div class="field-shell"><span class="material-symbols-rounded" aria-hidden="true">attach_money</span><input id="calcSale" type="number" min="0" step="1" value="500" inputmode="decimal"></div></div>
-      </div><div class="assumption-row"><div class="range-field"><label for="calcClose"><span>Average close rate</span><output id="calcCloseVal">30%</output></label><input id="calcClose" type="range" min="0" max="100" step="5" value="30"></div><div class="range-field"><label for="calcRecovery"><span>Potential recovery share</span><output id="calcRecoveryVal">50%</output></label><input id="calcRecovery" type="range" min="0" max="100" step="5" value="50"></div></div><p class="calc-error" id="calcError" role="alert" aria-live="polite"></p><div class="estimator-output" aria-live="polite"><div><p class="output-label">Estimated annual opportunity at risk</p><p class="output-note">A planning estimate based on the assumptions above.</p></div><div><p class="output-value" id="calcAnnual">$21,600</p><span class="output-recovery" id="calcRecoverable">Potentially recoverable: $10,800 annually</span></div></div><div class="stage-actions calc-actions"><a class="btn btn-primary stage-next" href="#contact">Book the audit <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></a></div></form></div></section>
+      </div><div class="assumption-row"><div class="range-field"><label for="calcClose"><span>Average close rate</span><output id="calcCloseVal">30%</output></label><input id="calcClose" type="range" min="0" max="100" step="5" value="30"></div><div class="range-field"><label for="calcRecovery"><span>Potential recovery share</span><output id="calcRecoveryVal">50%</output></label><input id="calcRecovery" type="range" min="0" max="100" step="5" value="50"></div></div><p class="calc-error" id="calcError" role="alert" aria-live="polite"></p><div class="estimator-output" aria-live="polite"><div><p class="output-label">Estimated annual opportunity at risk</p><p class="output-note">A planning estimate based on the assumptions above.</p></div><div><p class="output-value" id="calcAnnual">$21,600</p><span class="output-recovery" id="calcRecoverable">Potentially recoverable: $10,800 annually</span></div></div><div class="stage-actions calc-actions"><button class="btn btn-secondary stage-back" type="button" data-back="virtual-role">Back</button><a class="btn btn-primary stage-next" href="#contact">Book the audit <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></a></div></form></div></section>
 
-    <section class="final-cta" id="contact" aria-labelledby="contactTitle"><div class="wrap"><h2 id="contactTitle" tabindex="-1"><span class="stage-count stage-count-light">Stage 5 of 5</span>Let&rsquo;s find out where opportunity is leaking.</h2><p id="contactLede">Start with a short call-flow review. We&rsquo;ll look at how calls arrive, who owns them, what happens after hours, and where follow-up can break down.</p><p class="summary-note summary-note-light" id="auditBookingNote" hidden></p><div class="final-actions"><a class="btn btn-primary" data-booking href="https://calendly.com/edassa-dassasolutions/30min">Book a Communication Audit</a><a class="btn btn-secondary" href="tel:+14073692856"><span class="material-symbols-rounded" aria-hidden="true">call</span>Call (407) 369-2856</a><a class="btn btn-secondary" href="mailto:edassa@dassasolutions.com"><span class="material-symbols-rounded" aria-hidden="true">mail</span>Email Eric</a></div></div></section>
+    <section class="stage final-cta" id="contact" aria-labelledby="contactTitle" hidden><div class="wrap"><h2 id="contactTitle" tabindex="-1"><span class="stage-count stage-count-light">Stage 5 of 5</span>Let&rsquo;s find out where opportunity is leaking.</h2><p id="contactLede">Start with a short call-flow review. We&rsquo;ll look at how calls arrive, who owns them, what happens after hours, and where follow-up can break down.</p><p class="summary-note summary-note-light" id="auditBookingNote" hidden></p><div class="final-actions"><a class="btn btn-primary" data-booking href="https://calendly.com/edassa-dassasolutions/30min">Book a Communication Audit</a><a class="btn btn-secondary" href="tel:+14073692856"><span class="material-symbols-rounded" aria-hidden="true">call</span>Call (407) 369-2856</a><a class="btn btn-secondary" href="mailto:edassa@dassasolutions.com"><span class="material-symbols-rounded" aria-hidden="true">mail</span>Email Eric</a></div><p class="stage-restart"><button class="stage-back link-button" type="button" data-back="calculator">Back</button> · <a href="#top" class="link-button" id="startOver">Choose a different business</a></p></div></section>
+    </div>
 
     <section class="proof" aria-labelledby="proofTitle"><div class="wrap"><div class="section-head"><h2 id="proofTitle">The marketing can work&mdash;and the opportunity can still be lost.</h2></div><div class="proof-grid"><article class="proof-card primary"><p class="proof-label">Home-services call tracking</p><div class="proof-stats"><div class="proof-stat"><strong>789</strong><span>Tracked calls</span></div><div class="proof-stat"><strong>595</strong><span>New leads received</span></div><div class="proof-stat"><strong>451</strong><span>Appointments scheduled</span></div><div class="proof-stat"><strong>19</strong><span>No one answered / missed lead</span></div></div><p>The system generated activity, but some opportunity still disappeared before a conversation happened.</p></article><article class="proof-card secondary"><p class="proof-label">High-ticket home improvement</p><div class="proof-stats"><div class="proof-stat"><strong>5</strong><span>December calls</span></div><div class="proof-stat"><strong>2</strong><span>Missed leads</span></div></div><p>What could those two conversations have been worth?</p></article></div></div></section>
 
@@ -352,7 +369,7 @@
       </div>
     </section>
 
-    <section class="roles" id="virtual-roles" aria-label="Browse Virtual Roles by industry">
+    <section class="roles" id="virtual-roles" aria-label="Browse Virtual Roles by industry" hidden>
       <div class="wrap agent-browser-intro">
         <h2 class="agent-browser-title">Browse all eight industries</h2>
         <div class="agent-industry-tabs" id="agentIndustryTabs" aria-label="Browse by industry"></div>
@@ -404,7 +421,7 @@
     <section class="systems" id="systems" aria-labelledby="systemsTitle"><div class="wrap"><div class="section-head"><h2 id="systemsTitle">Business communications organized around outcomes.</h2><p class="section-intro">Products matter only after the communication problem is clear. Dassa Solutions starts with the customer path, the team workflow, and the infrastructure underneath both.</p></div><div class="systems-grid"><article class="system-card"><span class="system-icon"><span class="material-symbols-rounded" aria-hidden="true">account_tree</span></span><h3>Coverage &amp; Routing</h3><p>Who receives the call, what happens during busy periods, and where the conversation goes after hours.</p></article><article class="system-card"><span class="system-icon"><span class="material-symbols-rounded" aria-hidden="true">monitoring</span></span><h3>Visibility &amp; Follow-Up</h3><p>Whether missed calls are visible, valuable conversations have owners, and the next customer step is clear.</p></article><article class="system-card"><span class="system-icon"><span class="material-symbols-rounded" aria-hidden="true">lan</span></span><h3>Mobility &amp; Infrastructure</h3><p>How teams stay reachable across offices, locations, and field work&mdash;and whether the underlying connection is dependable.</p></article></div></div></section>
   </main>
   <footer><div class="wrap footer-row"><span>© <span id="year"></span> Dassa Solutions</span><div class="footer-links"><a href="tel:+14073692856">(407) 369-2856</a><a href="mailto:edassa@dassasolutions.com">edassa@dassasolutions.com</a><a href="#top">Back to top</a></div></div></footer>
-  <div class="site-build-badge" aria-label="Untested draft build">Build DS-2026.09.22-012 • Draft</div>
+  <div class="site-build-badge" aria-label="Untested draft build">Build DS-2026.09.22-013 • Draft</div>
   <script src="verticals.js"></script>
   <script src="agent-catalog.js"></script>
   <script src="business-summaries.js"></script>
@@ -470,7 +487,7 @@
       var reached=false;
       Array.from(rail.children).forEach(function(li){
         var id=li.dataset.stage;
-        var revealed=id==='choose'||id==='contact'||(stageEl(id)&&!stageEl(id).hidden);
+        var revealed=id==='choose'||(stageEl(id)&&stageEl(id).dataset.revealed==='true');
         li.dataset.done=String(id==='choose'||(revealed&&id!==activeId&&!reached));
         if(id===activeId){li.setAttribute('aria-current','step');reached=true}else li.removeAttribute('aria-current');
       });
@@ -479,56 +496,52 @@
       var name=selectedVertical?selectedVertical.label:'';
       stageStatus.textContent='Stage '+STAGE_NUM[id]+' of 5. '+STAGE_LABEL[id]+(name?' for '+name+'.':'.');
     }
-    // Reveal only once the section is actually in view, so the entrance is never spent off-screen.
-    function scrollThenReveal(section,fn,opts){
-      opts=opts||{};
-      var done=false;
-      function go(){if(done)return;done=true;fn()}
-      var rect=section.getBoundingClientRect();
-      var inView=rect.top>=0&&rect.top<window.innerHeight*0.5;
-      if(reduce()||opts.instant){section.scrollIntoView({behavior:'auto',block:'start'});go();return}
-      if(inView&&!opts.forceScroll){go();return}
-      section.scrollIntoView({behavior:'smooth',block:'start'});
-      if('IntersectionObserver' in window){
-        var io=new IntersectionObserver(function(entries){
-          if(entries.some(function(e){return e.isIntersecting})){io.disconnect();go()}
-        },{threshold:.5});
-        io.observe(section);
-        setTimeout(function(){io.disconnect();go()},2500);
-      }else setTimeout(go,900);
-    }
+    var funnel=document.getElementById('funnel');
+    var activeStage=null;
+    var FADE=420;
     function choreograph(section){
       section.classList.remove('is-revealing','is-settled');
       void section.offsetWidth;
       section.classList.add('is-revealing');
-      var total=3400;
-      setTimeout(function(){if(section.classList.contains('is-revealing')){section.classList.remove('is-revealing');section.classList.add('is-settled')}},reduce()?0:total);
+      setTimeout(function(){if(section.classList.contains('is-revealing')){section.classList.remove('is-revealing');section.classList.add('is-settled')}},reduce()?0:3400);
     }
-    function revealStage(id,opts){
+    // Frame stays put; the old stage fades out, the new one fades in. Nothing scrolls except once, to bring the frame into view.
+    function showStage(id,opts){
       opts=opts||{};
       var section=stageEl(id);
       if(!section)return;
-      var wasHidden=section.hidden;
+      var previous=activeStage&&activeStage!==section?activeStage:null;
+      var firstOpen=funnel.hidden;
+      funnel.hidden=false;
       section.hidden=false;
       section.dataset.revealed='true';
-      // Re-trigger the panel entrance only on first reveal.
-      if(wasHidden){var panel=section.querySelector('.stage-panel');if(panel){panel.style.animation='none';void panel.offsetWidth;panel.style.animation=''}}
       setRail(id);
-      function land(){
+      function enter(){
+        if(previous){previous.classList.remove('is-leaving');previous.hidden=true}
+        section.classList.add('is-active');
+        section.scrollTop=0;
         announce(id);
         if(opts.animate!==false)choreograph(section);
         var heading=section.querySelector('h2');
         if(heading&&opts.focus!==false)heading.focus({preventScroll:true});
       }
-      if(opts.scroll===false){land();return}
-      scrollThenReveal(section,land,{instant:opts.instant,forceScroll:wasHidden});
+      if(previous){previous.classList.remove('is-active');previous.classList.add('is-leaving')}
+      activeStage=section;
+      var wait=previous&&!reduce()?FADE:0;
+      if(firstOpen||opts.scrollFrame){
+        var top=funnel.getBoundingClientRect().top;
+        if(!(top>=0&&top<window.innerHeight*0.35))funnel.scrollIntoView({behavior:reduce()||opts.instant?'auto':'smooth',block:'start'});
+      }
+      setTimeout(enter,wait);
     }
+    function revealStage(id,opts){showStage(id,opts)}
     function resetStagesAfter(id){
       var past=false;
-      STAGES.forEach(function(stage){
-        if(past){var el=stageEl(stage);el.hidden=true;el.classList.remove('is-revealing','is-settled');delete el.dataset.revealed}
+      STAGES.concat(['contact']).forEach(function(stage){
+        if(past){var el=stageEl(stage);el.hidden=true;el.classList.remove('is-revealing','is-settled','is-active','is-leaving');delete el.dataset.revealed}
         if(stage===id)past=true;
       });
+      if(id==='choose'){funnel.hidden=true;activeStage=null}
     }
     function pushStage(id){
       if(!selectedVertical)return;
@@ -627,7 +640,7 @@
           window.history[historyMode==='replace'?'replaceState':'pushState']({vertical:vertical.id,stage:'diagnosis'},'',url.pathname+url.search+url.hash);
         }
       }
-      if(opts.reveal!==false)revealStage('diagnosis',{instant:opts.instant,focus:opts.focus});
+      if(opts.reveal!==false)showStage('diagnosis',{instant:opts.instant,focus:opts.focus,scrollFrame:true});
       return vertical;
     };
     // Restore from a URL: reveal every stage up to the hash target, choreograph only the target.
@@ -639,27 +652,45 @@
       var order=STAGES.concat(['contact']);
       var idx=order.indexOf(target);
       resetStagesAfter('diagnosis');
-      order.slice(0,idx).forEach(function(stage){var el=stageEl(stage);if(el&&stage!=='contact'){el.hidden=false;el.dataset.revealed='true';el.classList.add('is-settled')}});
-      if(target==='contact'){setRail('contact');announce('contact');document.getElementById('contact').scrollIntoView({behavior:'auto'});return}
-      revealStage(target,{instant:true});
+      order.slice(0,idx).forEach(function(stage){var el=stageEl(stage);if(el){el.dataset.revealed='true'}});
+      showStage(target,{instant:true,scrollFrame:true});
     };
     document.querySelectorAll('.stage-next').forEach(function(link){
       link.addEventListener('click',function(event){
         var target=(link.getAttribute('href')||'').replace('#','');
         if(!STAGE_NUM[target])return;
         event.preventDefault();
-        if(target==='contact'){setRail('contact');announce('contact');pushStage('contact');scrollThenReveal(document.getElementById('contact'),function(){document.getElementById('contactTitle').focus({preventScroll:true})},{forceScroll:true});return}
         pushStage(target);
-        revealStage(target);
+        showStage(target,{animate:target!=='contact'});
       });
+    });
+    document.querySelectorAll('.stage-back').forEach(function(button){
+      button.addEventListener('click',function(){
+        var target=button.dataset.back;
+        if(!STAGE_NUM[target])return;
+        pushStage(target);
+        showStage(target,{animate:false});
+      });
+    });
+    document.getElementById('startOver').addEventListener('click',function(event){
+      event.preventDefault();
+      var url=new URL(window.location.href);url.searchParams.delete('vertical');url.hash='';
+      window.history.pushState({},'',url.pathname+url.search);
+      renderAll(null);
+      document.getElementById('agentSearch').value='';
+      document.getElementById('top').scrollIntoView({behavior:reduce()?'auto':'smooth'});
+      document.getElementById('agentSearch').focus({preventScroll:true});
     });
     // Nav link to the calculator force-reveals it even with no business chosen.
     document.querySelectorAll('a[href="#calculator"]:not(.stage-next)').forEach(function(link){
       link.addEventListener('click',function(event){
         event.preventDefault();
         if(!selectedVertical)applyPreset(null);
-        revealStage('calculator',{animate:false});
+        showStage('calculator',{animate:false,scrollFrame:true});
       });
+    });
+    document.querySelectorAll('a[href="#virtual-roles"]').forEach(function(link){
+      link.addEventListener('click',function(){var panel=document.getElementById('virtual-roles');panel.hidden=false});
     });
     usePreset.addEventListener('click',function(){if(selectedVertical&&selectedVertical.calculator)applyPreset(selectedVertical)});
     document.querySelectorAll('a[href="#agentSearch"]').forEach(function(link){
@@ -994,7 +1025,8 @@
       var touchX=0;
       ui.carousel.addEventListener('touchstart',function(event){touchX=event.changedTouches[0].clientX},{passive:true});
       ui.carousel.addEventListener('touchend',function(event){var delta=event.changedTouches[0].clientX-touchX;if(Math.abs(delta)>55)selectIndustry(activeIndustryIndex+(delta>0?-1:1),false)},{passive:true});
-      ui.search.addEventListener('focus',function(){if(ui.search.value.trim())handleSearch()});
+      // Refocusing a box that already holds the chosen business must not pop the results back over a later stage.
+      ui.search.addEventListener('focus',function(){if(ui.search.value.trim()&&!(activeAgent&&ui.search.value.trim()===activeAgent.business))handleSearch()});
       ui.search.addEventListener('input',handleSearch);
       ui.search.addEventListener('keydown',function(event){
         var shown=currentMatches.slice(0,10);
