@@ -332,17 +332,29 @@ test.describe('The ride in the hero (Build 015)', () => {
     expect(landed.some((x) => x === 'agentSearch' || /biz-chip/.test(x))).toBe(false);
   });
 
-  test('the sign pulses then settles; static under reduced motion', async ({ page }, testInfo) => {
+  test('the sign glows and the arrows point at the field; static under reduced motion', async ({ page }, testInfo) => {
     await page.goto('/');
-    const h1 = page.locator('#heroSignTitle');
+    const board = page.locator('#signBoard');
+    const arrows = page.locator('.sign-arrows span');
+    await expect(board).toBeVisible();
+    await expect(arrows).toHaveCount(3);
+
+    // The pointing is positional, not DOM order: the arrows must sit between the sign and the field.
+    const boardBox = await board.boundingBox();
+    const arrowBox = await page.locator('.sign-arrows').boundingBox();
+    const fieldBox = await page.locator('#agentSearch').boundingBox();
+    expect(arrowBox.y).toBeGreaterThan(boardBox.y);
+    expect(arrowBox.y + arrowBox.height).toBeLessThanOrEqual(fieldBox.y + 2);
+
+    const names = await page.evaluate(() => [
+      getComputedStyle(document.getElementById('signBoard')).animationName,
+      getComputedStyle(document.querySelector('.sign-arrows span')).animationName
+    ]);
     if (isReduced(testInfo)) {
-      expect(await h1.evaluate((el) => getComputedStyle(el).animationName)).toBe('none');
-      expect(await page.evaluate(() => getComputedStyle(document.querySelector('.sign-here'), '::after').transform)).not.toBe('none');
+      expect(names).toEqual(['none', 'none']);
       return;
     }
-    await expect(page.locator('.hero')).toHaveClass(/is-signing/);
-    expect(await h1.evaluate((el) => getComputedStyle(el).animationName)).toBe('signPulse');
-    await expect(page.locator('.hero')).toHaveClass(/sign-settled/, { timeout: 7000 });
+    expect(names).toEqual(['signGlow', 'signArrow']);
   });
 
   test('the diagnosis choreography is wired and settles', async ({ page }, testInfo) => {
@@ -362,47 +374,70 @@ test.describe('The ride in the hero (Build 015)', () => {
   });
 });
 
-test.describe('Hero band (Build 012)', () => {
-  test('all 52 businesses are in the band, one tab stop, arrows roam', async ({ page }, testInfo) => {
+test.describe('The lit sign hero (Build 016)', () => {
+  test('quick picks are reachable and "+N more" exposes all 52', async ({ page }) => {
     await page.goto('/');
-    const real = page.locator('#businessBand .biz-track:not([aria-hidden]) .biz-chip');
-    await expect(real).toHaveCount(52);
-    const tabbable = await page.$$eval('#businessBand .biz-chip', (els) => els.filter((el) => el.tabIndex === 0).length);
-    expect(tabbable, 'the band must be a single tab stop').toBe(1);
-    test.skip(isProject(testInfo, TOUCH_PROJECTS), 'roving focus is a keyboard concern');
-    await page.locator('#businessBand .biz-chip[tabindex="0"]').focus();
-    const first = await page.evaluate(() => document.activeElement && document.activeElement.textContent);
-    await page.keyboard.press('ArrowRight');
-    const second = await page.evaluate(() => document.activeElement && document.activeElement.textContent);
-    expect(second).not.toBe(first);
-    await page.keyboard.press('End');
-    const last = await page.evaluate(() => document.activeElement && document.activeElement.textContent);
-    expect(last).not.toBe(second);
+    const chips = page.locator('#heroQuickpicks .biz-chip:not(.is-more)');
+    await expect(chips).toHaveCount(7);
+    // Every chip must resolve to a real business, not a silently-dropped id.
+    const ids = await chips.evaluateAll((els) => els.map((el) => el.dataset.businessId));
+    expect(ids.every(Boolean)).toBe(true);
+
+    await page.locator('#heroQuickpicks .biz-chip.is-more').click();
+    await expect(page.locator('#agentSearchResults')).toBeVisible();
+    await expect(page.locator('#agentSearchResults .agent-search-result')).toHaveCount(52);
   });
 
-  test('a band chip enters the funnel', async ({ page }) => {
+  test('a quick-pick chip enters the ride without scrolling', async ({ page }) => {
     await page.goto('/');
-    await page.locator('#businessBand .biz-chip[data-business-id="auto-salvage"]').first().evaluate((el) => el.click());
+    await page.locator('#heroQuickpicks .biz-chip[data-business-id="towing"]').evaluate((el) => el.click());
     await expect(page.locator('.hero')).toHaveClass(/is-riding/, { timeout: 4000 });
     await expect(page.locator('#diagnosis')).toBeVisible();
-    await expect(page.locator('#diagnosisBusiness')).toHaveText('Auto Salvage');
-    await expect(page.locator('#agentSearch')).toHaveValue('Auto Salvage');
+    await expect(page.locator('#diagnosisBusiness')).toHaveText('Towing');
+    await expect(page.locator('#agentSearch')).toHaveValue('Towing');
     expect(await page.evaluate(() => window.scrollY)).toBe(0);
   });
 
-  test('the band drifts, pauses on hover, and is static under reduced motion', async ({ page }, testInfo) => {
+  test('two scene layers exist and exactly one is current', async ({ page }) => {
     await page.goto('/');
-    const track = page.locator('#businessBand .biz-track').first();
-    const name = await track.evaluate((el) => getComputedStyle(el).animationName);
+    await expect(page.locator('#heroScenes .hero-scene')).toHaveCount(2);
+    await expect(page.locator('#heroScenes .hero-scene.is-current')).toHaveCount(1);
+    const img = await page.locator('#heroScenes .hero-scene.is-current').evaluate((el) => getComputedStyle(el).backgroundImage);
+    expect(img).toContain('assets/scenes/');
+  });
+
+  test('the scenes rotate, and stop while riding and under reduced motion', async ({ page }, testInfo) => {
+    await page.goto('/');
+    const current = () => page.locator('#heroScenes .hero-scene.is-current')
+      .evaluate((el) => getComputedStyle(el).backgroundImage);
+    const first = await current();
+
     if (isReduced(testInfo)) {
-      expect(name).toBe('none');
+      await page.waitForTimeout(7000);
+      expect(await current(), 'reduced motion must not hard-cut the photo').toBe(first);
       return;
     }
-    expect(name).toBe('bandDrift');
-    test.skip(isProject(testInfo, TOUCH_PROJECTS), 'hover pause is a pointer concern');
-    await page.locator('#businessBand').hover();
-    const state = await track.evaluate((el) => getComputedStyle(el).animationPlayState);
-    expect(state).toBe('paused');
+    await expect.poll(current, { timeout: 9000 }).not.toBe(first);
+
+    // Riding must silence the rotation, or it burns cycles behind an opaque layer.
+    await chooseBusiness(page, 'mechanic', 'Auto Repair');
+    const during = await page.locator('#heroScenes .hero-scene.is-current')
+      .evaluate((el) => getComputedStyle(el).backgroundImage);
+    await page.waitForTimeout(7000);
+    expect(await page.locator('#heroScenes .hero-scene.is-current')
+      .evaluate((el) => getComputedStyle(el).backgroundImage)).toBe(during);
+  });
+
+  test('the results box is dark, not a white slab', async ({ page }) => {
+    await page.goto('/');
+    await page.locator('#agentSearch').fill('tow');
+    await expect(page.locator('#agentSearchResults')).toBeVisible();
+    const bg = await page.locator('#agentSearchResults').evaluate((el) => getComputedStyle(el).backgroundColor);
+    expect(bg).not.toBe('rgb(255, 255, 255)');
+    // Still in the root stacking context — the scroll-anchoring fix from 015 must survive.
+    const onBody = await page.evaluate(() => document.getElementById('agentSearchResults').parentElement === document.body);
+    expect(onBody).toBe(true);
+    expect(await page.locator('#agentSearchResults').evaluate((el) => getComputedStyle(el).position)).toBe('fixed');
   });
 });
 

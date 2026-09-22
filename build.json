@@ -1,18 +1,18 @@
 {
   "product": "Dassa Solutions Website",
-  "build": "DS-2026.09.22-015",
+  "build": "DS-2026.09.22-016",
   "status": "draft-tested",
   "date": "2026-09-22",
-  "description": "The ride starts in the hero. Choosing a business type no longer scrolls anywhere: the sign, band and search dissolve in place and page 1 materializes in the same hero frame, then four pages crossfade there - The problem, Why it matters (two reasons, each with a 'what changes' line, plus booking), Your Virtual helper (lead-in, role, three catches, overflow line; ends in two doors), and Wrap up as either the calculator or the booking summary. Every page has Escape; the wrap-up has Get off the ride. Carousel stays behind the Virtual Roles nav tab. New hero copy is Eric's verbatim: 'Choose your business type here.' with his sub-line. Schema v2 gains two optional fields (reasons[].help, role.lead) with a derived fallback so all 8 reviewed entries render today.",
+  "description": "The hero is a lit sign over rotating business photography. A business-type photo crossfades behind the hero every 6 seconds in random order (shuffle bag, no immediate repeats, one preloaded ahead), under a fixed scrim that guarantees contrast whichever photo is up. A short all-caps headline sits over Eric's statement, then a glowing sign pill with three chevrons pointing down at the search field - one thing to do. The drifting 52-chip band is gone (it clipped labels mid-word and read as a rendering fault); seven quick-pick chips plus '+45 more' open the existing combobox with all 52. Every hero control is recoloured for dark, including the results box, which lives on <body> and would otherwise flash white. The four photos are AI-generated stand-ins; the scene list is a single array for swapping in real photography.",
   "approvedBuild": {
     "build": "DS-2026.09.22-011",
     "approvedDate": "2026-09-22",
-    "note": "011 remains the approved build. Baselines committed: 012 (6577154), 013 (9c01cd6). 014 (band+blur) and 015 (the ride) are uncommitted and need Eric's eyes-on review."
+    "note": "011 remains the approved build. Baselines committed: 012 (6577154), 013 (9c01cd6), 015 (046529f). 016 is uncommitted and needs Eric's eyes-on review."
   },
   "qa": {
-    "checksPassed": 199,
-    "checksTotal": 199,
-    "note": "Playwright, tests/dassa-qa.spec.js, rewritten for the ride (39 tests x 7 viewport projects), run 2026-09-22: 199 passed, 0 failed, the rest skipped by design (pointer-only / touch-only). Verified: no document scroll on choose from search, band chip, or the below-fold carousel CTA (which scrolls to the top first, then rides); page 1 fits the viewport with no internal scroll on desktop and tablet (phones may scroll inside a page, never the document); the sign pulses then settles and is static under reduced motion; page 2 shows two reasons each with a help line; the two doors on page 3; honest fallback skips page 2 and hides the HIPAA note; deep links to every page land at scrollY 0; browser back walks the rail; escape restores the sign and clears the search; Get off the ride keeps the search value without reopening results; the sign layer is inert while riding; rail has the four exact labels. Detector 31. Still needs Eric: the materialize and the sign as perceived on his own screens, the hero now filling the desktop viewport at rest, and the page-3 booking button decision."
+    "checksPassed": 220,
+    "checksTotal": 220,
+    "note": "Playwright, tests/dassa-qa.spec.js, 7 viewport projects, run 2026-09-22: 220 passed, 0 failed, 32 skipped by design (pointer-only / touch-only). Four band/signPulse tests were rewritten for the new hero: the sign glow and arrow position (asserted by bounding box, since the pointing is positional not DOM order), quick picks plus '+45 more' exposing all 52, a quick-pick chip entering the ride at scrollY 0, two scene layers with exactly one current, rotation advancing and then stopping while riding and under reduced motion, and the results box being dark and still fixed on <body>. No ride test changed or broke. One press-feedback flake under parallel load passed 3/3 in isolation and on the confirming full run. Verified by screenshot at 1440 and 390, not by exit code. Still needs Eric: the headline wording (he picks), which statement version ships, real photography, and the Towing icon (Material Symbols has no tow truck; local_shipping was chosen as the only candidate legible at 17px)."
   },
   "previewUrl": "http://127.0.0.1:8802/"
 }

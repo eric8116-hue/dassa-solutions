@@ -19,6 +19,7 @@ Build numbers use `DS-YYYY.MM.DD-NNN`. Build numbers identify revisions; approva
 | DS-2026.09.22-013 | Draft, tested 154/154 | Stages crossfade in one fixed frame; carousel off the home scroll; header-clip and focus-ring fixes. |
 | DS-2026.09.22-014 | Draft, tested 154/154 | Three-depth band with industry icons; blur on the stage crossfade. |
 | DS-2026.09.22-015 | Draft, tested 199/199 | The ride starts in the hero: choose, and page 1 materializes in place; four pages crossfade with no document scroll. |
+| DS-2026.09.22-016 | Draft, tested 220/220 | The hero is a lit sign over rotating business photos; the drifting band is gone. |
 
 The current build is also recorded in `build.json` and displayed on the website as a fixed preview badge.
 
@@ -433,3 +434,54 @@ rest; whether page 3 should keep a booking button alongside the two doors; and t
 per-vertical `help`/`lead` copy. The animation-skill passes on the sign and materialize (the
 "fancy skills" Eric asked for) are the next step once the structure is approved.
 Private preview remains loopback-only at http://127.0.0.1:8802/. Nothing pushed or deployed.
+
+## DS-2026.09.22-016 — draft, tested, awaiting Eric review
+
+Eric rejected 015's hero outright: *"That's dog shit. I need a hero, not verbiage."* Ten design
+skills were run blind against it. Seven independently said the same four things: kill the 55-word
+paragraph, stop centring a stack of boxes, the drifting band reads as a rendering bug because it
+slices labels mid-word, and the hero belongs in the same dark world as page 3. One skill broke the
+standing assumption that no photography could exist — it generated four images and built four
+comps. Eric picked C1, then amended it: no night-shop photo, no missed-call ledger, rotate a
+business-type photo every 6 seconds, and add a glowing sign with arrows pointing at the field.
+
+### What changed
+- **Rotating scenes.** Two layers crossfade (900ms, opacity only) every 6s. Order is a shuffle
+  bag, not `Math.random()` — every scene shows once per pass and a reshuffle never repeats the one
+  that just played, which at four scenes would otherwise collide often enough to look stuck. One
+  image is preloaded ahead, never the whole set.
+- **Five pause conditions**, all required: `document.hidden`, hero off-screen, `is-dissolving`,
+  `is-riding`, and reduced motion. The reduced-motion guard is in JS on purpose — the global CSS
+  rule zeroes animation durations but does nothing to a `setInterval`, so the photo would have
+  hard-cut every 6 seconds, which is worse than the crossfade.
+- **The sign.** A lit pill breathing at 0.38Hz with three chevrons falling toward the field. That
+  is an order of magnitude under the 3Hz seizure threshold; Eric asked for "flashing" and was
+  given the safe version of it deliberately.
+- **The band is deleted** — markup, CSS, `buildBand`/`makeRow`, the roving tabindex, its observer.
+  Seven quick-pick chips plus "+45 more", which raises the result cap for one render so the
+  existing combobox lists all 52 rather than a second parallel widget being built.
+- **Dark retreatment.** Every hero control recoloured, including `#agentSearchResults` — it is
+  reparented to `<body>`, inherits nothing from the hero, and would have flashed a white slab on
+  the first keystroke. There is now a test asserting it is not white.
+- On phones the submit stops being a full-width slab (a fat button, banned by house style) and
+  becomes a 44px circle inside the field, recovering ~70px of fold.
+
+### Defects found by rendering, not by tests
+- `icon:'tow'` was not a valid Material Symbols name and rendered as the literal text "TOW". The
+  drifting band had hidden it for builds; a static chip exposed it immediately. `tow_truck` is not
+  a glyph either — verified by measuring rendered widths, after a first probe gave a false
+  negative because the icon font had not loaded. Material Symbols has no tow truck at all, so
+  `local_shipping` was chosen: the only candidate still legible as a vehicle at 17px.
+- Two quick-pick ids (`dental-practices`, `salons-barbershops`) did not exist in the catalog and
+  were silently dropped, so five chips rendered instead of seven. The real ids are `dental` and
+  `high-end-salons`. There is now a test asserting all seven resolve.
+- The "+45 more" chip sits outside `.agent-search-shell`, so the click-away handler closed the
+  results box in the same tick it opened. The chip is now exempt.
+
+### Open for Eric
+The headline is a proposal, not a decision — alternates are in the plan. Both statement versions
+are written; his verbatim dictation and a tightened one. The four photos are AI-generated
+stand-ins: `trade-tools` and `dispatch-console` are object shots rather than business interiors
+and should go first. The scene list is one array at the top of Script A.
+
+Nothing pushed or deployed. Preview is loopback-only, synced to both machines.
