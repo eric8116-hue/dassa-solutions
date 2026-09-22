@@ -1,20 +1,18 @@
 {
   "product": "Dassa Solutions Website",
-  "build": "DS-2026.09.20-004",
-  "status": "tested-awaiting-review",
-  "date": "2026-09-20",
-  "description": "Unified business summaries, sourced Auto Repair and Spas pilots, context-aware audit booking, and verified responsive/keyboard fixes.",
+  "build": "DS-2026.09.22-011",
+  "status": "approved-qa-outstanding",
+  "date": "2026-09-22",
+  "description": "Empty-state guidance, on top of 010. Eric chose ghost text in the search field over pre-filling the summary card with a default business. The search placeholder now reads 'Choose your business type' instead of the example list. Also fixed a placeholder colour failing WCAG AA at 4.23:1.",
+  "approvedBuild": {
+    "build": "DS-2026.09.22-011",
+    "approvedDate": "2026-09-22",
+    "note": "Eric approved builds 005 through 011 together on 2026-09-22, in conversation, after having each change described to him. This supersedes 004 as the approved build. Recorded honestly: unlike 004, this approval was NOT preceded by a live review pass in the Site Preview Screen tool, and no browser QA was run on any of 005-011. It is approval of the design and copy decisions, not a statement that the checks below passed."
+  },
   "qa": {
-    "checksPassed": 32,
-    "checksTotal": 32,
-    "widths": [
-      320,
-      390,
-      430,
-      768,
-      1024,
-      1440
-    ]
+    "checksPassed": null,
+    "checksTotal": null,
+    "note": "NOT RUN. The 32/32 pass still refers to Build 004 only. Outstanding and unverified across the approved 005-011: mobile stacking 320-1440px and keyboard tab order after the 005 DOM move; the scrollend fallback in a browser without scrollend support, and the reduced-motion path (006); press feedback and the un-stuck hover lift on a real touch device (007); carousel direction across the last-to-first wrap, search dropdown entrance against its own overflow:auto clipping, mobile nav open/close on a real phone, and the call-flow auto-play firing exactly once (008); and wrapping of every heading, button and label at 320/390/1440px now that Schibsted Grotesk sets wider than Inter (010). 38 mechanical detector findings also remain, all needing rendered output to judge."
   },
   "previewUrl": "http://127.0.0.1:8802/"
 }
