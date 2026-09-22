@@ -1,2 +1,8 @@
 # Generated collateral is not part of the website source baseline.
 /output/
+
+# Playwright QA suite: keep tests/, playwright.config.js and package*.json;
+# ignore installed deps and per-run artifacts.
+/node_modules/
+/playwright-report/
+/test-results/
