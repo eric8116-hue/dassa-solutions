@@ -179,7 +179,7 @@ test.describe('The ride in the hero (Build 015)', () => {
     await expect(page.locator('#calculator')).toBeVisible();
   });
 
-  test('an unapproved business gets the honest fallback and skips Why it matters', async ({ page }) => {
+  test('an unapproved business gets the honest fallback and still walks through Why it matters', async ({ page }) => {
     await page.goto('/?vertical=dental');
     await expect(page.locator('#diagnosis')).toBeVisible();
     await expect(page.locator('#diagnosisFallback')).toBeVisible();
@@ -187,10 +187,15 @@ test.describe('The ride in the hero (Build 015)', () => {
     await expect(page.locator('#diagnosisFallback')).toContainText('rather ask');
     await expect(page.locator('#fallbackRole')).toHaveText('Virtual Patient Coordinator');
     await expect(page.locator('#diagnosisFallback [data-booking]')).toBeVisible();
-    await expect(page.locator('#stageRail li[data-stage="reasons"]')).toHaveAttribute('data-skipped', 'true');
     await page.locator('#diagnosisFallback .stage-next').click();
+    // Unapproved businesses still land on Why it matters -- the fallback replaces the skip.
+    await expect(page.locator('#reasons')).toBeVisible();
+    await expect(page.locator('#reasonsFallback')).toBeVisible();
+    await expect(page.locator('#reasonsApproved')).toBeHidden();
+    await expect(page.locator('#reasonsFallbackBusiness')).toHaveText('Dental Practices');
+    await expect(page.locator('#reasonsFallbackRole')).toHaveText('Virtual Patient Coordinator');
+    await page.locator('#reasons .stage-next').click();
     await expect(page.locator('#virtual-role')).toBeVisible();
-    await expect(page.locator('#reasons')).toBeHidden();
     // No reviewed entry means no HIPAA flag is known, so the note stays hidden rather than guessing.
     await expect(page.locator('#roleHipaa')).toBeHidden();
     await page.locator('#doorCalculator').click();
@@ -198,10 +203,12 @@ test.describe('The ride in the hero (Build 015)', () => {
     await expect(page.locator('#presetNote')).toHaveAttribute('data-preset', 'none');
     await expect(page.locator('#usePreset')).toBeHidden();
     await expect(page.locator('#calcAnnual')).not.toHaveText('$0');
-    // Back from the helper skips the reasons page too.
+    // Back from the helper now returns to reasons, not past it.
     await page.locator('#calculator .stage-back').click();
     await expect(page.locator('#virtual-role')).toBeVisible();
     await page.locator('#virtual-role .stage-back').click();
+    await expect(page.locator('#reasons')).toBeVisible();
+    await page.locator('#reasons .stage-back').click();
     await expect(page.locator('#diagnosis')).toBeVisible();
   });
 
@@ -312,9 +319,10 @@ test.describe('The ride in the hero (Build 015)', () => {
     expect(page.url()).toBe(before);
     const cta = page.locator('#agentRoleCta');
     await expect(cta).toContainText('Start with');
+    // Build 036: Virtual Roles is its own page, so the CTA returns to the home page and then rides.
     await cta.scrollIntoViewIfNeeded();
-    expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(100);
     await cta.click();
+    await expect(page.locator('body')).toHaveAttribute('data-view', 'home');
     await expect(page.locator('.hero')).toHaveClass(/is-riding/, { timeout: 5000 });
     await expect.poll(() => page.evaluate(() => window.scrollY), { timeout: 3000 }).toBe(0);
     await expect(page.locator('#diagnosis')).toBeVisible();
@@ -332,29 +340,31 @@ test.describe('The ride in the hero (Build 015)', () => {
     expect(landed.some((x) => x === 'agentSearch' || /biz-chip/.test(x))).toBe(false);
   });
 
-  test('the sign glows and the arrows point at the field; static under reduced motion', async ({ page }, testInfo) => {
+  // Build 022 (Eric): three separate thick glowing arrows drawn as one SVG, pulsing with SHOW ME.
+  test('SHOW ME glows yellow and the arrows point at the field; static under reduced motion', async ({ page }, testInfo) => {
     await page.goto('/');
-    const board = page.locator('#signBoard');
-    const arrows = page.locator('.sign-arrows span');
-    await expect(board).toBeVisible();
+    const sign = page.locator('.show-me');
+    const arrows = page.locator('.sign-arrows svg path');
+    await expect(sign).toBeVisible();
+    await expect(sign).toHaveText(/show me/i);
     await expect(arrows).toHaveCount(3);
 
     // The pointing is positional, not DOM order: the arrows must sit between the sign and the field.
-    const boardBox = await board.boundingBox();
+    const signBox = await sign.boundingBox();
     const arrowBox = await page.locator('.sign-arrows').boundingBox();
     const fieldBox = await page.locator('#agentSearch').boundingBox();
-    expect(arrowBox.y).toBeGreaterThan(boardBox.y);
+    expect(arrowBox.y).toBeGreaterThan(signBox.y);
     expect(arrowBox.y + arrowBox.height).toBeLessThanOrEqual(fieldBox.y + 2);
 
     const names = await page.evaluate(() => [
-      getComputedStyle(document.getElementById('signBoard')).animationName,
-      getComputedStyle(document.querySelector('.sign-arrows span')).animationName
+      getComputedStyle(document.querySelector('.show-me')).animationName,
+      getComputedStyle(document.querySelector('.hero .sign-arrows svg')).animationName
     ]);
     if (isReduced(testInfo)) {
       expect(names).toEqual(['none', 'none']);
       return;
     }
-    expect(names).toEqual(['signGlow', 'signArrow']);
+    expect(names).toEqual(['yellowGlow', 'arrowGlow']);
   });
 
   test('the diagnosis choreography is wired and settles', async ({ page }, testInfo) => {
@@ -375,27 +385,41 @@ test.describe('The ride in the hero (Build 015)', () => {
 });
 
 test.describe('The lit sign hero (Build 016)', () => {
-  test('quick picks are reachable and "+N more" exposes all 52', async ({ page }) => {
+  test('the quick-pick chips are gone and a pitch paragraph sits under the field', async ({ page }) => {
     await page.goto('/');
-    const chips = page.locator('#heroQuickpicks .biz-chip:not(.is-more)');
-    await expect(chips).toHaveCount(7);
-    // Every chip must resolve to a real business, not a silently-dropped id.
-    const ids = await chips.evaluateAll((els) => els.map((el) => el.dataset.businessId));
-    expect(ids.every(Boolean)).toBe(true);
-
-    await page.locator('#heroQuickpicks .biz-chip.is-more').click();
-    await expect(page.locator('#agentSearchResults')).toBeVisible();
-    await expect(page.locator('#agentSearchResults .agent-search-result')).toHaveCount(52);
+    await expect(page.locator('.biz-chip')).toHaveCount(0);
+    await expect(page.locator('.hero-pitch')).toBeVisible();
+    const fieldBox = await page.locator('#agentSearch').boundingBox();
+    const pitchBox = await page.locator('.hero-pitch').boundingBox();
+    expect(pitchBox.y).toBeGreaterThan(fieldBox.y);
   });
 
-  test('a quick-pick chip enters the ride without scrolling', async ({ page }) => {
+  // Build 021 (Eric): the field is rounded now, still slim.
+  test('the field is rounded and slim', async ({ page }) => {
     await page.goto('/');
-    await page.locator('#heroQuickpicks .biz-chip[data-business-id="towing"]').evaluate((el) => el.click());
-    await expect(page.locator('.hero')).toHaveClass(/is-riding/, { timeout: 4000 });
-    await expect(page.locator('#diagnosis')).toBeVisible();
-    await expect(page.locator('#diagnosisBusiness')).toHaveText('Towing');
-    await expect(page.locator('#agentSearch')).toHaveValue('Towing');
-    expect(await page.evaluate(() => window.scrollY)).toBe(0);
+    const radius = await page.locator('.hero .agent-search').evaluate((el) => parseFloat(getComputedStyle(el).borderTopLeftRadius));
+    expect(radius).toBeGreaterThanOrEqual(20);
+    const box = await page.locator('.hero .agent-search').boundingBox();
+    expect(box.height).toBeLessThanOrEqual(52);
+  });
+
+  test('the trade line only shows phrases that are verbatim in a reviewed trigger', async ({ page }) => {
+    await page.goto('/');
+    const frag = page.locator('#tradeLine .trade-line-frag');
+    await expect(frag).not.toHaveText('', { timeout: 6000 });
+    const ok = await page.evaluate(() => {
+      const shown = document.querySelector('#tradeLine .trade-line-frag').textContent;
+      return (window.DASSA_BUSINESS_SUMMARIES || []).some((s) => s.approved && s.stages && s.stages.diagnosis.trigger.indexOf(shown) >= 0);
+    });
+    expect(ok).toBe(true);
+  });
+
+  test('typing a reviewed trade makes the line theirs', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('#tradeLine .trade-line-frag')).not.toHaveText('', { timeout: 6000 });
+    await page.locator('#agentSearch').fill('towing');
+    await expect(page.locator('#tradeLine')).toHaveClass(/is-yours/);
+    await expect(page.locator('#tradeLine .trade-line-lead b')).toHaveText('towing company');
   });
 
   test('two scene layers exist and exactly one is current', async ({ page }) => {

@@ -1,18 +1,18 @@
 {
   "product": "Dassa Solutions Website",
-  "build": "DS-2026.09.22-016",
-  "status": "draft-tested",
-  "date": "2026-09-22",
-  "description": "The hero is a lit sign over rotating business photography. A business-type photo crossfades behind the hero every 6 seconds in random order (shuffle bag, no immediate repeats, one preloaded ahead), under a fixed scrim that guarantees contrast whichever photo is up. A short all-caps headline sits over Eric's statement, then a glowing sign pill with three chevrons pointing down at the search field - one thing to do. The drifting 52-chip band is gone (it clipped labels mid-word and read as a rendering fault); seven quick-pick chips plus '+45 more' open the existing combobox with all 52. Every hero control is recoloured for dark, including the results box, which lives on <body> and would otherwise flash white. The four photos are AI-generated stand-ins; the scene list is a single array for swapping in real photography.",
+  "build": "DS-2026.09.23-036",
+  "status": "draft-untested",
+  "date": "2026-09-23",
+  "description": "Each menu item is its own page (About Me, Call Flow, Virtual Roles, What We Examine, Phones, Contact) chosen by the address hash; home is the hero + tour only; Revenue Math opens the calculator in the home tour; current page underlined in the menu.",
   "approvedBuild": {
     "build": "DS-2026.09.22-011",
     "approvedDate": "2026-09-22",
-    "note": "011 remains the approved build. Baselines committed: 012 (6577154), 013 (9c01cd6), 015 (046529f). 016 is uncommitted and needs Eric's eyes-on review."
+    "note": "011 remains the approved build. Baselines committed: 012 (6577154), 013 (9c01cd6), 015 (046529f). 016-019 are uncommitted and need Eric's eyes-on review."
   },
   "qa": {
-    "checksPassed": 220,
-    "checksTotal": 220,
-    "note": "Playwright, tests/dassa-qa.spec.js, 7 viewport projects, run 2026-09-22: 220 passed, 0 failed, 32 skipped by design (pointer-only / touch-only). Four band/signPulse tests were rewritten for the new hero: the sign glow and arrow position (asserted by bounding box, since the pointing is positional not DOM order), quick picks plus '+45 more' exposing all 52, a quick-pick chip entering the ride at scrollY 0, two scene layers with exactly one current, rotation advancing and then stopping while riding and under reduced motion, and the results box being dark and still fixed on <body>. No ride test changed or broke. One press-feedback flake under parallel load passed 3/3 in isolation and on the confirming full run. Verified by screenshot at 1440 and 390, not by exit code. Still needs Eric: the headline wording (he picks), which statement version ships, real photography, and the Towing icon (Material Symbols has no tow truck; local_shipping was chosen as the only candidate legible at 17px)."
+    "checksPassed": 234,
+    "checksTotal": 234,
+    "note": "Build 036, full suite on all 7 projects: 234 passed, 32 skipped (device-specific). Covers builds 034-036 (Anton SHOW ME, shorter arrows, darker headline, 10% darker photos, hero fits 1366x768, About Me first, rebuilt value circles, one page per menu item)."
   },
   "previewUrl": "http://127.0.0.1:8802/"
 }

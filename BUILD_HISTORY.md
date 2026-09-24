@@ -20,6 +20,26 @@ Build numbers use `DS-YYYY.MM.DD-NNN`. Build numbers identify revisions; approva
 | DS-2026.09.22-014 | Draft, tested 154/154 | Three-depth band with industry icons; blur on the stage crossfade. |
 | DS-2026.09.22-015 | Draft, tested 199/199 | The ride starts in the hero: choose, and page 1 materializes in place; four pages crossfade with no document scroll. |
 | DS-2026.09.22-016 | Draft, tested 220/220 | The hero is a lit sign over rotating business photos; the drifting band is gone. |
+| DS-2026.09.22-017 | Draft, untested | Five real licensed photos added to the hero rotation pool: Roofing, Legal, Real Estate, Daycare, Chiropractic. |
+| DS-2026.09.22-018 | Draft, untested | Sixth photo added: Auto Body, a dusk exterior of a repair bay with lift and mechanics. |
+| DS-2026.09.22-019 | Draft, tested 31/31 (desktop-1440) | Ride-funnel fix: unapproved business types no longer skip the "Why it matters" page — it now shows an honest fallback instead of jumping straight to the virtual-role page. |
+| DS-2026.09.23-020 | Draft, tested 234/234 | Hero rebuild: "Pick your trade", yellow SHOW ME, three arrows, sharp search field. |
+| DS-2026.09.23-021 | Draft, untested | Eric 09-23 markup: bigger logo/menu, Phones + About Me + Contact (placeholders), slim booking buttons, SHOW ME +50% underlined, split glowing arrow, rounded search, 2 dark photos removed, photos brightened, "business type" / "mishandled call". |
+| DS-2026.09.23-022 | Draft, untested | Menu +15%, bigger SHOW ME + longer underline, three separate arrows, readable pitch backing, garage photo +20% brightness, console photo removed. |
+| DS-2026.09.23-023 | Draft, untested | Slow drift on the hero photos (8% push-in plus a small random slide per photo, linear, 6.9s); off for reduced motion. |
+| DS-2026.09.23-024 | Draft, untested | The towing demo line no longer pulls up the removed dark towing-lot photo. |
+| DS-2026.09.23-025 | Draft, untested | Four licensed photos added to the rotation: Movers, Plumber, Retail storefront at night, Office team. |
+| DS-2026.09.23-026 | Draft, untested | Plumber photo swapped to the wide shot Eric chose (2098710609) instead of the close-up (2098710505). |
+| DS-2026.09.23-027 | Draft, untested | Electrician photo added to the rotation (2155795935). |
+| DS-2026.09.23-028 | Draft, untested | Black-and-white chiropractic photo replaced with a colour one (2159091137). |
+| DS-2026.09.23-029 | Draft, untested | Per-photo crop position (`pos`): chiropractor and electrician anchored near the top so heads are not cut off. |
+| DS-2026.09.23-030 | Draft, untested | Towing photo added (128376104) and paired with the towing demo line. |
+| DS-2026.09.23-031 | Draft, untested | Medical receptionist on the phone added (2042561392), crop anchored on her. |
+| DS-2026.09.23-032 | Draft, untested | HVAC photo added (1607525625). Hero rotation now 18 photos. |
+| DS-2026.09.23-033 | Draft, tested 233/234 (1 timing flake, passes alone) | Phones filled with confirmed NetLink selling points + partner note; About Me drafted (marked DRAFT for Eric). |
+| DS-2026.09.23-034 | Draft, untested | SHOW ME in Anton; underline + shorter arrows span the word; darker headline colours; photos 10% darker; hero fits 1366x768. |
+| DS-2026.09.23-035 | Draft, untested | About Me first in the menu; smaller logo; value circles rebuilt as icons + readable text. |
+| DS-2026.09.23-036 | Draft, tested 234/234 | One page per menu item (hash-routed); home = hero + tour; current page underlined. |
 
 The current build is also recorded in `build.json` and displayed on the website as a fixed preview badge.
 

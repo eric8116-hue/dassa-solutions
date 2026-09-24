@@ -6,3 +6,6 @@
 /node_modules/
 /playwright-report/
 /test-results/
+
+# Syncthing marker for the Site Preview sync (build 036 workflow).
+/.stfolder/
