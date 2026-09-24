@@ -40,6 +40,7 @@ Build numbers use `DS-YYYY.MM.DD-NNN`. Build numbers identify revisions; approva
 | DS-2026.09.23-034 | Draft, untested | SHOW ME in Anton; underline + shorter arrows span the word; darker headline colours; photos 10% darker; hero fits 1366x768. |
 | DS-2026.09.23-035 | Draft, untested | About Me first in the menu; smaller logo; value circles rebuilt as icons + readable text. |
 | DS-2026.09.23-036 | Draft, tested 234/234 | One page per menu item (hash-routed); home = hero + tour; current page underlined. |
+| DS-2026.09.23-037 | Draft | Eric's headshot on About Me. |
 
 The current build is also recorded in `build.json` and displayed on the website as a fixed preview badge.
 
