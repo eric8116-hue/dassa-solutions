@@ -1,1789 +1,201 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="application-version" content="DS-2026.09.23-037">
-  <title>Dassa Solutions — Protect the Opportunity Behind Every Call</title>
-  <meta name="description" content="Dassa Solutions helps businesses find and fix communication gaps between marketing spend and revenue — missed calls, poor routing, failed follow-up, and unreliable connectivity.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Schibsted+Grotesk:wght@400;500;600;700;800;900&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0&display=swap">
-  <link rel="icon" type="image/png" href="assets/dassa-mark.png">
-  <link rel="canonical" href="https://dassasolutions.com/">
-  <!-- Only the first scene is preloaded; the rotator fetches one ahead at runtime. Preloading the whole
-       set would make the hero cost more than the rest of the page. -->
-  <link rel="preload" as="image" href="assets/scenes/auto-repair-bay-bright.webp" fetchpriority="high">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Dassa Solutions">
-  <meta property="og:title" content="Dassa Solutions — Protect the Opportunity Behind Every Call">
-  <meta property="og:description" content="Business communications that protect the opportunities your marketing already creates.">
-  <meta property="og:url" content="https://dassasolutions.com/">
-  <meta property="og:image" content="https://dassasolutions.com/assets/dassa-social-preview.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://dassasolutions.com/assets/dassa-social-preview.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Dassa Solutions","url":"https://dassasolutions.com/","logo":"https://dassasolutions.com/assets/dassa-logo-full.png","telephone":"+1-407-369-2856","email":"edassa@dassasolutions.com"}</script>
-  <style>
-    :root{--blue:#1268e8;--blue-dark:#0d4fae;--navy:#071d3b;--navy-soft:#0d2a51;--charcoal:#25313c;--muted:#5b6b80;--line:#dce6f2;--pale-blue:#edf5ff;--pale-blue-2:#f7fbff;--white:#fff;--red:#d84a57;--red-bg:#3a1e2b;--green:#15a66f;--green-bg:#073d39;--amber:#b7791f;--shadow-sm:0 5px 18px rgba(7,29,59,.08);--shadow-md:0 20px 50px rgba(7,29,59,.13);--radius:20px;--max:1380px;--ease-out:cubic-bezier(0.23,1,0.32,1);--ease-drawer:cubic-bezier(0.32,0.72,0,1)}
-    *,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--charcoal);background:#fff;font-family:"Schibsted Grotesk",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}body.nav-open{overflow:hidden}img{display:block;max-width:100%}a{color:inherit}button,input{font:inherit}button{color:inherit}h1,h2,h3,h4,p{margin-top:0}h1,h2,h3,h4{color:var(--navy);letter-spacing:-.035em}h2{font-size:clamp(2rem,4vw,3.15rem);line-height:1.07}section{scroll-margin-top:116px}.wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip-link{position:fixed;z-index:1000;top:10px;left:10px;padding:10px 16px;border-radius:8px;color:#fff;background:var(--navy);transform:translateY(-160%)}.skip-link:focus{transform:translateY(0)}:focus-visible{outline:3px solid #80b8ff;outline-offset:3px}.material-symbols-rounded{font-variation-settings:"FILL" 0,"wght" 500,"GRAD" 0,"opsz" 24;line-height:1}.eyebrow{margin-bottom:14px;color:var(--blue);font-size:.76rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.section-head{margin-bottom:48px;text-align:center}.section-intro{max-width:690px;margin:18px auto 0;color:var(--muted);font-size:1.06rem;line-height:1.75}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;gap:9px;padding:0 24px;border:1px solid transparent;border-radius:999px;font-weight:800;text-decoration:none;cursor:pointer;transition:transform 120ms var(--ease-out),box-shadow .18s ease,background .18s ease,border-color .18s ease}@media(hover:hover) and (pointer:fine){.btn:hover{transform:translateY(-2px)}}.btn-primary{color:#fff;background:var(--blue);box-shadow:0 9px 24px rgba(18,104,232,.25)}.btn-primary:hover{background:var(--blue-dark);box-shadow:0 13px 28px rgba(18,104,232,.28)}.btn-secondary{color:var(--navy);background:#fff;border-color:#c8d7e9}.btn-secondary:hover{color:var(--blue-dark);border-color:var(--blue)}.btn .material-symbols-rounded{font-size:1.2rem}
-    .site-header{position:sticky;z-index:100;top:0;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}.nav{display:flex;align-items:center;justify-content:space-between;min-height:106px;gap:24px}.brand{flex:0 0 auto;text-decoration:none}.brand-lockup{display:flex;width:148px;flex-direction:column;align-items:center;gap:14px}.brand-logo{width:100%;height:auto}.brand-values{width:92%;height:auto}.nav-links{display:flex;align-items:center;gap:28px;margin:0;padding:0;list-style:none}.nav-links a{color:var(--charcoal);font-size:.91rem;font-weight:700;text-decoration:none}.nav-links a:hover{color:var(--blue)}.nav-actions{display:flex;align-items:center}.nav-actions .btn{min-height:48px;padding-inline:22px;font-size:.9rem}.nav-toggle{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:11px;background:#fff;cursor:pointer}
-    :root{--header-h:106px;--hero-ink:#071626;--hero-accent:#49bfff;--hero-accent-soft:#7cc6ff;--hero-dim:#9fb8cf}.hero{--frame-h:clamp(500px,calc(100vh - var(--header-h)),860px);position:relative;display:flex;flex-direction:column;justify-content:center;box-sizing:border-box;min-height:var(--frame-h);padding:40px 0;overflow:hidden;background:var(--hero-ink)}@supports(height:100svh){.hero{--frame-h:clamp(500px,calc(100svh - var(--header-h)),860px)}}.hero-inner{position:relative;z-index:3;max-width:900px;margin-inline:auto;text-align:center}.hero h1{margin-bottom:24px;font-size:clamp(1.75rem,3.2vw,2.85rem);line-height:1.04;letter-spacing:-.03em;color:#fff;text-transform:uppercase;text-wrap:balance;max-width:26ch;margin-inline:auto}.hero h1 .h1-tail{display:block;margin-top:10px;color:#9fc4e8;font-size:.62em;letter-spacing:-.015em}.hero-note{margin:18px 0 0;color:var(--hero-dim);font-size:.86rem;font-weight:600}.hero-book-link{color:var(--hero-accent-soft);font-weight:800}
-    .command-center{position:relative;overflow:hidden;padding:24px;border:5px solid #0f4c89;border-radius:24px;color:#fff;background:var(--navy);box-shadow:var(--shadow-md)}.command-header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:22px}.live-label{display:flex;align-items:center;gap:9px;color:#78c8ff;font-size:.75rem;font-weight:800;letter-spacing:.17em;text-transform:uppercase}.live-dot{width:10px;height:10px;border-radius:50%;background:#35a7ff}.command-kicker{margin:0;color:#a9c9e8;font-size:.7rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.call-map{display:grid;grid-template-columns:150px 32px 1fr;align-items:center;gap:14px}.incoming-call{text-align:center}.incoming-icon{display:inline-grid;width:76px;height:76px;place-items:center;margin-bottom:13px;border:1px solid #4aa8ff;border-radius:50%;color:#fff;background:var(--blue);box-shadow:0 10px 26px rgba(7,29,59,.34)}.incoming-icon .material-symbols-rounded{font-size:2.1rem}.incoming-call h3{margin-bottom:5px;color:#fff;font-size:1.05rem}.incoming-call p{margin:0;color:#b8cce2;font-size:.74rem}.split-icon{display:grid;place-items:center;color:#55aaff}.split-icon .material-symbols-rounded{font-size:1.8rem}.outcome-stack{display:grid;gap:14px}.outcome{display:grid;grid-template-columns:48px minmax(145px,1fr) 126px;align-items:center;gap:13px;min-height:104px;padding:15px;border:1px solid;border-radius:17px}.outcome.missed{border-color:rgba(246,100,116,.65);background:var(--red-bg)}.outcome.recovered{border-color:rgba(31,204,144,.65);background:var(--green-bg)}.outcome-icon{display:grid;width:46px;height:46px;place-items:center;border-radius:50%}.missed .outcome-icon{color:#ffd3d8;background:rgba(216,74,87,.7)}.recovered .outcome-icon{color:#d5fff1;background:rgba(21,166,111,.7)}.outcome-copy h4{margin:0 0 4px;color:#fff;font-size:.92rem;letter-spacing:-.015em}.outcome-copy p{margin:0;color:#c9d7e5;font-size:.72rem}.outcome-result{min-width:0;padding-left:13px;border-left:1px solid rgba(255,255,255,.18)}.outcome-result strong{display:block;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase}.missed .outcome-result strong{color:#ff8f9b}.recovered .outcome-result strong{color:#4de2ad}.outcome-result span{display:block;margin-top:5px;color:#cad6e4;font-size:.75rem}.command-footer{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:17px;padding:12px 16px;border:1px solid #204d7b;border-radius:12px;color:#d4e6f8;background:var(--navy-soft);font-size:.7rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}.replay-button{display:inline-flex;align-items:center;gap:6px;padding:0;border:0;color:#78c8ff;background:transparent;font-weight:800;cursor:pointer}.command-center.is-replaying .incoming-icon{animation:callPulse 1.25s ease 2}.command-center.is-replaying .outcome.recovered{animation:recoveredGlow 1.4s ease 1.2s 1 both}@keyframes callPulse{50%{transform:scale(1.08);box-shadow:0 0 0 20px rgba(18,104,232,.07),0 0 42px rgba(18,104,232,.7)}}@keyframes recoveredGlow{50%{border-color:#68f0c0;box-shadow:0 0 28px rgba(21,166,111,.25)}}
-    .estimator{padding:66px 0;background:var(--pale-blue)}.estimator-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:52px;align-items:start}.estimator-copy{padding-top:10px}.estimator-copy h2{margin-bottom:18px}.estimator-copy p:not(.eyebrow){color:var(--muted);font-size:1.02rem;line-height:1.7}.estimator-card{overflow:hidden;border:1px solid #cfe0f2;border-radius:var(--radius);background:#fff;box-shadow:var(--shadow-sm)}.estimator-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:24px}.field label{display:block;margin-bottom:8px;color:var(--navy);font-size:.76rem;font-weight:800}.field-shell{display:flex;align-items:center;overflow:hidden;border:1px solid var(--line);border-radius:10px;background:#fff}.field-shell .material-symbols-rounded{padding-left:12px;color:#8ca0b7;font-size:1.15rem}.field-shell input{width:100%;min-width:0;padding:12px;border:0;outline:0;color:var(--navy);background:transparent;font-weight:700}.assumption-row{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;padding:0 24px 24px}.range-field label{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;color:var(--muted);font-size:.72rem;font-weight:700}.range-field output{color:var(--blue-dark);font-weight:800}.range-field input{width:100%;accent-color:var(--blue)}.estimator-output{display:grid;grid-template-columns:1fr 1.3fr;align-items:center;gap:24px;padding:24px 28px;border-top:1px solid #d7e5f3;background:var(--pale-blue-2)}.estimator-output p{margin:0}.output-label{color:var(--navy);font-size:.92rem;font-weight:800}.output-note{margin-top:5px!important;color:var(--muted);font-size:.74rem}.output-value{font-variant-numeric:tabular-nums;color:var(--red);font-size:clamp(2rem,5vw,3.4rem);font-weight:800;letter-spacing:-.05em;text-align:right}.output-recovery{display:block;margin-top:3px;color:#08794f;font-size:.78rem;font-weight:800;text-align:right}.calc-error{min-height:1.25em;margin:0;padding:0 24px 16px;color:#b52e3e;font-size:.78rem;font-weight:700}
-    .proof{padding:88px 0}.proof-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px}.proof-card{padding:34px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow-sm)}.proof-card.primary{box-shadow:0 6px 20px rgba(18,104,232,.10)}.proof-card.secondary{background:#fffdf8}.proof-label{margin-bottom:20px;color:var(--blue);font-size:.75rem;font-weight:800;letter-spacing:.11em;text-transform:uppercase}.proof-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.proof-stat strong{font-variant-numeric:tabular-nums;display:block;color:var(--navy);font-size:clamp(1.75rem,4vw,2.6rem);line-height:1}.proof-stat span{display:block;margin-top:8px;color:var(--muted);font-size:.74rem;font-weight:700}.proof-card.secondary .proof-stat strong{color:var(--amber)}.proof-card>p:last-child{margin:24px 0 0;padding-top:20px;border-top:1px solid var(--line);color:var(--navy);font-weight:700}
-    .systems{padding:90px 0}.systems-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.system-card{padding:30px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow-sm)}.system-icon{display:grid;width:54px;height:54px;place-items:center;margin-bottom:20px;border-radius:50%;color:var(--blue);background:var(--pale-blue)}.system-icon .material-symbols-rounded{font-size:1.65rem}.system-card h3{margin-bottom:10px;font-size:1.2rem}.system-card p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.65}.final-cta{padding:84px 0;color:#fff;background:var(--navy);text-align:center}.final-cta h2{color:#fff}.final-cta p{max-width:650px;margin:18px auto 30px;color:#b9cce0;font-size:1.04rem;line-height:1.7}.final-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}.final-actions .btn-secondary{color:#fff;border-color:#46698c;background:transparent}.final-actions .btn-secondary:hover{border-color:#fff}footer{padding:34px 0;color:#c4d0dc;background:#162331;font-size:.82rem}.footer-row{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}.footer-links{display:flex;gap:18px;flex-wrap:wrap}.footer-links a{color:#e8eef5}
-    @media(max-width:1080px){.nav-links{gap:18px}.nav-links a{font-size:.84rem}.command-center{max-width:800px}.estimator-layout{grid-template-columns:1fr}}
-    @media(max-width:860px){:root{--header-h:92px}.nav{min-height:92px}.nav-links{position:fixed;top:100%;right:0;left:0;display:none;align-items:stretch;flex-direction:column;gap:0;height:calc(100dvh - 120px);padding:22px 24px;background:#fff;opacity:0;transform:translateY(-10px);transition:opacity 250ms var(--ease-drawer),transform 250ms var(--ease-drawer),display 250ms allow-discrete}.nav-links.open{display:flex;opacity:1;transform:translateY(0)}@starting-style{.nav-links.open{opacity:0;transform:translateY(-10px)}}.nav-links a{display:block;padding:14px 0;border-bottom:1px solid var(--line);font-size:1rem}.nav-actions{display:none}.nav-toggle{display:inline-grid;place-items:center}.brand-lockup{width:125px}.hero{padding-top:56px}.call-map{grid-template-columns:130px 32px 1fr}.incoming-icon{width:72px;height:72px}.outcome{grid-template-columns:46px 1fr}.outcome-result{grid-column:2;padding:12px 0 0;border-top:1px solid rgba(255,255,255,.18);border-left:0}.proof-grid,.role-panel{grid-template-columns:1fr}.systems-grid{grid-template-columns:1fr}}
-    @media(max-width:640px){.wrap{width:min(100% - 30px,var(--max))}h2{font-size:2rem}.hero{padding:28px 0}.hero h1{font-size:clamp(2rem,9.5vw,2.9rem)}.command-center{padding:22px 16px;border-width:3px}.command-header{align-items:flex-start;flex-direction:column;margin-bottom:22px}.call-map{grid-template-columns:1fr}.split-icon{transform:rotate(90deg)}.incoming-call{padding-bottom:8px}.outcome{min-height:0}.command-footer{align-items:flex-start;flex-direction:column}.estimator{padding:52px 0}.estimator-layout{gap:28px}.estimator-inputs,.assumption-row,.estimator-output{grid-template-columns:1fr}.output-value,.output-recovery{text-align:left}.proof{padding:58px 0}.proof-stats{grid-template-columns:1fr 1fr;gap:22px}.roles,.systems{padding:60px 0}.role-tabs{justify-content:flex-start;overflow-x:auto;padding-bottom:6px}.role-tab{flex:0 0 auto}.footer-row{align-items:flex-start;flex-direction:column}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.001ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important}}
-    .command-center{scroll-margin-top:136px}
-    .estimator{padding:44px 0}
-    .estimator-inputs{padding:20px}
-    .estimator-card{display:flex;flex-direction:column}
-    .estimator-inputs{order:1}
-    .estimator-output{order:2}
-    .assumption-row{order:3;padding:18px 20px 20px;border-top:1px solid #d7e5f3}
-    .calc-error{order:4}
-    .estimator-output{padding:20px 24px}
-    /* Virtual-role section hero and industry carousel */
-    .roles{padding:0 0 40px;background:#fff;color:var(--navy);overflow:hidden}
-    .roles[hidden]{display:none!important}
-    .agent-browser-title{margin:0 0 16px;font-size:1.35rem}
-    .vr-section-hero{position:relative;padding:92px 0;background:#071626;color:#fff;border-top:1px solid rgba(255,255,255,.06);overflow:hidden}
-    .vr-section-hero::after{content:'';position:absolute;inset:auto -12% -55% 42%;height:520px;border-radius:50%;background:rgba(0,102,204,.12);filter:blur(80px);pointer-events:none}
-    .vr-hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:58px;align-items:center}
-    .vr-hero-content{max-width:560px}
-    .vr-hero-title{margin:0 0 22px;color:#fff;font-size:clamp(42px,5vw,64px);line-height:1.04;letter-spacing:-.045em}
-    .vr-accent{color:#49bfff}
-    .vr-hero-subtitle{margin:0 0 33px;color:#aebfd0;font-size:18px;line-height:1.65}
-    .vr-hero-visual{position:relative;min-width:0}
-    .vr-visual-frame{position:relative;padding:7px;border:1px solid rgba(99,199,255,.42);border-radius:22px;background:#0a2035;box-shadow:0 26px 70px rgba(0,0,0,.38),0 0 70px rgba(0,102,204,.12)}
-    .vr-hero-img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;border-radius:15px;background:#091d31}
-    .vr-float-badge{position:absolute;display:flex;align-items:center;gap:8px;padding:11px 14px;border:1px solid rgba(255,255,255,.14);border-radius:10px;background:rgba(8,31,53,.94);box-shadow:0 14px 30px rgba(0,0,0,.34);color:#eaf6ff;font-size:12px;font-weight:800;backdrop-filter:blur(8px)}
-    .vr-float-badge.top{top:-17px;right:-17px}.vr-float-badge.bottom{bottom:-17px;left:-17px}
-    .vr-status-dot{width:8px;height:8px;border-radius:50%;background:#35d489;box-shadow:0 0 0 4px rgba(53,212,137,.14)}
-    .vr-float-badge .material-symbols-rounded{color:#63c7ff;font-size:18px}
-    .agent-browser-intro{padding:38px 20px 10px;text-align:center}
-    .site-build-badge{position:fixed;right:14px;bottom:14px;z-index:90;display:flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(5,25,45,.94);box-shadow:0 8px 24px rgba(0,0,0,.25);color:#cceaff;font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;backdrop-filter:blur(10px)}
-    .site-build-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:#38d98c;box-shadow:0 0 0 3px rgba(56,217,140,.13)}
-    @media(max-width:960px){.vr-section-hero{padding:72px 0}.vr-hero-grid{grid-template-columns:1fr;gap:46px}.vr-hero-content{max-width:720px}.vr-float-badge{display:none}}
-    @media(max-width:560px){.vr-section-hero{padding:58px 0}.vr-hero-title{font-size:39px}.vr-hero-subtitle{font-size:16px}.agent-browser-intro{padding-top:28px}.site-build-badge{position:static;width:max-content;max-width:calc(100% - 24px);margin:12px auto;font-size:9px}}
-    .roles .section-head{text-align:center;max-width:820px;margin:0 auto 30px}
-    .roles .section-head h2{max-width:760px;margin-inline:auto;color:var(--navy)}
-    .roles .section-intro{max-width:730px;margin-inline:auto;color:#52647a}
-    .agent-search-shell{position:relative;z-index:4;max-width:880px;margin:0 auto 22px}
-    .agent-search{display:grid;grid-template-columns:50px 1fr auto;align-items:center;min-height:70px;padding:7px 8px 7px 15px;background:#fff;border:2px solid #b8cbe0;border-radius:17px;box-shadow:0 16px 40px rgba(8,36,66,.14)}
-    .agent-search>.material-symbols-rounded{color:var(--blue);font-size:25px}
-    .agent-search input{width:100%;min-width:0;border:0;outline:0;padding:10px 8px;background:transparent;color:var(--navy);font:700 17px/1.3 inherit}
-    .agent-search input::placeholder{color:#5f7086;font-weight:500}
-    .agent-search button{min-height:46px;padding:0 20px;border:0;border-radius:11px;background:var(--blue);color:#fff;font:800 13px/1 inherit;cursor:pointer}
-    .agent-search:focus-within{border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,102,204,.12),0 16px 40px rgba(8,36,66,.12)}
-    .agent-search-results{position:fixed;z-index:120;left:0;right:0;max-height:350px;overflow:auto;padding:8px;background:#fff;border:1px solid #cfdae6;border-radius:14px;box-shadow:0 20px 46px rgba(8,36,66,.2);transform-origin:top center;transition:opacity 150ms var(--ease-out),transform 150ms var(--ease-out),display 150ms allow-discrete}
-    .agent-search-results[hidden]{display:none;opacity:0;transform:translateY(-6px) scale(.98)}
-    @starting-style{.agent-search-results:not([hidden]){opacity:0;transform:translateY(-6px) scale(.98)}}
-    .agent-search-result{display:grid;grid-template-columns:38px 1fr;gap:10px;align-items:center;width:100%;padding:10px 12px;border:0;border-radius:10px;background:transparent;text-align:left;color:var(--navy);cursor:pointer}
-    .agent-search-result:hover,.agent-search-result.is-active{background:#edf6ff}
-    .agent-search-result .material-symbols-rounded{display:grid;place-items:center;width:34px;height:34px;border-radius:9px;background:#e6f2ff;color:var(--blue);font-size:19px}
-    .agent-search-result strong,.agent-search-result span{display:block}
-    .agent-search-result strong{font-size:14px}
-    .agent-search-result span{margin-top:2px;color:#60748a;font-size:12px}
-    .agent-no-results{padding:16px;color:#52647a;text-align:center;font-size:14px}
-    .agent-industry-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;max-width:1080px;margin:0 auto 28px}
-    .agent-industry-tabs[hidden]{display:none}
-    .agent-industry-tab{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:9px 12px;border:1px solid #c6d5e4;border-radius:12px;background:#f7fbff;color:#123a61;font:800 12px/1.25 inherit;text-align:center;cursor:pointer}
-    .agent-industry-tab:hover,.agent-industry-tab[aria-pressed="true"]{border-color:var(--blue);background:#e5f2ff;color:#0059b3;box-shadow:0 7px 18px rgba(0,102,204,.12)}
-    .agent-industry-tab .material-symbols-rounded{font-size:19px}
-    .agent-stage{position:relative;padding:38px 0 34px;background:#061d36;color:#fff;border-radius:26px 26px 0 0;box-shadow:0 -12px 50px rgba(6,29,54,.12)}
-    .agent-stage-inner{position:relative;display:grid;grid-template-columns:minmax(150px,.23fr) minmax(0,1fr) minmax(150px,.23fr);gap:18px;align-items:stretch;max-width:1320px;margin:0 auto;padding:0 22px}
-    .agent-family-preview,.agent-family-main{border:1px solid rgba(255,255,255,.16);background:#0b2b4a;border-radius:19px}
-    .agent-family-preview{display:flex;flex-direction:column;justify-content:center;min-height:410px;padding:22px;opacity:.62;transform:scale(.94)}
-    .agent-family-preview.is-prev{text-align:right;align-items:flex-end}
-    .agent-family-preview .agent-family-icon{width:52px;height:52px}
-    .agent-family-preview h3{margin:17px 0 8px;color:#fff;font-size:18px;line-height:1.2}
-    .agent-family-preview p{margin:0;color:#acc0d3;font-size:12px;line-height:1.5}
-    .agent-family-main{position:relative;display:grid;grid-template-columns:minmax(280px,.9fr) minmax(310px,1.1fr);gap:0;min-height:410px;overflow:hidden;border-color:rgba(85,179,255,.48);background:#0a2947;box-shadow:0 18px 54px rgba(0,0,0,.22)}
-    .agent-family-copy,.agent-role-demo{padding:32px}
-    .agent-family-copy{border-right:1px solid rgba(255,255,255,.13)}
-    .agent-family-heading{display:grid;grid-template-columns:58px 1fr;gap:16px;align-items:center}
-    .agent-family-icon{display:grid;place-items:center;width:58px;height:58px;border-radius:15px;background:#0f74d7;color:#fff;box-shadow:0 10px 24px rgba(0,102,204,.25)}
-    .agent-family-icon .material-symbols-rounded{font-size:29px}
-    .agent-family-heading h3{margin:0;color:#fff;font-size:clamp(22px,2.2vw,31px);line-height:1.08}
-    .agent-family-summary{margin:12px 0 18px;color:#b8c9d9;font-size:14px}
-    .agent-list{display:grid;gap:8px}
-    .agent-option{display:grid;grid-template-columns:35px 1fr auto;gap:10px;align-items:center;width:100%;padding:9px 11px;border:1px solid rgba(255,255,255,.1);border-radius:11px;background:#0d3558;color:#fff;text-align:left;cursor:pointer}
-    .agent-option:hover,.agent-option.is-selected{border-color:#58b8ff;background:#11426c}
-    .agent-option>.material-symbols-rounded{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:#1468aa;color:#dff2ff;font-size:18px}
-    .agent-option strong,.agent-option small{display:block}
-    .agent-option strong{font-size:13px;line-height:1.2}
-    .agent-option small{margin-top:2px;color:#a9bed1;font-size:10px}
-    .agent-option>.agent-check{width:auto;height:auto;background:transparent;color:#71d3a3;font-size:18px;opacity:0}
-    .agent-option.is-selected>.agent-check{opacity:1}
-    .agent-list-note{margin:10px 0 0;color:#88a6c0;font-size:11px}
-    .agent-role-demo{display:flex;flex-direction:column;background:#071f38}
-    .agent-demo-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:15px;border-bottom:1px solid rgba(255,255,255,.12)}
-    .agent-demo-head span:first-child{color:#9eb5c9;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
-    .agent-live{display:inline-flex;align-items:center;gap:7px;color:#6ee7a8;font-size:11px;font-weight:800}
-    .agent-live::before{content:'';width:8px;height:8px;border-radius:50%;background:#28c87a;box-shadow:0 0 0 4px rgba(40,200,122,.13)}
-    .agent-role-business{margin:19px 0 3px;color:#7dcaff;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-    .agent-role-demo h4{margin:0;color:#fff;font-size:23px}
-    .agent-role-pain{margin:12px 0 0;color:#ffd48a;font-size:13px;font-weight:800}
-    .agent-role-detail{margin:8px 0 17px;color:#b3c4d5;font-size:13px;line-height:1.55}
-    .agent-dialogue{display:grid;gap:9px;margin-bottom:19px}
-    .agent-bubble{max-width:92%;padding:10px 12px;border-radius:12px;background:#123755;color:#dce8f2;font-size:12px;line-height:1.45}
-    .agent-bubble strong{display:block;margin-bottom:3px;color:#83ccff;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
-    .agent-bubble.caller{justify-self:end;background:#0b64b7;color:#fff}
-    .agent-bubble.caller strong{color:#cae8ff}
-    .agent-role-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;align-self:flex-start;margin-top:auto;padding:12px 17px;border-radius:10px;background:#fff;color:#07315a;font-size:13px;font-weight:900;text-decoration:none}
-    .agent-role-cta:hover{background:#eaf5ff}
-    .agent-role-cta .material-symbols-rounded{font-size:18px}
-    .agent-arrow{position:absolute;z-index:3;top:50%;display:grid;place-items:center;width:44px;height:44px;margin-top:-22px;border:1px solid rgba(255,255,255,.24);border-radius:50%;background:#fff;color:#07315a;box-shadow:0 8px 24px rgba(0,0,0,.2);cursor:pointer}
-    .agent-arrow:hover{background:#dff1ff}
-    .agent-arrow.prev{left:7px}.agent-arrow.next{right:7px}
-    .agent-carousel-nav{display:flex;align-items:center;justify-content:center;gap:15px;margin-top:23px}
-    .agent-family-dots{display:flex;gap:8px}
-    .agent-family-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#59738c;cursor:pointer}
-    .agent-family-dot[aria-current="true"]{width:26px;border-radius:99px;background:#35a9ff}
-    .agent-family-counter{min-width:52px;color:#a8bdcf;font-size:12px;font-weight:800}
-    .agent-capabilities{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:26px;background:rgba(255,255,255,.12);border-top:1px solid rgba(255,255,255,.12)}
-    .agent-capability{display:flex;align-items:center;justify-content:center;gap:8px;padding:17px 12px;background:#082541;color:#c4d5e3;font-size:12px;font-weight:700;text-align:center}
-    .agent-capability .material-symbols-rounded{color:#6fc7ff;font-size:19px}
-    @media(max-width:980px){.agent-industry-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.agent-stage-inner{grid-template-columns:115px minmax(0,1fr) 115px}.agent-family-preview{padding:14px}.agent-family-preview p{display:none}.agent-family-main{grid-template-columns:1fr 1fr}.agent-family-copy,.agent-role-demo{padding:24px}}
-    @media(max-width:760px){.roles{padding-top:68px}.agent-search{grid-template-columns:40px 1fr}.agent-search button{grid-column:1/-1;width:100%;margin-top:2px}.agent-industry-tabs{grid-template-columns:1fr 1fr;gap:7px;margin-bottom:20px}.agent-industry-tab{min-height:54px}.agent-stage{border-radius:20px 20px 0 0;padding-top:22px}.agent-stage-inner{display:block;padding:0 14px}.agent-family-preview{display:none}.agent-family-main{grid-template-columns:1fr}.agent-family-copy{border-right:0;border-bottom:1px solid rgba(255,255,255,.13)}.agent-arrow{top:140px}.agent-arrow.prev{left:2px}.agent-arrow.next{right:2px}.agent-family-copy,.agent-role-demo{padding:25px 25px}.agent-capabilities{grid-template-columns:1fr 1fr}.agent-capability{justify-content:flex-start;padding-left:20px}.agent-family-heading{padding:0 24px}.agent-family-summary{padding:0 24px}.agent-list-note{padding:0 24px}}
-    @media(max-width:480px){.agent-family-heading{grid-template-columns:48px 1fr;padding:0 12px}.agent-family-icon{width:48px;height:48px}.agent-family-copy,.agent-role-demo{padding:22px 18px}.agent-family-heading h3{font-size:22px}.agent-option{grid-template-columns:33px 1fr auto}.agent-arrow{width:38px;height:38px}.agent-arrow.prev{left:0}.agent-arrow.next{right:0}.agent-capabilities{grid-template-columns:1fr}.agent-capability{justify-content:center}.agent-search-shell{margin-bottom:20px}}
-  
-    .summary-note{font-size:13px;line-height:1.6;color:#526679;margin-top:16px}.summary-note-light{color:#b9cce0}
-    .agent-list{max-height:345px;overflow-y:auto;padding-right:6px}
-    [hidden]{display:none!important}
-
-    /* Rotating scene photos. Two layers alternate; only opacity animates, so the crossfade is composited.
-       The grade is fixed and does the contrast work on its own — a daycare at noon and a lot at midnight
-       both pass under it, so legibility never depends on which photo is up. */
-    .hero-scenes{position:absolute;inset:0;z-index:0;pointer-events:none}
-    .hero-scene{position:absolute;inset:0;opacity:0;background-position:center;background-size:cover;background-repeat:no-repeat;transform:scale(1.04);filter:brightness(1.22) saturate(1.02);transition:opacity 900ms var(--ease-out)}
-    .hero-scene.is-current{opacity:1}
-    .hero-grade{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(7,22,38,.74) 0%,rgba(7,22,38,.46) 38%,rgba(7,22,38,.7) 100%),radial-gradient(1100px 680px at 50% 52%,rgba(7,22,38,.5),transparent 72%)}
-
-    /* The sign: a lit pill that breathes, with three chevrons falling toward the field below it.
-       0.38Hz — an order of magnitude under the 3Hz seizure threshold. It reads as a lit sign, not a strobe. */
-    .sign-board{display:inline-flex;align-items:center;padding:10px 26px;border:1px solid var(--hero-accent);border-radius:999px;background:rgba(18,104,232,.16);box-shadow:0 0 0 1px rgba(73,191,255,.35),0 0 34px rgba(73,191,255,.30);animation:signGlow 2600ms ease-in-out infinite}
-    .sign-board span{color:#bfe4ff;font:800 13px/1 inherit;letter-spacing:.16em;text-transform:uppercase}
-    @keyframes signGlow{0%,100%{opacity:.82;box-shadow:0 0 0 1px rgba(73,191,255,.28),0 0 22px rgba(73,191,255,.22)}50%{opacity:1;box-shadow:0 0 0 1px rgba(73,191,255,.5),0 0 44px rgba(73,191,255,.42)}}
-    .sign-arrows{display:flex;flex-direction:column;align-items:center;gap:3px;margin:12px 0 14px}
-    .sign-arrows span{width:16px;height:16px;border-right:2.5px solid var(--hero-accent);border-bottom:2.5px solid var(--hero-accent);transform:rotate(45deg);animation:signArrow 1800ms ease-in-out infinite}
-    .sign-arrows span:nth-child(2){animation-delay:120ms}
-    .sign-arrows span:nth-child(3){animation-delay:240ms}
-    @keyframes signArrow{0%,100%{opacity:.35;transform:rotate(45deg) translate(0,0)}50%{opacity:1;transform:rotate(45deg) translate(3px,3px)}}
-
-    /* The demo line: "A [trade] misses calls [break point]". The trade types in and glows like the old lit
-       sign; the break point fades in after it. Height is reserved for two lines so the field never jumps. */
-    .hero h1 .h1-break{display:block;color:var(--hero-accent-soft)}
-    .trade-line{min-height:3.1em;max-width:40ch;margin:0 auto 4px;color:#c9dcf0;font-size:clamp(1.02rem,1.7vw,1.3rem);font-weight:600;line-height:1.5;text-wrap:balance;transition:opacity 420ms var(--ease-out)}
-    .trade-line.is-out{opacity:0}
-    .trade-line-lead b{color:#fff;font-weight:800;text-shadow:0 0 18px rgba(73,191,255,.55),0 0 2px rgba(73,191,255,.4)}
-    .trade-line-lead b.is-typing::after{content:'';display:inline-block;width:2px;height:1em;margin-left:2px;vertical-align:-.12em;background:var(--hero-accent);animation:caretBlink 900ms steps(1) infinite}
-    @keyframes caretBlink{50%{opacity:0}}
-    .trade-line-frag{color:var(--hero-accent-soft);font-weight:700;opacity:0;transition:opacity 520ms var(--ease-out)}
-    .trade-line-frag.is-in{opacity:1}
-    .trade-line.is-yours .trade-line-lead b{color:var(--hero-accent)}
-    @media(prefers-reduced-motion:reduce){.trade-line,.trade-line-frag{transition:none}.trade-line-lead b.is-typing::after{display:none}}
-    @media(max-width:640px){.trade-line{min-height:4.6em;font-size:1rem;max-width:30ch}}
-
-    /* Quick picks: seven common trades plus a door to all 52 through the combobox that already exists. */
-    .hero-quickpicks{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:16px}
-    .biz-chip{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;padding:8px 14px 8px 11px;border:1px solid rgba(150,185,232,.30);border-radius:999px;background:rgba(237,245,255,.06);color:#c2d6ef;font:700 .82rem/1 inherit;cursor:pointer}
-    .biz-chip .material-symbols-rounded{font-size:17px;color:var(--hero-accent)}
-    .biz-chip:hover,.biz-chip:focus-visible{border-color:var(--hero-accent);background:rgba(73,191,255,.14);color:#fff}
-    .biz-chip.is-more{border-style:dashed;color:#9cc4ef;letter-spacing:.06em;font-size:.76rem}
-    @media(prefers-reduced-motion:reduce){.sign-board,.sign-arrows span{animation:none}.sign-board{opacity:1}.sign-arrows span{opacity:1}.hero-scene{transition:none}}
-    @media(max-width:640px){.biz-chip{padding:6px 10px 6px 8px;font-size:.76rem;gap:5px}.biz-chip .material-symbols-rounded{font-size:15px}.sign-arrows span{width:13px;height:13px}.sign-arrows{margin:10px 0 12px}}
-
-    /* Progress rail */
-    .stage-rail{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin:0;padding:12px 16px 0;list-style:none;counter-reset:stage;flex:0 0 auto}
-    .ride[data-tone="dark"] .stage-rail li{color:#9fb8cf}.ride[data-tone="dark"] .stage-rail li::before{background:transparent;border-color:rgba(255,255,255,.35);color:#cfe3f5}
-    .ride[data-tone="dark"] .stage-rail li[aria-current="step"]{color:#79c5ff}.ride[data-tone="dark"] .stage-rail li[aria-current="step"]::before{border-color:#49bfff;color:#79c5ff;box-shadow:0 0 0 3px rgba(73,191,255,.18)}
-    .ride[data-tone="dark"] .stage-rail li[data-done="true"]{color:#dbe8f5}.ride[data-tone="dark"] .stage-rail li[data-done="true"]::before{background:#49bfff;border-color:#49bfff;color:#071626}
-    .stage-rail li{position:relative;padding-left:26px;color:var(--muted);font-size:.78rem;font-weight:800;letter-spacing:.02em}
-    .stage-rail li::before{counter-increment:stage;content:counter(stage);position:absolute;left:0;top:-2px;display:grid;place-items:center;width:20px;height:20px;border:1px solid var(--line);border-radius:50%;font-size:.68rem;color:var(--muted);background:#fff}
-    .stage-rail li[data-done="true"]{color:var(--navy)}
-    .stage-rail li[data-done="true"]::before{background:var(--blue);border-color:var(--blue);color:#fff}
-    .stage-rail li[aria-current="step"]{color:var(--blue-dark)}
-    .stage-rail li[aria-current="step"]::before{border-color:var(--blue);color:var(--blue-dark);box-shadow:0 0 0 3px rgba(18,104,232,.14)}
-
-    /* Stages */
-    .stage-count{display:block;margin-bottom:10px;color:var(--blue);font-size:.78rem;font-weight:800;letter-spacing:.06em}
-    .stage-count-light{color:#79c5ff}
-    /* The hero is the ride. The sign layer dissolves; the ride layer (rail + stacked pages) takes its place. */
-    html,.hero,.hero *{overflow-anchor:none}
-    html.ride-open{scroll-behavior:auto}
-    .hero-sign{transition:opacity 380ms var(--ease-out),transform 380ms var(--ease-out),filter 380ms var(--ease-out)}
-    .hero.is-dissolving .hero-sign{opacity:0;transform:translateY(-10px) scale(.97);filter:blur(3px)}
-    .hero.is-dissolving .hero-scenes,.hero.is-riding .hero-scenes,.hero.is-dissolving .hero-grade,.hero.is-riding .hero-grade{opacity:0;transition:opacity 380ms var(--ease-out)}
-    .hero.is-riding .hero-sign{position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;transition:none}
-    .hero:not(.is-riding):not(.is-dissolving) .hero-sign{opacity:1;transform:none;filter:none;visibility:visible}
-    .ride{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;overflow:hidden;background:var(--hero-ink)}
-    /* The whole ride runs dark so the hero photo does not flip to a pale page on the first click.
-       Scoped to .ride: the .roles browser and everything below the hero stay light.
-       Stages must go transparent first — .estimator and .final-cta carry their own backgrounds,
-       and leaving them meant white text landing on a pale card. */
-    .ride .stage,.ride .stage.estimator,.ride .stage.final-cta{background:transparent}
-    .ride h2,.ride h3,.ride h4,.ride .stage-business{color:#fff}
-    .ride p,.ride li{color:#c3d6e8}
-    .ride .stage-count{color:var(--hero-accent)}
-    .ride .diagnosis-trigger{color:#fff}
-    .ride .diagnosis-paragraph,.ride .stage-panel,.ride .reason-card{background:rgba(237,245,255,.05);border-color:rgba(140,190,255,.18);color:#c3d6e8}
-    .ride .reason-card h3,.ride .reason-card h4,.ride .reason-card strong{color:#fff}
-    .ride .reason-card span{color:#c3d6e8}
-    .ride .reason-card small{color:var(--hero-accent)}
-    .ride .reason-help{color:#dbe8f5;border-top-color:rgba(140,190,255,.28)}
-    .ride .reason-help-label{color:#4fd3a0}
-    .ride .btn-secondary{color:#eaf3ff;background:rgba(237,245,255,.07);border-color:rgba(140,190,255,.30)}
-    .ride .btn-secondary:hover{color:#fff;border-color:var(--hero-accent);background:rgba(73,191,255,.14)}
-    .ride .stage-actions .link-button,.ride .stage-note,.ride .stage-footnote{color:var(--hero-dim)}
-    /* Calculator: the card, its inputs and the payoff row all sat on white. */
-    .ride .estimator-card{background:rgba(237,245,255,.05);border-color:rgba(140,190,255,.18)}
-    .ride .field label{color:#dbe8f5}
-    .ride .field-shell{background:rgba(7,22,38,.55);border-color:rgba(140,190,255,.24)}
-    .ride .field-shell input{color:#fff}
-    .ride .field-shell .material-symbols-rounded{color:#8fb2dd}
-    .ride .estimator-copy p:not(.eyebrow){color:#c3d6e8}
-    .ride .range-field label{color:var(--hero-dim)}
-    .ride .range-field output{color:var(--hero-accent)}
-    .ride .estimator-output{background:rgba(7,22,38,.55);border-top-color:rgba(140,190,255,.18)}
-    .ride .output-label{color:#fff}
-    .ride .output-note{color:var(--hero-dim)}
-    .ride .output-value{color:#ff8f9b}
-    .ride .output-recovery{color:#4fd3a0}
-    .ride .calc-error{color:#ff8f9b}
-    .ride[data-tone="dark"]{background:#071626}
-    .ride .pages{position:relative;flex:1 1 auto;min-height:0}
-    .ride .stage{position:absolute;inset:0;display:flex;align-items:flex-start;overflow:auto;overscroll-behavior:contain;scroll-margin-top:100vh;padding:0;opacity:0;transition:opacity 420ms var(--ease-out),transform 420ms var(--ease-out),filter 420ms var(--ease-out);transform:translateY(12px);filter:blur(4px);pointer-events:none}
-    .ride .stage.is-active{opacity:1;transform:translateY(0);filter:blur(0);pointer-events:auto}
-    .ride .stage.is-leaving{opacity:0;transform:translateY(-10px);filter:blur(6px);pointer-events:none}
-    @media(prefers-reduced-motion:reduce){.ride .stage{filter:none}.hero-sign{transition:none}}
-    .ride .stage[hidden]{display:flex!important;visibility:hidden}
-    .ride .stage.is-active[hidden],.ride .stage.is-leaving[hidden]{visibility:visible}
-    .ride .stage>.wrap,.ride .stage>.stage-panel{width:min(var(--max),calc(100% - 48px));margin-inline:auto;padding-block:40px}
-    .stage-panel{animation:none}
-    .stage-diagnosis,.stage-reasons,.stage-role,.estimator,.final-cta{padding:0}
-    .ride .final-cta{align-items:center}
-    .stage-restart{margin:26px 0 0;color:#b9cce0;font-size:.86rem}
-    .link-button{padding:0;border:0;background:transparent;color:inherit;font:inherit;font-weight:800;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
-    .stage-actions .link-button{align-self:center;color:var(--muted);font-size:.86rem}
-    .stage-role .stage-actions .link-button{color:#9fb8cf}
-    .stage-back{min-height:48px}
-    @media(max-width:1080px){.ride .stage>.wrap,.ride .stage>.stage-panel{padding-block:32px}}
-    @media(max-width:640px){
-      .ride .stage>.wrap,.ride .stage>.stage-panel{padding-block:12px 20px}
-      .ride .stage-rail{padding:8px 10px 0;gap:4px 12px}.ride .stage-rail li{font-size:.7rem;padding-left:22px}.ride .stage-rail li::before{width:17px;height:17px;font-size:.62rem}
-      .stage-count{margin-bottom:4px;font-size:.7rem}
-      .stage-business{font-size:clamp(1.35rem,6vw,1.75rem)}
-      .diagnosis-trigger{margin:8px 0 8px;font-size:.98rem;line-height:1.3}
-      .diagnosis-paragraph{padding:0;border:0;background:transparent;font-size:.9rem;line-height:1.5}
-      .summary-note{margin-top:10px;font-size:11.5px}
-      .stage-actions{margin-top:18px;gap:8px}.stage-actions .btn{min-height:44px;font-size:.9rem}
-      .stage-role .vr-hero-title{font-size:clamp(26px,7.5vw,34px)}
-      .ride .vr-hero-visual{display:none}
-      .role-catches li{font-size:.92rem}
-    }
-    /* Dark-hero controls. Scoped to .hero so the .roles browser further down the page stays light.
-       #agentSearchResults is reparented to <body> at boot, so it is recoloured by its own id rule below. */
-    .hero .agent-search{min-height:64px;padding:0 8px 0 22px;border:1px solid rgba(155,190,235,.30);border-radius:999px;background:rgba(237,245,255,.07);backdrop-filter:blur(14px);box-shadow:0 20px 50px rgba(2,10,20,.45)}
-    .hero .agent-search>.material-symbols-rounded{color:var(--hero-accent)}
-    .hero .agent-search input{color:#fff}
-    .hero .agent-search input::placeholder{color:#7d9ec9;font-weight:500}
-    .hero .agent-search button{min-height:48px;padding:0 24px;border-radius:999px;letter-spacing:.1em;text-transform:uppercase}
-    .hero .agent-search:focus-within{border-color:var(--hero-accent);box-shadow:0 0 0 4px rgba(73,191,255,.18),0 20px 50px rgba(2,10,20,.45)}
-    body.hero-dark-results #agentSearchResults{background:#0b2239;border-color:rgba(140,190,255,.18);box-shadow:0 24px 60px rgba(2,10,20,.6)}
-    body.hero-dark-results #agentSearchResults .agent-search-result{color:#fff}
-    body.hero-dark-results #agentSearchResults .agent-search-result strong{color:#fff}
-    body.hero-dark-results #agentSearchResults .agent-search-result span{color:var(--hero-dim)}
-    body.hero-dark-results #agentSearchResults .agent-search-result .material-symbols-rounded{background:rgba(73,191,255,.14);color:var(--hero-accent)}
-    body.hero-dark-results #agentSearchResults .agent-search-result:hover,body.hero-dark-results #agentSearchResults .agent-search-result.is-active{background:rgba(73,191,255,.12)}
-    body.hero-dark-results #agentSearchResults .agent-no-results{color:var(--hero-dim)}
-    /* Phones: the shared rule stacks the submit into a full-width slab. That is a fat button, which the
-       house style bans, and it costs ~70px of the fold. In the hero it stays inside the pill as a circle. */
-    @media(max-width:760px){
-      .hero .agent-search{grid-template-columns:38px 1fr 44px;min-height:60px;padding:0 8px 0 16px;gap:6px}
-      .hero .agent-search button{grid-column:auto;width:44px;min-width:44px;height:44px;min-height:44px;padding:0;margin-top:0;border-radius:999px;font-size:0}
-      .hero .agent-search button::after{content:'arrow_forward';font-family:'Material Symbols Rounded';font-size:22px;font-variation-settings:"FILL" 0,"wght" 600,"GRAD" 0,"opsz" 24}
-    }
-    /* Build 020 (Eric, 09-23): a yellow SHOW ME that glows slowly, three thick yellow arrows aimed at the field,
-       and a field half the old size with sharp corners -- no pill, no fat button. The pulse is 0.36Hz, far
-       under the 3Hz flash threshold. */
-    .hero{--sign-yellow:#ffc72c}
-    .show-me{margin:6px 0 0;color:var(--sign-yellow);font-size:clamp(1.25rem,2vw,1.6rem);font-weight:900;letter-spacing:.2em;text-transform:uppercase;animation:yellowGlow 2800ms ease-in-out infinite}
-    @keyframes yellowGlow{0%,100%{opacity:.78;text-shadow:0 0 6px rgba(255,199,44,.35),0 0 18px rgba(255,199,44,.18)}50%{opacity:1;text-shadow:0 0 10px rgba(255,199,44,.9),0 0 34px rgba(255,199,44,.55),0 0 60px rgba(255,199,44,.3)}}
-    .hero .sign-arrows{gap:0;margin:6px 0 12px}
-    .hero .sign-arrows span{width:30px;height:30px;margin-top:-9px;border-right:7px solid var(--sign-yellow);border-bottom:7px solid var(--sign-yellow);border-radius:0 0 3px 0;filter:drop-shadow(0 0 6px rgba(255,199,44,.7));animation:yellowArrow 2800ms ease-in-out infinite}
-    .hero .sign-arrows span:nth-child(2){animation-delay:180ms}
-    .hero .sign-arrows span:nth-child(3){animation-delay:360ms}
-    @keyframes yellowArrow{0%,100%{opacity:.45;transform:rotate(45deg) translate(0,0)}50%{opacity:1;transform:rotate(45deg) translate(3px,3px)}}
-    .hero .agent-search-shell{max-width:560px;margin-bottom:14px}
-    .hero .agent-search{grid-template-columns:30px 1fr auto;min-height:46px;padding:0 5px 0 12px;gap:4px;border:1px solid rgba(155,190,235,.45);border-radius:4px;background:rgba(7,22,38,.72);backdrop-filter:none;box-shadow:none}
-    .hero .agent-search>.material-symbols-rounded{font-size:20px}
-    .hero .agent-search input{min-height:44px;font-size:15px}
-    .hero .agent-search button{min-height:34px;height:34px;padding:0 14px;border-radius:3px;font-size:11.5px;font-weight:800;letter-spacing:.08em;box-shadow:none;white-space:nowrap}
-    .hero .agent-search:focus-within{border-color:var(--sign-yellow);box-shadow:0 0 0 2px rgba(255,199,44,.25)}
-    .hero-pitch{max-width:52ch;margin:0 auto;color:#b9cde2;font-size:.95rem;line-height:1.55}
-    @media(max-width:760px){
-      .hero .agent-search{grid-template-columns:28px 1fr 36px;min-height:46px;padding:0 5px 0 10px}
-      .hero .agent-search button{width:36px;min-width:36px;height:34px;min-height:34px;padding:0;border-radius:3px;font-size:0}
-    }
-    @media(max-width:640px){.hero-pitch{font-size:.88rem}.hero .sign-arrows span{width:24px;height:24px;margin-top:-7px;border-width:0 6px 6px 0}}
-    @media(prefers-reduced-motion:reduce){.show-me,.hero .sign-arrows span{animation:none;opacity:1}}
-    /* Page 2 help lines */
-    .vr-lead{margin:0 0 10px;color:#9fd3ff;font-size:1rem;font-weight:700;line-height:1.5}
-    .reason-help-label{display:block;margin:12px 0 4px;color:var(--green);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-    .reason-help{margin:0;padding-top:10px;border-top:1px dashed #dce7f2;color:var(--navy);font-size:.9rem;line-height:1.5}
-    .stage h2:focus{outline:3px solid #0075bf;outline-offset:6px;width:fit-content;max-width:100%}
-    .stage-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-    .stage-actions .btn{min-height:48px}
-
-    .stage-diagnosis{background:var(--pale-blue-2)}
-    .stage-diagnosis .stage-panel{max-width:860px}
-    .stage-business{display:block;font-size:clamp(2rem,4vw,3rem);line-height:1.07}
-    .diagnosis-trigger{margin:22px 0 14px;color:var(--navy);font-size:1.3rem;font-weight:800;line-height:1.35;letter-spacing:-.02em}
-    .wash-block{position:relative;overflow:hidden;border-radius:12px}
-    .wash-sweep{position:absolute;inset:0;width:38%;background:linear-gradient(90deg,transparent,rgba(18,104,232,.14),transparent);opacity:0;pointer-events:none}
-    .diagnosis-paragraph{margin:0;padding:18px 20px;border:1px solid #dce7f2;border-radius:12px;background:#fff;color:var(--charcoal);font-size:1.02rem;line-height:1.72}
-    .reason-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .reason-card{padding:18px;border:1px solid #dce7f2;border-radius:12px;background:#fff}
-    .reason-card strong{display:block;margin-bottom:6px;color:var(--navy);font-size:.92rem}
-    .reason-card span{color:var(--muted);font-size:.92rem;line-height:1.55}
-    .reason-card small{display:block;margin-bottom:8px;color:var(--blue);font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-    @media(max-width:640px){.reason-grid{grid-template-columns:1fr}}
-
-    /* Wash choreography: only runs once the stage is confirmed in view. */
-    .wash-item{opacity:0}
-    .stage.is-revealing .wash-item{animation:washRise 960ms var(--ease-out) var(--d,0ms) both}
-    .stage.is-revealing .reason-card{animation:washRise 840ms var(--ease-out) var(--d,0ms) both}
-    .reason-card{opacity:0}
-    .stage.is-revealing .stage-business{animation:lockIn 600ms var(--ease-out) 120ms both}
-    .stage.is-revealing .wash-sweep{animation:washSweep 1400ms var(--ease-out) 720ms both}
-    .stage.is-settled .wash-item,.stage.is-settled .reason-card,.stage.is-settled .stage-business{opacity:1;animation:none}
-    @keyframes washRise{from{opacity:0;transform:translateY(var(--y,24px))}to{opacity:1;transform:translateY(0)}}
-    @keyframes lockIn{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:translateX(0)}}
-    @keyframes washSweep{0%{opacity:0;transform:translateX(-110%)}15%{opacity:.35}85%{opacity:.35}100%{opacity:0;transform:translateX(280%)}}
-    @media(prefers-reduced-motion:reduce){.wash-sweep{display:none}.wash-item,.reason-card,.stage-business{opacity:1}}
-
-    /* Virtual Role stage */
-    .stage-role .vr-hero-title{font-size:clamp(34px,4.4vw,56px)}
-    .stage-role .stage-count{color:#79c5ff}
-    .role-catches{margin:0 0 22px;padding:0;list-style:none;display:grid;gap:10px}
-    .role-catches li{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;color:#dbe8f5;font-size:.98rem;line-height:1.55}
-    .role-catches li::before{content:"check_circle";font-family:"Material Symbols Rounded";font-size:20px;color:#49bfff;line-height:1.3}
-    .role-overflow{margin:0 0 14px;padding:16px 18px;border-radius:12px;background:rgba(73,191,255,.1);color:#eaf6ff;font-size:1rem;font-weight:700;line-height:1.55}
-    .role-hipaa{margin:0 0 6px;color:#9fb8cf;font-size:.84rem;line-height:1.55}
-    .stage-role .btn-secondary.vr-book{color:#fff;border-color:#46698c;background:transparent}
-    .stage-role .btn-secondary.vr-book:hover{border-color:#fff}
-
-    /* Calculator stage additions */
-    .estimator .stage-count{margin-bottom:8px}
-    .preset-actions{margin-top:12px}
-    .preset-actions .btn{min-height:44px;font-size:.84rem}
-    .calc-actions{order:5;padding:0 24px 24px;margin-top:0}
-    .flow{padding:80px 0}
-    .flow .command-center{max-width:900px;margin-inline:auto}
-    @media(max-width:640px){.flow{padding:56px 0}}
-    /* Carousel industry swap. The bordered panel stays put; its two content panes shift, clipped by the panel's overflow:hidden. */
-    .agent-family-copy,.agent-role-demo{transition:opacity 280ms var(--ease-out),transform 280ms var(--ease-out)}
-    .agent-family-main.is-enter-next .agent-family-copy,.agent-family-main.is-enter-next .agent-role-demo{opacity:0;transform:translateX(12px);transition:none}
-    .agent-family-main.is-enter-prev .agent-family-copy,.agent-family-main.is-enter-prev .agent-role-demo{opacity:0;transform:translateX(-12px);transition:none}
-    /* Press feedback. Declared last so :active beats the :hover rules on source order. */
-    .agent-industry-tab,.agent-role-cta,.agent-arrow,.nav-toggle,.replay-button,.agent-option,.biz-chip{transition:transform 120ms var(--ease-out)}
-    .btn:active,.agent-industry-tab:active,.agent-role-cta:active,.agent-arrow:active,.nav-toggle:active,.replay-button:active,.biz-chip:active{transform:translateY(0) scale(.97)}
-    .agent-option:active{transform:scale(.98)}
-    /* ===== Build 021 (Eric, 09-23) ===== */
-    /* 8: logo 40% bigger */
-    .brand-lockup{width:207px;gap:12px}
-    .nav{min-height:128px;padding-block:10px}
-    /* 9: menu links 30% bigger */
-    .nav-links{gap:22px}
-    .nav-links a{font-size:1.18rem}
-    @media(max-width:1400px){.nav-links{gap:16px}.nav-links a{font-size:1.02rem}}
-    @media(max-width:1180px){.nav-links{gap:12px}.nav-links a{font-size:.9rem}.brand-lockup{width:170px}}
-    @media(max-width:860px){.nav{min-height:100px}.brand-lockup{width:160px}.nav-links a{font-size:1.1rem}}
-    /* 11: header booking button: slim and tight, not a slab */
-    .nav-actions .btn{min-height:38px;padding-inline:16px;font-size:.82rem;letter-spacing:.01em;box-shadow:0 3px 10px rgba(18,104,232,.22)}
-    /* 13: SHOW ME 50% bigger, underlined */
-    .show-me{font-size:clamp(1.875rem,3vw,2.4rem);text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:8px}
-    /* 14: one thick arrow splitting three ways, glowing on the same pulse as SHOW ME */
-    .hero .split-arrow{display:block;gap:0;margin:4px auto 8px;width:min(260px,70vw)}
-    .hero .split-arrow svg{display:block;width:100%;height:auto;overflow:visible;fill:none;stroke:var(--sign-yellow);stroke-width:11;stroke-linecap:round;stroke-linejoin:round;animation:arrowGlow 2800ms ease-in-out infinite}
-    @keyframes arrowGlow{0%,100%{opacity:.8;filter:drop-shadow(0 0 4px rgba(255,199,44,.45)) drop-shadow(0 0 12px rgba(255,199,44,.25))}50%{opacity:1;filter:drop-shadow(0 0 8px rgba(255,199,44,.95)) drop-shadow(0 0 24px rgba(255,199,44,.6)) drop-shadow(0 0 44px rgba(255,199,44,.3))}}
-    @media(prefers-reduced-motion:reduce){.hero .split-arrow svg{animation:none;opacity:1}}
-    /* a: rounded search field */
-    .hero .agent-search{border-radius:999px;padding-left:16px}
-    .hero .agent-search button{border-radius:999px}
-    @media(max-width:760px){.hero .agent-search button{border-radius:999px}}
-    /* 12: bottom booking link is a compact coloured button */
-    .hero-note{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px}
-    .hero-book-link{display:inline-flex;align-items:center;min-height:40px;padding:0 20px;border-radius:999px;background:var(--sign-yellow);color:#07263f;font-size:.95rem;font-weight:800;text-decoration:none;box-shadow:0 0 14px rgba(255,199,44,.35);transition:transform 120ms var(--ease-out),box-shadow .18s ease}
-    .hero-book-link:hover{box-shadow:0 0 22px rgba(255,199,44,.6)}
-    .hero-book-link:active{transform:translateY(1px)}
-    /* 10: Phones, About Me, Contact */
-    .info-section{padding:80px 0;scroll-margin-top:215px}
-    @media(max-width:860px){.info-section{scroll-margin-top:175px}}
-    .info-section-alt{background:#f3f7fc}
-    .phones-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-    @media(max-width:980px){.phones-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:560px){.phones-grid{grid-template-columns:1fr}.info-section{padding:56px 0}}
-    .placeholder-tag{width:fit-content;margin:0 auto 22px;padding:4px 12px;border-radius:999px;background:#fff4c2;color:#6b5100;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-    .placeholder-copy{color:#8a6d00;font-style:italic}
-    .about-row{display:grid;grid-template-columns:180px 1fr;gap:40px;align-items:center;max-width:860px}
-    @media(max-width:640px){.about-row{grid-template-columns:1fr;text-align:center}.about-photo{margin:0 auto}}
-    .about-photo{display:block;width:180px;height:180px;border-radius:50%;object-fit:cover;background:#dde8f5;box-shadow:0 8px 24px rgba(11,26,51,.14)}
-    .about-photo .material-symbols-rounded{font-size:84px}
-    .about-name{margin:6px 0 10px;color:var(--navy);font-size:1.25rem;font-weight:800}
-    .contact-card{display:flex;flex-direction:column;align-items:center;gap:14px;max-width:460px;margin:0 auto;padding:32px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:var(--shadow-sm)}
-    .contact-line{display:inline-flex;align-items:center;gap:10px;color:var(--navy);font-size:1.1rem;font-weight:700;text-decoration:none}
-    .contact-line:hover{color:var(--blue)}
-    .contact-book{min-height:42px;padding-inline:20px;font-size:.9rem;margin-top:6px}
-    /* ===== Build 022 (Eric, 09-23) ===== */
-    /* 1: menu links another 15% */
-    .nav-links{gap:14px}
-    .nav-links a{font-size:1.36rem;white-space:nowrap}
-    .nav{gap:16px}
-    .site-header .nav.wrap{width:min(1720px,calc(100% - 48px))}
-    .nav-actions .btn{white-space:nowrap}
-    @media(max-width:1600px){.nav-links{gap:16px}.nav-links a{font-size:1.17rem}}
-    @media(max-width:1400px){.nav-links{gap:12px}.nav-links a{font-size:1.03rem}}
-    @media(max-width:1180px){.nav-links{gap:10px}.nav-links a{font-size:.92rem}}
-    @media(max-width:860px){.nav-links a{font-size:1.15rem}}
-    /* 2, 3: bigger SHOW ME; the underline runs well past both ends of the words */
-    .show-me{position:relative;width:fit-content;margin:10px auto 0;padding:0 0 10px .2em;font-size:clamp(2.3rem,3.9vw,3.1rem);text-decoration:none}
-    .show-me::after{content:'';position:absolute;left:-30%;right:-30%;bottom:0;height:4px;border-radius:4px;background:var(--sign-yellow);box-shadow:0 0 10px rgba(255,199,44,.7)}
-    /* 4: three separate arrows spread under the line */
-    .hero .split-arrow{width:min(430px,82vw);margin:10px auto 10px}
-    /* 5: the pitch sits on its own dark backing so it reads over any photo */
-    .hero-pitch{max-width:56ch;padding:12px 20px;border-radius:16px;background:rgba(7,22,38,.72);color:#fff;font-size:1rem;font-weight:500;text-shadow:0 1px 2px rgba(0,0,0,.6)}
-    .hero-note-skip{color:#fff;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.8)}
-    @media(max-width:640px){.hero-pitch{font-size:.92rem;padding:10px 14px}.show-me::after{left:-12%;right:-12%}}
-    /* Small phones: the bigger logo pushed page 1 of the tour off a 320x640 screen. */
-    @media(max-width:400px){.nav{min-height:80px}.brand-lockup{width:112px;gap:8px}}
-    /* ===== Build 023 (Eric, 09-23): slow drift on the hero photos =====
-       The photo on screen pushes in 8% and slides a little over its whole 6.9s turn, linear so it never
-       speeds up or stops. The photo leaving keeps its final position while it fades, then resets unseen. */
-    .hero-scene{transition:opacity 900ms var(--ease-out),transform 0s linear 900ms}
-    .hero-scene.is-current{transform:scale(1.12) translate(var(--drift-x,0%),var(--drift-y,0%));transition:opacity 900ms var(--ease-out),transform 6900ms linear}
-    @media(prefers-reduced-motion:reduce){.hero-scene,.hero-scene.is-current{transform:scale(1.04);transition:none}}
-    /* ===== Build 033 (Eric, 09-23): Phones and About Me filled in ===== */
-    .phones-grid{grid-template-columns:repeat(3,1fr)}
-    @media(max-width:980px){.phones-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:560px){.phones-grid{grid-template-columns:1fr}}
-    .partner-note{max-width:760px;margin:28px auto 0;color:var(--muted);font-size:.86rem;text-align:center}
-    .draft-tag{width:fit-content;margin:0 0 12px;padding:3px 10px;border-radius:999px;background:#fff4c2;color:#6b5100;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
-    .about-row p{line-height:1.7}
-    .about-area{color:var(--muted);font-size:.92rem;font-weight:600}
-    /* ===== Build 034 (Eric, 09-23) ===== */
-    /* 5: SHOW ME in Anton, a tall sign face */
-    .show-me{font-family:Anton,Impact,"Arial Narrow Bold",sans-serif;font-weight:400;letter-spacing:.16em;padding:0 0 8px .16em;margin:6px auto 0}
-    /* 1-3: SHOW ME and its arrows share one box; the underline and arrows span exactly the word */
-    .sign-block{width:fit-content;margin:0 auto}
-    .show-me::after{left:.16em;right:.16em}
-    .hero .split-arrow{width:0;min-width:100%;margin:8px 0 10px}
-    .hero .split-arrow svg{width:100%}
-    .hero .split-arrow svg{height:clamp(44px,5.2vw,64px);stroke-width:12;vector-effect:non-scaling-stroke}
-    .hero .split-arrow svg path{vector-effect:non-scaling-stroke;stroke-width:14px}
-    @media(max-width:640px){.show-me::after{left:.16em;right:.16em}.hero .split-arrow svg path{stroke-width:11px}}
-    /* 6: headline darker and less glaring, still readable on the photos */
-    .hero h1{color:#e9e1d3}
-    .hero h1 .h1-break{color:#3f8fe0}
-    /* 7: photos 10% darker than 034's +22% lift */
-    .hero-scene{filter:brightness(1.1) saturate(1.02)}
-    /* 4: the whole hero fits laptop/desktop screens with the big header: tighter type and gaps when short */
-    @media(min-width:861px) and (max-height:900px){
-      .hero{padding:18px 0}
-      .hero h1{font-size:clamp(1.6rem,2.6vw,2.3rem);margin-bottom:10px}
-      .trade-line{min-height:2.6em;font-size:1.05rem;margin-bottom:0}
-      .show-me{font-size:clamp(2rem,3.2vw,2.6rem);margin-top:2px}
-      .hero .split-arrow{margin:4px 0 6px}
-      .hero .split-arrow svg{height:46px}
-      .hero .agent-search-shell{margin-bottom:10px}
-      .hero-pitch{padding:8px 16px;font-size:.92rem;line-height:1.45}
-      .hero-note{margin-top:10px}
-    }
-    @media(min-width:861px) and (max-height:700px){
-      /* the stock 500px floor is taller than a 640px laptop minus the header */
-      .hero{padding:10px 0;--frame-h:max(420px,calc(100svh - var(--header-h)))}
-      .hero h1{font-size:clamp(1.4rem,2.3vw,1.9rem);margin-bottom:6px}
-      .trade-line{min-height:2.4em;font-size:.95rem}
-      .show-me{font-size:2rem;padding-bottom:6px}
-      .hero .split-arrow svg{height:30px}
-      .hero .agent-search-shell{margin-bottom:8px}
-      .hero-pitch{padding:6px 14px;font-size:.85rem}
-      .hero-note{margin-top:8px}
-    }
-    /* ===== Build 035 (Eric, 09-23): smaller logo, big readable value circles ===== */
-    .brand-lockup,.brand-lockup[class]{width:auto;gap:6px}
-    .brand-logo{width:132px}
-    .brand-values{display:flex;gap:9px;width:auto}
-    .bv{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:36px;white-space:nowrap}
-    .bv-dot{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#0057b2;color:#fff;font-size:20px;font-variation-settings:"FILL" 1,"wght" 500,"GRAD" 0,"opsz" 20}
-    .bv-label{color:#0b1a33;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;line-height:1}
-    .nav{min-height:0;padding-block:8px}
-    @media(max-width:1180px){.brand-logo{width:118px}.brand-values{gap:7px}.bv-dot{width:29px;height:29px;font-size:18px}.bv-label{font-size:9.5px}}
-    @media(max-width:860px){.nav{min-height:0}.brand-logo{width:112px}}
-    @media(max-width:400px){.brand-logo{width:96px}.brand-values{gap:5px}.bv-dot{width:26px;height:26px;font-size:16px}.bv-label{font-size:8.5px;letter-spacing:.03em}}
-    /* ===== Build 036 (Eric, 09-23): one page per menu item ===== */
-    body:not([data-view="home"]) .hero,body:not([data-view="home"]) main>.stage,body:not([data-view="home"]) #stageRail{display:none!important}
-    body:not([data-view="flow"]) [data-page="flow"],body:not([data-view="roles"]) [data-page="roles"],body:not([data-view="systems"]) [data-page="systems"],
-    body:not([data-view="phones"]) [data-page="phones"],body:not([data-view="about"]) [data-page="about"],body:not([data-view="contact"]) [data-page="contact"]{display:none!important}
-    body:not([data-view="home"]) main{min-height:calc(100vh - var(--header-h,165px) - 70px)}
-    .nav-links a[aria-current="page"]{color:var(--blue);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:6px}
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#06121f">
+  <meta name="description" content="Dassa Solutions examines how business calls move from the first ring to the right next step.">
+  <title>Dassa Solutions | Communication Built Around Your Business</title>
+  <meta name="build" content="DS-2026.09.27-053">
+  <link rel="icon" href="assets/dassa-logo-mark.png">
+  <link rel="stylesheet" href="experience.css?v=202609270531">
+  <script src="experience.js?v=20260927053" defer></script>
 </head>
-<body data-view="home">
-  <a class="skip-link" href="#main">Skip to main content</a>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <nav class="nav wrap" aria-label="Main navigation">
-      <a class="brand" href="#top" aria-label="Dassa Solutions home"><span class="brand-lockup"><img class="brand-logo" src="assets/dassa-logo-full.png" alt="Dassa Solutions — Ideas, Systems, Real Results"><span class="brand-values" role="list" aria-label="Ideas, Systems, Growth, Solutions, Results"><span class="bv" role="listitem"><span class="bv-dot material-symbols-rounded" aria-hidden="true">lightbulb</span><span class="bv-label">Ideas</span></span><span class="bv" role="listitem"><span class="bv-dot material-symbols-rounded" aria-hidden="true">settings</span><span class="bv-label">Systems</span></span><span class="bv" role="listitem"><span class="bv-dot material-symbols-rounded" aria-hidden="true">trending_up</span><span class="bv-label">Growth</span></span><span class="bv" role="listitem"><span class="bv-dot material-symbols-rounded" aria-hidden="true">groups</span><span class="bv-label">Solutions</span></span><span class="bv" role="listitem"><span class="bv-dot material-symbols-rounded" aria-hidden="true">track_changes</span><span class="bv-label">Results</span></span></span></span></a>
-      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks"><span class="material-symbols-rounded" aria-hidden="true">menu</span><span class="sr-only">Open menu</span></button>
-      <ul class="nav-links" id="navLinks"><li><a href="#about">About Me</a></li><li><a href="#calculator">Revenue Math</a></li><li><a href="#call-flow">Call Flow</a></li><li><a href="#virtual-roles">Virtual Roles</a></li><li><a href="#what-we-examine">What We Examine</a></li><li><a href="#phones">Phones</a></li><li><a href="#contact-eric">Contact</a></li></ul>
-      <div class="nav-actions"><a class="btn btn-primary" data-booking href="https://calendly.com/edassa-dassasolutions/30min">Book a Communication Audit</a></div>
-    </nav>
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Dassa Solutions home"><img src="assets/dassa-logo-mark.png" alt="Dassa Solutions" width="142" height="76"></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#blueprint">What we examine</a>
+        <a href="#revenue">One-call math</a>
+        <a href="#systems">The system</a>
+        <a href="#about">About</a>
+      </nav>
+      <a class="header-contact" href="#contact">Plan a communication audit <span aria-hidden="true">↗</span></a>
+
+      <details class="mobile-menu">
+        <summary aria-label="Open site navigation">Explore <span aria-hidden="true">+</span></summary>
+        <nav aria-label="Mobile navigation">
+          <a href="#blueprint">What we examine</a>
+          <a href="#revenue">One-call math</a>
+          <a href="#systems">The system</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact Eric</a>
+        </nav>
+      </details>
+    </div>
   </header>
+
   <main id="main">
-    <section class="hero" id="top">
-      <!-- Two photo layers crossfading behind the sign. Decorative: the scenes carry nothing a
-           screen reader needs, and the grade is fixed so contrast never depends on which one is up. -->
-      <div class="hero-scenes" id="heroScenes" aria-hidden="true">
-        <div class="hero-scene is-current"></div>
-        <div class="hero-scene"></div>
-      </div>
-      <div class="hero-grade" aria-hidden="true"></div>
-
-      <div class="wrap hero-inner hero-sign" id="heroSign">
-        <h1 id="heroSignTitle">Pick your business type. <span class="h1-break">See where your phone system lets you down.</span></h1>
-        <!-- The demo line. Every phrase is a verbatim slice of a reviewed diagnosis trigger and is checked
-             against the loaded library before it is shown; a trade whose phrase no longer matches is skipped. -->
-        <p class="trade-line" id="tradeLine" aria-hidden="true"><span class="trade-line-lead"></span> <span class="trade-line-frag"></span></p>
-        <div class="sign-block" aria-hidden="true"><div class="show-me">Show me</div><div class="sign-arrows split-arrow"><svg viewBox="0 0 300 64" preserveAspectRatio="none" focusable="false"><path d="M24 8 V54 M4 34 L24 54 L44 34"/><path d="M150 8 V54 M130 34 L150 54 L170 34"/><path d="M276 8 V54 M256 34 L276 54 L296 34"/></svg></div></div>
-        <div class="agent-search-shell">
-          <label class="sr-only" for="agentSearch">What kind of business do you run?</label>
-          <div class="agent-search">
-            <span class="material-symbols-rounded" aria-hidden="true">search</span>
-            <input id="agentSearch" type="search" role="combobox" aria-autocomplete="list" aria-controls="agentSearchResults" aria-expanded="false" autocomplete="off" placeholder="Type your business (towing, auto repair, spa&hellip;)">
-            <button id="agentSearchButton" type="button">Show me my workflow</button>
-          </div>
-          <div class="agent-search-results" id="agentSearchResults" role="listbox" hidden></div>
-          <p class="sr-only" id="agentFinderStatus" aria-live="polite"></p>
-        </div>
-        <p class="hero-pitch">At Dassa Solutions, we know every mishandled call can be a lost job, a lost patient, a lost customer, or a lost referral. Tell us your business type and we&rsquo;ll show you exactly where your phone system is costing you money.</p>
-        <p class="hero-note"><a class="hero-book-link" data-booking href="https://calendly.com/edassa-dassasolutions/30min">Book a Communication Audit</a><span class="hero-note-skip">and skip the tour</span></p>
-      </div>
-
-      <div class="ride" id="ride" hidden>
-        <ol class="stage-rail" id="stageRail" aria-label="Your progress">
-          <li data-stage="diagnosis">The problem</li>
-          <li data-stage="reasons">Why it matters</li>
-          <li data-stage="virtual-role"><span id="railRoleLabel">Your Virtual helper</span></li>
-          <li data-stage="wrap" data-stages="calculator contact">Wrap up</li>
-        </ol>
-        <div class="pages">
-    <section class="stage stage-diagnosis" id="diagnosis" aria-labelledby="diagnosisTitle" data-tone="dark" hidden>
-      <div class="wrap stage-panel">
-        <h2 id="diagnosisTitle" tabindex="-1"><span class="stage-count">Page 1 of 4</span><span class="stage-business" id="diagnosisBusiness"></span></h2>
-        <div class="diagnosis-approved" id="diagnosisApproved" hidden>
-          <p class="diagnosis-trigger wash-item" id="diagnosisTrigger" style="--d:480ms;--y:24px"></p>
-          <div class="wash-block">
-            <span class="wash-sweep" aria-hidden="true"></span>
-            <p class="diagnosis-paragraph wash-item" id="diagnosisParagraph" style="--d:840ms;--y:28px"></p>
-          </div>
-          <div class="stage-actions wash-item" style="--d:1500ms;--y:16px">
-            <a class="btn btn-primary stage-next" href="#reasons">Why it matters <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></a>
-            <button class="link-button stage-escape" type="button">Choose a different business</button>
-          </div>
-        </div>
-        <div class="diagnosis-fallback" id="diagnosisFallback" hidden>
-          <p class="diagnosis-trigger">We&rsquo;d rather ask than guess.</p>
-          <p class="diagnosis-paragraph">We haven&rsquo;t published a reviewed diagnosis for <span id="fallbackBusiness"></span> yet, and we won&rsquo;t hand you a generic one. Your Virtual helper is the <strong id="fallbackRole"></strong>. A short audit call is where we map your busy moment, who owns the next step, and what happens when nobody can pick up.</p>
-          <div class="stage-actions">
-            <a class="btn btn-primary" data-booking href="https://calendly.com/edassa-dassasolutions/30min">Book a Communication Audit</a>
-            <a class="btn btn-secondary stage-next" href="#reasons">Why it matters</a>
-            <button class="link-button stage-escape" type="button">Choose a different business</button>
-          </div>
-        </div>
-        <p class="summary-note">Planning examples, not a live service demonstration. Your audit confirms the right setup.</p>
-      </div>
-    </section>
-
-    <section class="stage stage-reasons" id="reasons" aria-labelledby="reasonsTitle" data-tone="dark" hidden>
-      <div class="wrap stage-panel">
-        <h2 id="reasonsTitle" tabindex="-1"><span class="stage-count">Page 2 of 4</span>Why this is worth fixing</h2>
-        <div class="reasons-approved" id="reasonsApproved" hidden>
-          <div class="reason-grid" id="diagnosisReasons"></div>
-        </div>
-        <div class="reasons-fallback" id="reasonsFallback" hidden>
-          <p class="diagnosis-paragraph">We haven&rsquo;t published a reviewed breakdown for <span id="reasonsFallbackBusiness"></span> yet, so we won&rsquo;t hand you specifics we can&rsquo;t back up. Two things hold true for almost any business missing calls: the customer who doesn&rsquo;t reach you calls the next name on the list, and the team member who could have caught it was already doing something else. Your audit maps exactly where that happens for you and what a <strong id="reasonsFallbackRole"></strong> would catch.</p>
-        </div>
-        <div class="stage-actions wash-item" style="--d:820ms;--y:16px">
-          <button class="btn btn-secondary stage-back" type="button" data-back="diagnosis">Back</button>
-          <a class="btn btn-primary stage-next" href="#virtual-role">Meet your Virtual helper <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></a>
-          <a class="btn btn-secondary" data-booking href="https://calendly.com/edassa-dassasolutions/30min">Book a Communication Audit</a>
-          <button class="link-button stage-escape" type="button">Choose a different business</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="stage stage-role vr-section-hero" id="virtual-role" aria-labelledby="roleTitle" data-tone="dark" hidden>
-      <div class="wrap vr-hero-grid stage-panel">
-        <div class="vr-hero-content">
-          <p class="vr-lead wash-item" id="roleLead" style="--d:120ms;--y:14px"></p>
-          <h2 class="vr-hero-title" id="roleTitle" tabindex="-1"><span class="stage-count">Page 3 of 4</span>Meet your <span class="vr-accent" id="roleName"></span></h2>
-          <p class="vr-hero-subtitle wash-item" id="roleIntro" style="--d:240ms;--y:20px"></p>
-          <ul class="role-catches wash-item" id="roleCatches" aria-label="What it catches" style="--d:520ms;--y:24px"></ul>
-          <p class="role-overflow wash-item" id="roleOverflow" style="--d:820ms;--y:20px"></p>
-          <p class="role-hipaa" id="roleHipaa" hidden>For medical and dental practices this role works without recording calls or storing protected health information. Clinical questions always go to your staff.</p>
-          <div class="stage-actions wash-item" style="--d:1100ms;--y:16px">
-            <button class="btn btn-secondary stage-back" type="button" data-back="reasons">Back</button>
-            <a class="btn btn-primary stage-next" id="doorCalculator" href="#calculator">Put a number on it <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></a>
-            <a class="btn btn-secondary vr-book stage-next" id="doorContact" href="#contact">Skip to the wrap-up</a>
-            <button class="link-button stage-escape" type="button">Choose a different business</button>
-          </div>
-        </div>
-        <div class="vr-hero-visual">
-          <div class="vr-visual-frame">
-            <img class="vr-hero-img" src="assets/virtual-role-hero-ds-2026-09-20-003.png" alt="Dark-mode virtual-agent dashboard showing an incoming call routed into a customer conversation" width="1536" height="1024" loading="lazy">
-            <div class="vr-float-badge top"><span class="vr-status-dot" aria-hidden="true"></span>Your team answers first</div>
-            <div class="vr-float-badge bottom"><span class="material-symbols-rounded" aria-hidden="true">task_alt</span>Overflow caught and routed</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="stage estimator" id="calculator" aria-labelledby="calcTitle" data-tone="dark" hidden><div class="wrap estimator-layout stage-panel"><div class="estimator-copy"><h2 id="calcTitle" tabindex="-1"><span class="stage-count">Page 4 of 4</span>Revenue Leakage Estimator</h2><p>Use your own numbers to estimate the opportunity that may be at risk&mdash;and what stronger call handling could potentially recover.</p><p class="summary-note" id="presetNote" data-preset="unselected"></p><div class="preset-actions"><button class="btn btn-secondary" type="button" id="usePreset" hidden>Re-apply example numbers</button></div></div><form class="estimator-card" id="calcForm" novalidate><div class="estimator-inputs">
-      <div class="field"><label for="calcMissed">Missed calls per month</label><div class="field-shell"><span class="material-symbols-rounded" aria-hidden="true">phone_missed</span><input id="calcMissed" type="number" min="0" step="1" value="20" inputmode="numeric"></div></div>
-      <div class="field"><label for="calcOpportunity">Real opportunity percentage</label><div class="field-shell"><span class="material-symbols-rounded" aria-hidden="true">pie_chart</span><input id="calcOpportunity" type="number" min="0" max="100" step="1" value="60" inputmode="decimal"></div></div>
-      <div class="field"><label for="calcSale">Average sale value</label><div class="field-shell"><span class="material-symbols-rounded" aria-hidden="true">attach_money</span><input id="calcSale" type="number" min="0" step="1" value="500" inputmode="decimal"></div></div>
-      </div><div class="assumption-row"><div class="range-field"><label for="calcClose"><span>Average close rate</span><output id="calcCloseVal">30%</output></label><input id="calcClose" type="range" min="0" max="100" step="5" value="30"></div><div class="range-field"><label for="calcRecovery"><span>Potential recovery share</span><output id="calcRecoveryVal">50%</output></label><input id="calcRecovery" type="range" min="0" max="100" step="5" value="50"></div></div><p class="calc-error" id="calcError" role="alert" aria-live="polite"></p><div class="estimator-output" aria-live="polite"><div><p class="output-label">Estimated annual opportunity at risk</p><p class="output-note">A planning estimate based on the assumptions above.</p></div><div><p class="output-value" id="calcAnnual">$21,600</p><span class="output-recovery" id="calcRecoverable">Potentially recoverable: $10,800 annually</span></div></div><div class="stage-actions calc-actions"><button class="btn btn-secondary stage-back" type="button" data-back="virtual-role">Back</button><a class="btn btn-primary stage-next" href="#contact">Continue to the wrap-up <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></a><button class="link-button stage-escape" type="button">Choose a different business</button></div></form></div></section>
-
-    <section class="stage final-cta" id="contact" aria-labelledby="contactTitle" data-tone="dark" hidden><div class="wrap"><h2 id="contactTitle" tabindex="-1"><span class="stage-count stage-count-light">Page 4 of 4</span><span id="contactBusiness">Let&rsquo;s find out where opportunity is leaking.</span></h2><p id="contactLede">Start with a short call-flow review. We&rsquo;ll look at how calls arrive, who owns them, what happens after hours, and where follow-up can break down.</p><p class="summary-note summary-note-light" id="auditBookingNote" hidden></p><div class="final-actions"><a class="btn btn-primary" data-booking href="https://calendly.com/edassa-dassasolutions/30min">Book a Communication Audit</a><a class="btn btn-secondary" href="tel:+14073692856"><span class="material-symbols-rounded" aria-hidden="true">call</span>Call (407) 369-2856</a><a class="btn btn-secondary" href="mailto:edassa@dassasolutions.com"><span class="material-symbols-rounded" aria-hidden="true">mail</span>Email Eric</a></div><p class="stage-restart"><button class="stage-back link-button" type="button" data-back="auto">Back</button> · <button class="link-button stage-escape" id="startOver" type="button">Choose a different business</button> · <button class="link-button" id="rideExit" type="button">Get off the ride</button></p></div></section>
-        </div>
-      </div>
-    </section>
-    <p class="sr-only" id="stageStatus" role="status"></p>
-
-    <section class="proof" data-page="flow" aria-labelledby="proofTitle"><div class="wrap"><div class="section-head"><h2 id="proofTitle">The marketing can work&mdash;and the opportunity can still be lost.</h2></div><div class="proof-grid"><article class="proof-card primary"><p class="proof-label">Home-services call tracking</p><div class="proof-stats"><div class="proof-stat"><strong>789</strong><span>Tracked calls</span></div><div class="proof-stat"><strong>595</strong><span>New leads received</span></div><div class="proof-stat"><strong>451</strong><span>Appointments scheduled</span></div><div class="proof-stat"><strong>19</strong><span>No one answered / missed lead</span></div></div><p>The system generated activity, but some opportunity still disappeared before a conversation happened.</p></article><article class="proof-card secondary"><p class="proof-label">High-ticket home improvement</p><div class="proof-stats"><div class="proof-stat"><strong>5</strong><span>December calls</span></div><div class="proof-stat"><strong>2</strong><span>Missed leads</span></div></div><p>What could those two conversations have been worth?</p></article></div></div></section>
-
-    <section class="flow" data-page="flow" aria-labelledby="flowTitle">
-      <div class="wrap">
-        <div class="section-head"><h2 id="flowTitle">Same call. Two outcomes.</h2></div>
-        <div class="command-center" id="opportunity-flow" aria-label="Example call flow showing two possible outcomes">
-          <div class="command-header"><div class="live-label"><span class="live-dot" aria-hidden="true"></span>Example call flow</div><p class="command-kicker">One opportunity. Two outcomes.</p></div>
-          <div class="call-map"><div class="incoming-call"><span class="incoming-icon"><span class="material-symbols-rounded" aria-hidden="true">call</span></span><h3>Incoming call</h3><p>A prospect, customer or colleague needs a response.</p></div><div class="split-icon"><span class="material-symbols-rounded" aria-hidden="true">call_split</span></div><div class="outcome-stack">
-            <article class="outcome missed"><span class="outcome-icon"><span class="material-symbols-rounded" aria-hidden="true">phone_missed</span></span><div class="outcome-copy"><h4>Missed without a clear next step</h4><p>The call reaches voicemail and the opportunity may move on.</p></div><div class="outcome-result"><strong>Opportunity at risk</strong><span>No ownership or follow-up</span></div></article>
-            <article class="outcome recovered"><span class="outcome-icon"><span class="material-symbols-rounded" aria-hidden="true">support_agent</span></span><div class="outcome-copy"><h4>Covered, routed, and followed up</h4><p>A defined response path keeps the customer conversation moving.</p></div><div class="outcome-result"><strong>Opportunity protected</strong><span>Clear next step</span></div></article>
-          </div></div>
-          <div class="command-footer"><span>Same call. A different result.</span><button class="replay-button" id="replayFlow" type="button"><span class="material-symbols-rounded" aria-hidden="true">replay</span>Replay flow</button></div><p class="sr-only" id="flowStatus" aria-live="polite"></p>
-        </div>
-      </div>
-    </section>
-
-    <section class="roles" id="virtual-roles" data-page="roles" aria-label="Browse Virtual Roles by industry" hidden>
-      <div class="wrap agent-browser-intro">
-        <h2 class="agent-browser-title">Browse all eight industries</h2>
-        <div class="agent-industry-tabs" id="agentIndustryTabs" aria-label="Browse by industry"></div>
-      </div>
-      <div class="agent-stage" id="agentCarousel" aria-roledescription="carousel" aria-label="Virtual agents by industry">
-        <div class="agent-stage-inner">
-          <article class="agent-family-preview is-prev" id="agentPrevPreview" aria-hidden="true"></article>
-          <article class="agent-family-main" aria-live="polite">
-            <div class="agent-family-copy">
-              <div class="agent-family-heading">
-                <span class="agent-family-icon"><span class="material-symbols-rounded" id="agentFamilyIcon" aria-hidden="true">directions_car</span></span>
-                <h3 id="agentFamilyTitle">Automotive</h3>
-              </div>
-              <p class="agent-family-summary" id="agentFamilySummary"></p>
-              <div class="agent-list" id="agentList"></div>
-              <p class="agent-list-note" id="agentListNote"></p>
+    <section class="hero-band band-white" id="top" aria-labelledby="scene-title">
+      <div class="hero-layout wrap">
+        <figure class="photo-frame">
+          <img id="scene-image" src="assets/auto-repair-bay-bright.webp" alt="Auto repair service bay" fetchpriority="high">
+          <figcaption class="photo-toolbar">
+            <span class="toolbar-label">THE WORK / THE CALL</span>
+            <div class="photo-actions">
+              <button id="scene-prev" class="icon-button" type="button" aria-label="Previous business story">←</button>
+              <span id="scene-count" class="scene-count" aria-live="off">01 / 05</span>
+              <button id="scene-next" class="icon-button" type="button" aria-label="Next business story">→</button>
+              <button id="scene-pause" class="play-button" type="button" aria-label="Pause story rotation">Pause</button>
             </div>
-            <div class="agent-role-demo">
-              <div class="agent-demo-head"><span>Illustrative call moment</span><span class="agent-live">Coverage ready</span></div>
-              <p class="agent-role-business" id="agentRoleBusiness">Auto Repair</p>
-              <h4 id="agentRoleTitle">Virtual Service Advisor</h4>
-              <p class="agent-role-pain" id="agentRolePain"></p>
-              <p class="agent-role-detail" id="agentRoleDetail"></p>
-              <div class="agent-dialogue" aria-label="Example caller exchange">
-                <div class="agent-bubble caller"><strong>Caller</strong><span id="agentCaller"></span></div>
-                <div class="agent-bubble"><strong id="agentSpeaker">Virtual Service Advisor</strong><span id="agentResponse"></span></div>
-              </div>
-              <a class="agent-role-cta" id="agentRoleCta" href="#diagnosis">Start with Auto Repair <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></a>
+          </figcaption>
+        </figure>
+
+        <div class="hero-editorial">
+          <div class="hero-selector">
+            <p class="selector-label">Choose your line of work</p>
+            <div class="trade-pills" role="group" aria-label="Choose a business story">
+              <button class="trade-pill is-active" type="button" data-trade="auto" aria-pressed="true">Auto Repair</button>
+              <button class="trade-pill" type="button" data-trade="field" aria-pressed="false">Field Service</button>
+              <button class="trade-pill" type="button" data-trade="medical" aria-pressed="false">Medical Office</button>
+              <button class="trade-pill" type="button" data-trade="towing" aria-pressed="false">Towing</button>
+              <button class="trade-pill" type="button" data-trade="roofing" aria-pressed="false">Roofing</button>
             </div>
+          </div>
+
+          <div class="hero-copy">
+            <p id="scene-business" class="eyebrow">Auto Repair / 01</p>
+            <h1 id="scene-title">At 8 a.m., spam owns the line.</h1>
+            <p id="scene-line" class="hero-deck">A customer who needs a repair today has another shop down the street.</p>
+          </div>
+
+          <aside class="field-report" aria-labelledby="field-report-title">
+            <div class="report-meta"><span>FIELD REPORT</span><span id="report-number">01 / 05</span></div>
+            <h2 id="field-report-title">From the field<sup aria-hidden="true">*</sup></h2>
+            <p id="scene-observation">A Florida repair shop's long-used number drew so much spam that the office struggled to answer morning calls. A driver who needs the car fixed today has nearby options.</p>
+            <details class="source-disclosure">
+              <summary>What the asterisk means <span aria-hidden="true">+</span></summary>
+              <p id="scene-source">Eric observed the shop's call conditions. The A/C caller is an illustrative scenario, not a documented lost customer.</p>
+            </details>
+          </aside>
+
+          <div class="hero-actions">
+            <a id="see-examine" class="button button-primary" href="#blueprint">See what we'd examine <span aria-hidden="true">↗</span></a>
+            <a class="text-link" href="#contact">Talk directly with Eric <span aria-hidden="true">↗</span></a>
+          </div>
+          <span id="scene-status" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="blueprint-band band-navy" id="blueprint" aria-labelledby="blueprint-title">
+      <div class="wrap section-inner">
+        <div class="section-heading blueprint-heading">
+          <p class="eyebrow amber-text">WHAT DASSA SOLUTIONS EXAMINES / CALL FLOW</p>
+          <h2 id="blueprint-title">A better line is designed from the first ring forward.</h2>
+          <p id="blueprint-context">For auto repair, the first minutes of the day can decide whether a real caller reaches the shop.</p>
+        </div>
+        <div class="blueprint-grid">
+          <article class="blueprint-card">
+            <div class="card-top"><span>01</span><span>ENTRY</span></div>
+            <h3>The Front Door</h3>
+            <p>Examine where spam can be screened and whether the desk and a designated mobile can ring together, so a real caller has a clear first route.</p>
+            <span class="card-foot">Screen → Ring → Answer</span>
           </article>
-          <article class="agent-family-preview is-next" id="agentNextPreview" aria-hidden="true"></article>
-          <button class="agent-arrow prev" id="agentPrev" type="button" aria-label="Previous role family"><span class="material-symbols-rounded" aria-hidden="true">arrow_back</span></button>
-          <button class="agent-arrow next" id="agentNext" type="button" aria-label="Next role family"><span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button>
+          <article class="blueprint-card">
+            <div class="card-top"><span>02</span><span>BACKUP</span></div>
+            <h3>The Overflow Safety Net</h3>
+            <p>Define when a trade-specific Virtual Role should take an inquiry, what it needs to capture, and when a person takes over.</p>
+            <span class="role-chip" id="role-chip">Virtual Service Advisor</span>
+          </article>
+          <article class="blueprint-card">
+            <div class="card-top"><span>03</span><span>CONTINUITY</span></div>
+            <h3>The Shared Thread</h3>
+            <p>Where the chosen tools support it, bring business calls, texts, transcripts, and notes into one shared record for the desk, field, and owner.</p>
+            <span class="card-foot">Record → Assign → Follow up</span>
+          </article>
         </div>
-        <div class="agent-carousel-nav">
-          <div class="agent-family-dots" id="agentFamilyDots" aria-label="Choose a role family"></div>
-          <span class="agent-family-counter" id="agentFamilyCounter">1 of 8</span>
-        </div>
-        <div class="agent-capabilities" aria-label="Coverage capabilities">
-          <div class="agent-capability"><span class="material-symbols-rounded" aria-hidden="true">schedule</span>Overflow &amp; after-hours</div>
-          <div class="agent-capability"><span class="material-symbols-rounded" aria-hidden="true">fact_check</span>Defined intake paths</div>
-          <div class="agent-capability"><span class="material-symbols-rounded" aria-hidden="true">forward_to_inbox</span>Clear team handoffs</div>
-          <div class="agent-capability"><span class="material-symbols-rounded" aria-hidden="true">visibility</span>Follow-up visibility</div>
-        </div>
-        <p class="sr-only" id="agentCarouselStatus" aria-live="polite"></p>
+        <p class="blueprint-note">The audit confirms service availability, integrations, routing rules, and data handling before a system is recommended.</p>
       </div>
     </section>
 
-    <section class="systems" id="systems" data-page="systems" aria-labelledby="systemsTitle"><div class="wrap"><div class="section-head"><h2 id="systemsTitle">Business communications organized around outcomes.</h2><p class="section-intro">Products matter only after the communication problem is clear. Dassa Solutions starts with the customer path, the team workflow, and the infrastructure underneath both.</p></div><div class="systems-grid"><article class="system-card"><span class="system-icon"><span class="material-symbols-rounded" aria-hidden="true">account_tree</span></span><h3>Coverage &amp; Routing</h3><p>Who receives the call, what happens during busy periods, and where the conversation goes after hours.</p></article><article class="system-card"><span class="system-icon"><span class="material-symbols-rounded" aria-hidden="true">monitoring</span></span><h3>Visibility &amp; Follow-Up</h3><p>Whether missed calls are visible, valuable conversations have owners, and the next customer step is clear.</p></article><article class="system-card"><span class="system-icon"><span class="material-symbols-rounded" aria-hidden="true">lan</span></span><h3>Mobility &amp; Infrastructure</h3><p>How teams stay reachable across offices, locations, and field work&mdash;and whether the underlying connection is dependable.</p></article></div></div></section>
-    <!-- Build 021 (Eric, 09-23): Phones, About Me and Contact. Text marked PLACEHOLDER is waiting on Eric. -->
-    <section class="info-section" id="phones" data-page="phones" aria-labelledby="phonesTitle"><div class="wrap">
-      <div class="section-head"><h2 id="phonesTitle">Phones</h2><p class="section-intro">Modern business phone service, set up around how your calls actually come in.</p></div>
-      <div class="phones-grid">
-        <article class="system-card"><span class="system-icon"><span class="material-symbols-rounded" aria-hidden="true">deskphone</span></span><h3>Business phone service</h3><p>A modern phone system sized to your business, with internet service matched to it, so calls stay clear when the office is busy.</p></article>
-        <article class="system-card"><span class="system-icon"><span class="material-symbols-rounded" aria-hidden="true">smartphone</span></span><h3>Calls on your cell, number stays yours</h3><p>Your team answers the business line from a mobile app. The number, and the customer, stay with the business, not an employee&rsquo;s personal phone.</p></article>
-        <article class="system-card"><span class="system-icon"><span class="material-symbols-rounded" aria-hidden="true">sms</span></span><h3>Texting from the business number</h3><p>Text customers from your main number, so conversations don&rsquo;t live on someone&rsquo;s personal cell.</p></article>
-        <article class="system-card"><span class="system-icon"><span class="material-symbols-rounded" aria-hidden="true">graphic_eq</span></span><h3>Call recording &amp; transcripts</h3><p>Recorded calls with searchable transcripts, so you can check what was promised and coach your team.</p></article>
-        <article class="system-card"><span class="system-icon"><span class="material-symbols-rounded" aria-hidden="true">receipt_long</span></span><h3>One bill, one local contact</h3><p>Phone and internet on one bill, with one local person to call. Fewer vendors, less finger-pointing.</p></article>
-        <article class="system-card"><span class="system-icon"><span class="material-symbols-rounded" aria-hidden="true">verified</span></span><h3>Try it first</h3><p>A trial is available, so you can hear the difference before you commit.</p></article>
+    <section class="revenue-band band-slate" id="revenue" aria-labelledby="revenue-title">
+      <div class="wrap section-inner">
+        <div class="section-heading">
+          <p class="eyebrow blue-text">REVENUE MATH / ONE CALL</p>
+          <h2 id="revenue-title">What could one missed call cost?</h2>
+          <p>Compare the contribution from one booked job with a month of overflow coverage. Use your numbers; a ring is never automatically a sale.</p>
+        </div>
+        <div class="math-card">
+          <div class="math-input-panel">
+            <p class="math-trade" id="math-trade">AUTO REPAIR / ONE-CALL CHECK</p>
+            <h3>One call. One month.</h3>
+            <div class="math-fields">
+              <label for="job-value">Contribution from one booked job <small>Revenue left after direct job costs</small></label>
+              <div class="money-input"><span aria-hidden="true">$</span><input id="job-value" type="number" inputmode="decimal" min="0" step="1" placeholder="Enter an amount" autocomplete="off"></div>
+              <label for="coverage-cost">Monthly overflow coverage cost <small>Use the actual quoted monthly price</small></label>
+              <div class="money-input"><span aria-hidden="true">$</span><input id="coverage-cost" type="number" inputmode="decimal" min="0" step="1" placeholder="Enter an amount" autocomplete="off"></div>
+            </div>
+          </div>
+          <div class="math-result-panel" aria-live="polite" aria-atomic="true">
+            <p class="eyebrow amber-text">COST OF ONE MISSED CALL</p>
+            <strong id="math-result" class="math-result">Could one booked job cover the month?</strong>
+            <p id="math-detail">Enter your contribution and monthly coverage cost to compare them.</p>
+            <div class="comparison-bars" aria-hidden="true"><span id="job-bar"></span><span id="cost-bar"></span></div>
+            <p class="math-caveat">An unanswered call may or may not become a booked job. This comparison is a planning aid, not a forecast or profit guarantee.</p>
+          </div>
+        </div>
       </div>
-      <p class="partner-note">Selected Dassa communication solutions can be supported by NetLink Voice technology and connectivity options when that fit is appropriate.</p>
-    </div></section>
-    <section class="info-section info-section-alt" id="about" data-page="about" aria-labelledby="aboutTitle"><div class="wrap about-row">
-      <img class="about-photo" src="assets/eric-dassa.webp" width="184" height="184" alt="Eric Dassa">
-      <div><h2 id="aboutTitle">About Me</h2>
-        <p class="about-name">Eric Dassa</p>
-        <p class="draft-tag">Draft &mdash; Eric to approve the wording</p>
-        <p>I started Dassa Solutions to help Central Florida businesses stop losing customers on the phone. Most owners don&rsquo;t need more gadgets. They need to know what happens when someone calls: who answers, what happens after hours, and whether anyone follows up.</p>
-        <p>I look at how your calls actually flow, show you where opportunity is slipping, and recommend a phone and internet setup that fits. Phone systems, cameras and managed services, one local contact, and straight answers.</p>
-        <p class="about-area">Serving Orange, Seminole, Osceola, Lake, Polk, Volusia and Brevard counties.</p>
+    </section>
+
+    <section class="systems-band band-white" id="systems" aria-labelledby="systems-title">
+      <div class="wrap section-inner">
+        <div class="section-heading systems-heading">
+          <p class="eyebrow blue-text">COMMUNICATION SYSTEMS</p>
+          <h2 id="systems-title">The number, the route, and the follow-up belong together.</h2>
+          <p>The audit starts with how your business works, then examines the communication pieces that should support it.</p>
+        </div>
+        <div class="system-rows">
+          <article class="system-row"><span class="system-index">01 / OWNERSHIP</span><h3>Keep the number with the business.</h3><p>Review which customer contact paths live on personal phones and how the business stays reachable when roles change.</p></article>
+          <article class="system-row"><span class="system-index">02 / ROUTING</span><h3>Give busy people a backup.</h3><p>Map who answers first, when overflow begins, and what the next person needs to know before taking over.</p></article>
+          <article class="system-row"><span class="system-index">03 / CONNECTION</span><h3>Fit phones and internet to the work.</h3><p>Confirm service availability, location needs, and the right connection for the call flow you choose.</p></article>
+        </div>
       </div>
-    </div></section>
-    <section class="info-section" id="reach-eric" data-page="contact" aria-labelledby="reachTitle"><div class="wrap">
-      <div class="section-head"><h2 id="reachTitle">Contact</h2><p class="section-intro">Talk to Eric directly. No call center, no ticket queue.</p></div>
-      <div class="contact-card">
-        <p class="about-name">Eric Dassa</p>
-        <a class="contact-line" href="tel:+14073692856"><span class="material-symbols-rounded" aria-hidden="true">call</span>(407) 369-2856</a>
-        <a class="contact-line" href="mailto:edassa@dassasolutions.com"><span class="material-symbols-rounded" aria-hidden="true">mail</span>edassa@dassasolutions.com</a>
-        <a class="btn btn-primary contact-book" data-booking href="https://calendly.com/edassa-dassasolutions/30min">Book a Communication Audit</a>
+    </section>
+
+    <section class="about-band band-navy" id="about" aria-labelledby="about-title">
+      <div class="wrap about-layout section-inner">
+        <div class="about-portrait"><img src="assets/eric-dassa.webp" alt="Eric Dassa" loading="lazy"></div>
+        <div class="about-copy">
+          <p class="eyebrow amber-text">ABOUT DASSA SOLUTIONS</p>
+          <h2 id="about-title">Start with the conversation that actually happens.</h2>
+          <p>Eric Dassa works through the calls, handoffs, and interruptions your team handles every day. The point is to see where the next customer loses the path, then design a better one around the people doing the work.</p>
+          <a class="text-link light-link" href="#contact">Talk with Eric about your call flow <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
-    </div></section>
+    </section>
+
+    <section class="contact-band band-slate" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-layout section-inner">
+        <div>
+          <p class="eyebrow blue-text">YOUR NEXT STEP</p>
+          <h2 id="contact-title">Let's trace the next call together.</h2>
+          <p id="contact-context">For an auto repair shop, that starts with what a real caller hears when the morning line is busy.</p>
+        </div>
+        <div class="contact-actions">
+          <a id="booking-cta" class="button button-primary booking-button" href="https://calendly.com/edassa-dassasolutions/30min" target="_blank" rel="noopener noreferrer">Book Your Auto Repair Communication Audit <span aria-hidden="true">↗</span></a>
+          <p>Scheduling opens in a new tab. Your selected business is reflected in this page's guidance; the booking service may ask you to describe it.</p>
+          <div class="contact-links"><a href="tel:+14073692856">Call Eric: (407) 369-2856</a><a href="mailto:edassa@dassasolutions.com">Email Eric</a></div>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer><div class="wrap footer-row"><span>© <span id="year"></span> Dassa Solutions</span><div class="footer-links"><a href="tel:+14073692856">(407) 369-2856</a><a href="mailto:edassa@dassasolutions.com">edassa@dassasolutions.com</a><a href="#top">Back to top</a></div></div></footer>
-  <div class="site-build-badge" aria-label="Untested draft build">Build DS-2026.09.23-037 • Draft</div>
-  <script src="verticals.js"></script>
-  <script src="agent-catalog.js"></script>
-  <script src="business-summaries.js"></script>
-  <script>
-    (function(){'use strict';
-      var verticals=window.DASSA_BUSINESS_SUMMARIES||[];
-      var bookingUrl=typeof window.DASSA_BOOKING_URL==='string'&&/^https:\/\//i.test(window.DASSA_BOOKING_URL)?window.DASSA_BOOKING_URL.trim():'https://calendly.com/edassa-dassasolutions/30min';
-      var selectedVertical=null;
-      document.getElementById('year').textContent=new Date().getFullYear();document.querySelectorAll('[data-booking]').forEach(function(link){link.href=bookingUrl});
-      var navToggle=document.getElementById('navToggle'),navLinks=document.getElementById('navLinks');navToggle.addEventListener('click',function(){var open=navLinks.classList.toggle('open');document.body.classList.toggle('nav-open',open);navToggle.setAttribute('aria-expanded',String(open));navToggle.querySelector('.material-symbols-rounded').textContent=open?'close':'menu'});navLinks.addEventListener('click',function(event){if(event.target.tagName==='A'){navLinks.classList.remove('open');document.body.classList.remove('nav-open');navToggle.setAttribute('aria-expanded','false');navToggle.querySelector('.material-symbols-rounded').textContent='menu'}});
-      document.addEventListener('keydown',function(event){
-        if(event.key==='Escape'&&navLinks.classList.contains('open')){
-          navLinks.classList.remove('open');document.body.classList.remove('nav-open');
-          navToggle.setAttribute('aria-expanded','false');navToggle.querySelector('.material-symbols-rounded').textContent='menu';
-          navToggle.focus();
-        }
-      });
-      var commandCenter=document.getElementById('opportunity-flow'),replayFlow=document.getElementById('replayFlow'),flowStatus=document.getElementById('flowStatus');// Most visitors never click Replay, so play the flow once when it first comes into view.
-      // No status text here: the manual click announces itself, an unprompted one would just be noise.
-      if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
-        var flowObserver=new IntersectionObserver(function(entries){
-          if(!entries.some(function(entry){return entry.isIntersecting}))return;
-          flowObserver.disconnect();
-          commandCenter.classList.add('is-replaying');
-        },{threshold:.5});
-        flowObserver.observe(commandCenter);
-      }
-      replayFlow.addEventListener('click',function(){commandCenter.classList.remove('is-replaying');void commandCenter.offsetWidth;commandCenter.classList.add('is-replaying');flowStatus.textContent='The call flow replayed: one path reaches voicemail, while a defined coverage and follow-up path protects the opportunity.'});
-      var calc={form:document.getElementById('calcForm'),missed:document.getElementById('calcMissed'),opportunity:document.getElementById('calcOpportunity'),close:document.getElementById('calcClose'),closeVal:document.getElementById('calcCloseVal'),sale:document.getElementById('calcSale'),recovery:document.getElementById('calcRecovery'),recoveryVal:document.getElementById('calcRecoveryVal'),annual:document.getElementById('calcAnnual'),recoverable:document.getElementById('calcRecoverable'),error:document.getElementById('calcError')};
-      function money(value){return '$'+Math.round(value).toLocaleString('en-US')}
-      function calculate(){var missed=Number(calc.missed.value),opportunity=Number(calc.opportunity.value),close=Number(calc.close.value),sale=Number(calc.sale.value),recovery=Number(calc.recovery.value),error='';if(!Number.isFinite(missed)||missed<0)error='Missed calls must be zero or more.';else if(!Number.isFinite(opportunity)||opportunity<0||opportunity>100)error='Real opportunity percentage must be between 0 and 100.';else if(!Number.isFinite(close)||close<0||close>100)error='Average close rate must be between 0 and 100.';else if(!Number.isFinite(sale)||sale<0)error='Average sale value must be zero or more.';else if(!Number.isFinite(recovery)||recovery<0||recovery>100)error='Potential recovery share must be between 0 and 100.';calc.closeVal.textContent=(Number.isFinite(close)?close:0)+'%';calc.recoveryVal.textContent=(Number.isFinite(recovery)?recovery:0)+'%';calc.error.textContent=error;if(error){calc.annual.textContent='$0';calc.recoverable.textContent='Potentially recoverable: $0 annually';return}var monthlyRisk=missed*(opportunity/100)*(close/100)*sale,annualRisk=monthlyRisk*12,annualRecoverable=annualRisk*(recovery/100);calc.annual.textContent=money(annualRisk);calc.recoverable.textContent='Potentially recoverable: '+money(annualRecoverable)+' annually'}calc.form.addEventListener('input',calculate);calc.form.addEventListener('submit',function(event){event.preventDefault()});
-    function findVertical(value){
-      var id=window.DassaResolveBusinessId(value);
-      return id?verticals.find(function(item){return item.id===id})||null:null;
-    }
-    // Verified against this Calendly event: a1 is the editable meeting-preparation question.
-    function updateAuditBooking(vertical){
-      var url=new URL(bookingUrl);
-      var supportsContext=url.hostname==='calendly.com'&&url.pathname.replace(/\/$/,'')==='/edassa-dassasolutions/30min';
-      var label=vertical?(vertical.auditLabel||('Book a '+vertical.label+' Communication Audit')):'Book a Communication Audit';
-      if(vertical&&supportsContext){
-        var context='Business type: '+vertical.label+(vertical.approved?'\n\nWebsite example to discuss (please edit to fit your business): '+vertical.stages.diagnosis.trigger+'\n\nAudit focus: '+vertical.auditFocus:'');
-        var existing=url.searchParams.get('a1');
-        url.searchParams.set('a1',(existing?existing+'\n\n':'')+context);
-      }
-      document.querySelectorAll('[data-booking]').forEach(function(link){
-        link.href=url.toString();
-        link.textContent=label;
-      });
-      var note=document.getElementById('auditBookingNote');
-      note.hidden=!(vertical&&supportsContext);
-      note.textContent=vertical&&supportsContext?'Your business type and audit focus will be prefilled in the booking form. You can edit them before booking.':'';
-    }
-    // ---- Stage engine: the ride lives in the hero. One frame, pages crossfade in place, nothing scrolls. ----
-    var STAGES=['diagnosis','reasons','virtual-role','calculator'];
-    var ORDER=STAGES.concat(['contact']);
-    var STAGE_LABEL={diagnosis:'The problem',reasons:'Why it matters',"virtual-role":'Your Virtual helper',calculator:'Wrap up',contact:'Wrap up'};
-    var STAGE_NUM={diagnosis:1,reasons:2,"virtual-role":3,calculator:4,contact:4};
-    var reduce=function(){return window.matchMedia('(prefers-reduced-motion: reduce)').matches};
-    var hero=document.getElementById('top'),ride=document.getElementById('ride'),heroSign=document.getElementById('heroSign');
-    var rail=document.getElementById('stageRail'),stageStatus=document.getElementById('stageStatus');
-    var activeStage=null,FADE=420,DISSOLVE=380,pendingFocusSearch=false;
-    function stageEl(id){return document.getElementById(id)}
-    function riding(){return hero.classList.contains('is-riding')}
-    // The frame is the viewport minus the real header height (the brand lockup makes it ~145px on desktop).
-    function sizeFrame(){var header=document.querySelector('.site-header');if(header)document.documentElement.style.setProperty('--header-h',header.offsetHeight+'px')}
-    sizeFrame();window.addEventListener('resize',sizeFrame);
-    function railMatches(li,id){return li.dataset.stage===id||(li.dataset.stages||'').split(' ').indexOf(id)>=0}
-    function setRail(activeId){
-      rail.hidden=false;
-      var reached=false;
-      Array.from(rail.children).forEach(function(li){
-        var ids=li.dataset.stages?li.dataset.stages.split(' '):[li.dataset.stage];
-        var revealed=ids.some(function(id){var el=stageEl(id);return el&&el.dataset.revealed==='true'});
-        var current=railMatches(li,activeId);
-        li.dataset.done=String(revealed&&!current&&!reached);
-        if(current){li.setAttribute('aria-current','step');reached=true}else li.removeAttribute('aria-current');
-      });
-      var roleLabel=document.getElementById('railRoleLabel');
-      roleLabel.textContent=selectedVertical&&stageEl('virtual-role').dataset.revealed==='true'?selectedVertical.role.name:'Your Virtual helper';
-    }
-    function announce(id){
-      var name=selectedVertical?', for '+selectedVertical.label:'';
-      var label=STAGE_LABEL[id];
-      if(id==='virtual-role'&&selectedVertical)label+=': '+selectedVertical.role.name;
-      if(id==='calculator')label+=', put a number on it';
-      stageStatus.textContent='Page '+STAGE_NUM[id]+' of 4. '+label+name+'.';
-    }
-    /* ===================================================================================
-       HERO SCENES — add real photography here. Any length >= 1; nothing else knows the count.
-       A single entry disables rotation and renders statically.
-       =================================================================================== */
-    var HERO_SCENES=[
-      {src:'assets/scenes/auto-repair-bay-bright.webp',label:'Auto repair bay after hours'},
-      {src:'assets/scenes/restaurant-table.webp',label:'Restaurant dinner service'},
-      {src:'assets/scenes/medical-radiology.webp',label:'Radiologist reviewing scans'},
-      {src:'assets/scenes/spa-facial.webp',label:'Candlelit spa facial treatment'},
-      {src:'assets/scenes/roofing-sunset.webp',label:'Roofers silhouetted at sunset'},
-      {src:'assets/scenes/legal-library.webp',label:"Attorney's law library office"},
-      {src:'assets/scenes/realestate-handshake.webp',label:'Realtor greeting clients at a listing'},
-      {src:'assets/scenes/daycare-storytime.webp',label:'Daycare storytime circle'},
-      {src:'assets/scenes/chiropractic-adjustment.webp',label:'Chiropractor adjusting a patient',pos:'50% 12%'},
-      {src:'assets/scenes/autobody-bay-dusk.webp',label:'Auto body bay at dusk'},
-      {src:'assets/scenes/movers-van-ramp.webp',label:'Moving crew loading a van'},
-      {src:'assets/scenes/plumber-water-heater.webp',label:'Plumber reviewing a water heater with a homeowner'},
-      {src:'assets/scenes/retail-storefront-night.webp',label:'Shoppers in a lit store at night'},
-      {src:'assets/scenes/office-team-glass.webp',label:'Office team working late behind glass'},
-      {src:'assets/scenes/electrician-panel.webp',label:'Electrician inspecting a home electrical panel',pos:'50% 18%'},
-      {src:'assets/scenes/tow-truck-red.webp',label:'Red tow truck hauling a car'},
-      {src:'assets/scenes/medical-front-desk.webp',label:'Medical receptionist answering the phone',pos:'66% 30%'},
-      {src:'assets/scenes/hvac-condenser.webp',label:'HVAC technician servicing an outdoor AC unit',pos:'50% 15%'}
-    ];
-    var SCENE_MS=6000;
-    // Two layers alternate. A shuffle bag gives random order with every scene shown once per pass,
-    // and the reshuffle never repeats the scene that just played — plain Math.random() collides often
-    // enough at four scenes to look like the rotation is stuck.
-    var sceneLayers=Array.prototype.slice.call(document.querySelectorAll('#heroScenes .hero-scene'));
-    var sceneTimer=null,sceneBag=[],sceneFront=0,sceneLast=-1;
-    function sceneRefill(){
-      sceneBag=HERO_SCENES.map(function(_,i){return i});
-      for(var i=sceneBag.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=sceneBag[i];sceneBag[i]=sceneBag[j];sceneBag[j]=t}
-      if(sceneBag.length>1&&sceneBag[0]===sceneLast){var s=sceneBag.shift();sceneBag.push(s)}
-    }
-    function sceneNext(){if(!sceneBag.length)sceneRefill();var i=sceneBag.shift();sceneLast=i;return i}
-    function scenePaint(index,layerIndex){
-      var scene=HERO_SCENES[index];
-      if(!scene||!sceneLayers[layerIndex])return;
-      sceneLayers[layerIndex].style.backgroundImage='url("'+scene.src+'")';
-      // `pos` keeps heads in frame when the wide hero has to crop a photo top and bottom.
-      sceneLayers[layerIndex].style.backgroundPosition=scene.pos||'';
-      sceneLayers[layerIndex].style.transformOrigin=scene.pos||'';
-      // Slow drift: a new direction for every photo, so the motion never repeats the same way twice.
-      var dx=(Math.random()<.5?-1:1)*(1+Math.random()*1.5),dy=(Math.random()*2-1)*1.2;
-      sceneLayers[layerIndex].style.setProperty('--drift-x',dx.toFixed(2)+'%');
-      sceneLayers[layerIndex].style.setProperty('--drift-y',dy.toFixed(2)+'%');
-      sceneLayers.forEach(function(el,i){el.classList.toggle('is-current',i===layerIndex)});
-      sceneFront=layerIndex;
-      if(HERO_SCENES.length>1){var peek=sceneBag.length?sceneBag[0]:null;if(peek!==null)new Image().src=HERO_SCENES[peek].src}
-    }
-    function sceneStop(){if(sceneTimer){clearInterval(sceneTimer);sceneTimer=null}}
-    // Every condition that must silence the rotation. Missing any one of these is a battery complaint.
-    function sceneShouldRun(){
-      return HERO_SCENES.length>1&&!reduce()&&!document.hidden&&!riding()
-        &&!hero.classList.contains('is-dissolving')&&!hero.classList.contains('is-offscreen');
-    }
-    function sceneStart(){
-      sceneStop();
-      if(!sceneShouldRun())return;
-      sceneTimer=setInterval(function(){
-        if(!sceneShouldRun()){sceneStop();return}
-        scenePaint(sceneNext(),sceneFront===0?1:0);
-      },SCENE_MS);
-    }
-    function sceneBoot(){
-      if(!sceneLayers.length||!HERO_SCENES.length)return;
-      sceneRefill();
-      scenePaint(sceneNext(),0);
-      sceneStart();
-    }
-    document.addEventListener('visibilitychange',function(){document.hidden?sceneStop():sceneStart()});
-    if('IntersectionObserver' in window){
-      new IntersectionObserver(function(entries){
-        hero.classList.toggle('is-offscreen',!entries.some(function(e){return e.isIntersecting}));
-        sceneShouldRun()?sceneStart():sceneStop();
-      },{threshold:0}).observe(hero);
-    }
-    sceneBoot();
-    /* ===================================================================================
-       TRADE LINE — the hero's demo. Only reviewed trades appear, and every `frag` must be a
-       verbatim slice of that trade's reviewed diagnosis trigger; anything that fails the check is
-       dropped, so editing the library can never leave invented copy on screen. `lead` is the only
-       wording written here, and it makes no claim. `scene` pairs the trade with its photo, if any.
-       =================================================================================== */
-    var TRADE_LINES=[
-      {id:'towing',lead:'A {towing company} misses calls',frag:'while both trucks are on a hook',scene:'assets/scenes/tow-truck-red.webp'},
-      {id:'auto-repair',lead:'An {auto repair shop} misses calls',frag:'during a brake job with the counter empty and the lifts full',scene:'assets/scenes/auto-repair-bay-bright.webp'},
-      {id:'spas',lead:'A {spa} front desk is',frag:'trying to answer calls without breaking the quiet',scene:'assets/scenes/spa-facial.webp'},
-      {id:'tire-shops',lead:'A {tire shop} misses calls',frag:'with the counter ringing up a sale and the tech mounting a set'},
-      {id:'auto-body',lead:'An {auto body shop} misses calls',frag:'while an after-hours tow rolls to voicemail',scene:'assets/scenes/autobody-bay-dusk.webp'},
-      {id:'window-tint',lead:'A {window tint shop} misses calls',frag:'with the installer heads-down in a vehicle, doors open, hands full'},
-      {id:'dealerships',lead:'A {dealership} loses callers',frag:'while the service drive melts down at opening'},
-      {id:'auto-salvage',lead:'A {salvage yard} misses calls with',frag:'the counter mid-way through a cash sale'}
-    ];
-    var tradeLine=document.getElementById('tradeLine');
-    var tradeLead=tradeLine&&tradeLine.querySelector('.trade-line-lead');
-    var tradeFrag=tradeLine&&tradeLine.querySelector('.trade-line-frag');
-    var tradeReady=[],tradeAt=-1,tradeTimers=[],tradePaused=false,tradeYours=false,tradeStalled=false;
-    function tradeClear(){tradeTimers.forEach(clearTimeout);tradeTimers=[]}
-    function tradeLater(fn,ms){tradeTimers.push(setTimeout(fn,ms))}
-    function tradeVerified(){
-      var summaries=window.DASSA_BUSINESS_SUMMARIES||[];
-      return TRADE_LINES.filter(function(line){
-        var s=summaries.find(function(item){return item.id===line.id});
-        var trigger=s&&s.approved&&s.stages&&s.stages.diagnosis&&s.stages.diagnosis.trigger;
-        if(trigger&&trigger.indexOf(line.frag)>=0)return true;
-        if(s&&s.approved&&window.console&&console.warn)console.warn('[trade-line] dropped '+line.id+': phrase is not in its reviewed trigger');
-        return false;
-      });
-    }
-    function tradeScene(line){
-      if(!sceneLayers.length||riding())return;
-      var index=line.scene?HERO_SCENES.findIndex(function(s){return s.src===line.scene}):-1;
-      if(index<0)index=sceneNext();else{sceneBag=sceneBag.filter(function(i){return i!==index});sceneLast=index}
-      var layer=sceneFront===0?1:0;
-      if(HERO_SCENES[index]&&sceneLayers[sceneFront].style.backgroundImage.indexOf(HERO_SCENES[index].src)<0)scenePaint(index,layer);
-      sceneStart(); // restart the photo clock so it never cuts in mid-line
-    }
-    // Paints one line. `typed` spells the trade out; otherwise it appears whole (reduced motion, or the visitor's own trade).
-    function tradeShow(line,typed,done){
-      var parts=line.lead.split(/[{}]/);
-      tradeLead.replaceChildren(document.createTextNode(parts[0]));
-      var word=document.createElement('b');tradeLead.appendChild(word);tradeLead.appendChild(document.createTextNode(parts[2]||''));
-      tradeFrag.textContent=line.frag;tradeFrag.classList.remove('is-in');
-      tradeLine.classList.remove('is-out');
-      if(!typed){word.textContent=parts[1];tradeFrag.classList.add('is-in');if(done)done();return}
-      var i=0;word.classList.add('is-typing');
-      (function tick(){
-        word.textContent=parts[1].slice(0,++i);
-        if(i<parts[1].length){tradeLater(tick,55);return}
-        tradeLater(function(){word.classList.remove('is-typing');tradeFrag.classList.add('is-in');if(done)done()},260);
-      })();
-    }
-    function tradeRunning(){return !tradePaused&&!tradeYours&&!riding()&&!document.hidden&&!hero.classList.contains('is-offscreen')}
-    function tradeNext(){
-      tradeClear();
-      if(!tradeReady.length)return;
-      if(reduce()){if(tradeAt<0){tradeAt=0;tradeShow(tradeReady[0],false)}return}
-      if(!tradeRunning()){tradeStalled=true;return}
-      tradeStalled=false;
-      tradeAt=(tradeAt+1)%tradeReady.length;
-      var line=tradeReady[tradeAt];
-      tradeLine.classList.add('is-out');
-      tradeLater(function(){
-        tradeScene(line);
-        tradeShow(line,true,function(){tradeLater(tradeNext,3200)});
-      },tradeAt===0&&!tradeLead.textContent?0:420);
-    }
-    function tradeBoot(){
-      if(!tradeLine)return;
-      tradeReady=tradeVerified();
-      tradeLine.hidden=!tradeReady.length;
-      tradeAt=-1;tradeNext();
-    }
-    // The line waits for the reviewed library; if it never loads, the headline stands alone.
-    window.addEventListener('dassa:response-library-loaded',tradeBoot);
-    if(window.DASSA_RESPONSE_LIBRARY_STATUS==='loaded')tradeBoot();
-    // The handoff: clicking into the field stops the demo; typing a reviewed trade makes the line theirs.
-    var tradeSearch=document.getElementById('agentSearch');
-    if(tradeSearch&&tradeLine){
-      tradeSearch.addEventListener('focus',function(){tradePaused=true;tradeClear();if(tradeLead.textContent){tradeLine.classList.remove('is-out');tradeFrag.classList.add('is-in');var b=tradeLead.querySelector('b');if(b&&tradeAt>=0){b.classList.remove('is-typing');b.textContent=tradeReady[tradeAt].lead.split(/[{}]/)[1]}}});
-      tradeSearch.addEventListener('input',function(){
-        var match=window.DassaBestMatch?window.DassaBestMatch(tradeSearch.value):null;
-        var line=match&&tradeReady.find(function(l){return l.id===match.id});
-        if(line){tradeClear();tradeYours=true;tradeAt=tradeReady.indexOf(line);tradeLine.classList.add('is-yours');tradeShow(line,false);tradeScene(line)}
-        else if(tradeYours){tradeYours=false;tradeLine.classList.remove('is-yours')}
-      });
-      tradeSearch.addEventListener('blur',function(){
-        if(tradeSearch.value.trim())return;
-        tradePaused=false;tradeYours=false;tradeLine.classList.remove('is-yours');
-        tradeLater(tradeNext,1200);
-      });
-    }
-    // A stalled line (tab hidden, hero scrolled away) picks up again when it can be seen. The observer defers a tick
-    // so the scene observer has already updated .is-offscreen.
-    function tradeWake(){setTimeout(function(){if(tradeStalled&&tradeRunning())tradeNext()},0)}
-    document.addEventListener('visibilitychange',tradeWake);
-    if('IntersectionObserver' in window&&tradeLine)new IntersectionObserver(tradeWake,{threshold:0}).observe(hero);
-    // Returning from the ride re-arms the rotation. Without this the hero comes back to a frozen photo.
-    function startSign(){hero.classList.remove('sign-settled','is-signing');void hero.offsetWidth;hero.classList.add('is-signing');sceneStart();tradePaused=false;tradeYours=false;if(tradeLine){tradeLine.classList.remove('is-yours');tradeNext()}}
-    function choreograph(section){
-      section.classList.remove('is-revealing','is-settled');
-      void section.offsetWidth;
-      section.classList.add('is-revealing');
-      setTimeout(function(){if(section.classList.contains('is-revealing')){section.classList.remove('is-revealing');section.classList.add('is-settled')}},reduce()?0:3400);
-    }
-    // Entering from below the fold (carousel CTA, nav link): bring the top of the page back first, then ride.
-    function scrollTopThen(fn){
-      document.documentElement.classList.add('ride-open');
-      if(window.scrollY<2){fn();return}
-      var done=false;function once(){if(done)return;done=true;window.removeEventListener('scrollend',once);fn()}
-      // ride-open has made html scroll-behavior:auto, so this travel is instant and cannot drift mid-dissolve.
-      window.addEventListener('scrollend',once);setTimeout(once,50);
-      window.scrollTo({top:0,behavior:'auto'});
-    }
-    function openRide(instant,done){
-      if(riding()){done();return}
-      var pinned=window.scrollY;
-      // The search box is still focused after a pick; while the sign layer animates, Chrome keeps scrolling the
-      // focused caret "into view" (smoothly, because html has scroll-behavior:smooth). Drop focus first.
-      var focused=document.activeElement;if(focused&&heroSign.contains(focused))focused.blur();
-      document.documentElement.classList.add('ride-open');
-      sceneStop();
-      hero.classList.remove('is-signing','sign-settled');hero.classList.add('is-dissolving');
-      setTimeout(function(){
-        hero.classList.remove('is-dissolving');hero.classList.add('is-riding');
-        if(window.scrollY!==pinned)window.scrollTo({top:pinned,behavior:'auto'});
-        heroSign.setAttribute('inert','');heroSign.setAttribute('aria-hidden','true');
-        ride.hidden=false;done();
-      },instant||reduce()?0:DISSOLVE);
-    }
-    function closeRide(){
-      if(!riding()){rail.hidden=true;if(!hero.classList.contains('is-signing')&&!hero.classList.contains('sign-settled'))startSign();return}
-      var section=activeStage;activeStage=null;
-      if(section){section.classList.remove('is-active');section.classList.add('is-leaving')}
-      var focusSearch=pendingFocusSearch;pendingFocusSearch=false;
-      setTimeout(function(){
-        if(section){section.classList.remove('is-leaving');section.hidden=true}
-        ride.hidden=true;rail.hidden=true;hero.classList.remove('is-riding');document.documentElement.classList.remove('ride-open');
-        heroSign.removeAttribute('inert');heroSign.removeAttribute('aria-hidden');
-        if(window.scrollY)window.scrollTo({top:0,behavior:'auto'});
-        startSign();
-        if(focusSearch)document.getElementById('agentSearch').focus({preventScroll:true});
-      },reduce()?0:FADE);
-    }
-    function showStage(id,opts){
-      opts=opts||{};
-      var section=stageEl(id);
-      if(!section)return;
-      var previous=activeStage&&activeStage!==section?activeStage:null;
-      section.hidden=false;
-      section.dataset.revealed='true';
-      if(previous)section.dataset.from=previous.id;
-      activeStage=section;
-      function enter(){
-        var pinned=window.scrollY;
-        if(previous){previous.classList.remove('is-leaving');previous.hidden=true}
-        section.classList.add('is-active');
-        section.scrollTop=0;
-        ride.dataset.tone=section.dataset.tone||'light';
-        setRail(id);announce(id);
-        if(opts.animate!==false)choreograph(section);
-        var heading=section.querySelector('h2');
-        if(heading&&opts.focus!==false)heading.focus({preventScroll:true});
-        if(window.scrollY!==pinned)window.scrollTo({top:pinned,behavior:'auto'});
-        requestAnimationFrame(function(){if(window.scrollY!==pinned)window.scrollTo({top:pinned,behavior:'auto'})});
-      }
-      function go(){
-        if(previous){previous.classList.remove('is-active');previous.classList.add('is-leaving')}
-        setTimeout(enter,previous&&!reduce()?FADE:0);
-      }
-      function start(){openRide(opts.instant,go)}
-      if(opts.instant)start();else scrollTopThen(start);
-    }
-    function resetStagesAfter(id){
-      var past=false;
-      ORDER.forEach(function(stage){
-        if(past){var el=stageEl(stage);el.hidden=true;el.classList.remove('is-revealing','is-settled','is-active','is-leaving');delete el.dataset.revealed;delete el.dataset.from}
-        if(stage===id)past=true;
-      });
-      if(id==='choose')closeRide();
-    }
-    function pushStage(id){
-      if(!selectedVertical)return;
-      var url=new URL(window.location.href);
-      url.searchParams.set('vertical',selectedVertical.id);
-      url.hash=id;
-      window.history.pushState({vertical:selectedVertical.id,stage:id},'',url.pathname+url.search+url.hash);
-    }
-    function backFrom(target,fromEl){
-      if(target==='auto')target=(fromEl&&fromEl.dataset.from)||'virtual-role';
-      return target;
-    }
 
-    // ---- Stage renderers ----
-    function renderDiagnosis(vertical){
-      var approved=document.getElementById('diagnosisApproved'),fallback=document.getElementById('diagnosisFallback');
-      document.getElementById('diagnosisBusiness').textContent=vertical.label;
-      if(vertical.approved){
-        var d=vertical.stages.diagnosis;
-        document.getElementById('diagnosisTrigger').textContent=d.trigger;
-        document.getElementById('diagnosisParagraph').textContent=d.paragraph;
-        approved.hidden=false;fallback.hidden=true;
-      }else{
-        document.getElementById('fallbackBusiness').textContent=vertical.label;
-        document.getElementById('fallbackRole').textContent=vertical.role.name;
-        approved.hidden=true;fallback.hidden=false;
-      }
-    }
-    function reasonHelp(vertical,index){
-      var reason=vertical.stages.reasons[index],catches=vertical.stages.role.catches;
-      if(reason.help)return reason.help;
-      if(catches[index])return catches[index];
-      return 'Your '+vertical.role.name+' picks up what your team can\u2019t reach and hands it back with the details already written down.';
-    }
-    function roleLead(vertical){
-      if(vertical.approved&&vertical.stages.role.lead)return vertical.stages.role.lead;
-      return vertical.approved
-        ?'Those calls need someone who can pick up when your team physically can\u2019t. For '+vertical.label+', that\u2019s a '+vertical.role.name+'.'
-        :'For '+vertical.label+', the role we plan around is a '+vertical.role.name+'.';
-    }
-    function renderReasons(vertical){
-      var grid=document.getElementById('diagnosisReasons');
-      var approved=document.getElementById('reasonsApproved'),fallback=document.getElementById('reasonsFallback');
-      grid.replaceChildren();
-      if(!vertical.approved){
-        document.getElementById('reasonsFallbackBusiness').textContent=vertical.label;
-        document.getElementById('reasonsFallbackRole').textContent=vertical.role.name;
-        approved.hidden=true;fallback.hidden=false;
-        return;
-      }
-      approved.hidden=false;fallback.hidden=true;
-      vertical.stages.reasons.forEach(function(reason,index){
-        var card=document.createElement('div');
-        card.className='reason-card';
-        card.style.setProperty('--d',(300+index*220)+'ms');
-        card.style.setProperty('--y','32px');
-        var kind=document.createElement('small');kind.textContent=reason.kind==='customer'?'Your customers':'Your team';
-        var label=document.createElement('strong');label.textContent=reason.label;
-        var text=document.createElement('span');text.textContent=reason.text;
-        var helpLabel=document.createElement('small');helpLabel.className='reason-help-label';helpLabel.textContent='What changes';
-        var help=document.createElement('p');help.className='reason-help';help.textContent=reasonHelp(vertical,index);
-        card.append(kind,label,text,helpLabel,help);
-        grid.appendChild(card);
-      });
-    }
-    function renderRole(vertical){
-      document.getElementById('roleLead').textContent=roleLead(vertical);
-      document.getElementById('roleName').textContent=vertical.role.name;
-      var intro=document.getElementById('roleIntro'),catches=document.getElementById('roleCatches'),overflow=document.getElementById('roleOverflow');
-      catches.replaceChildren();
-      if(vertical.approved){
-        intro.textContent=vertical.stages.role.intro;
-        vertical.stages.role.catches.forEach(function(item){var li=document.createElement('li');li.textContent=item;catches.appendChild(li)});
-        overflow.textContent=vertical.stages.role.overflow;
-      }else{
-        intro.textContent='The '+vertical.role.name+' is the familiar role we plan your overflow and follow-up path around. Its exact tasks are confirmed during your audit.';
-        overflow.textContent='Your people answer first. The '+vertical.role.name+' catches what they physically cannot.';
-      }
-      document.getElementById('roleHipaa').hidden=!vertical.hipaa;
-    }
-    var presetNote=document.getElementById('presetNote'),usePreset=document.getElementById('usePreset');
-    function applyPreset(vertical){
-      if(!vertical){presetNote.dataset.preset='unselected';presetNote.textContent='Choose your business type above to load example numbers, or enter your own.';usePreset.hidden=true;return}
-      if(vertical.calculator){
-        Object.keys(vertical.calculator).forEach(function(key){if(calc[key])calc[key].value=vertical.calculator[key]});
-        calculate();
-        presetNote.dataset.preset='business';
-        presetNote.textContent='Example numbers for '+vertical.label+' are loaded. Adjust them to your business; these are planning inputs, not measured losses or guaranteed results.';
-        usePreset.hidden=false;
-      }else{
-        presetNote.dataset.preset='none';
-        presetNote.textContent='We do not have example numbers for '+vertical.label+' yet. The fields show generic planning defaults; enter your own. The math is the same.';
-        usePreset.hidden=true;
-      }
-    }
-    function renderContact(vertical){
-      document.getElementById('contactBusiness').textContent=vertical?vertical.label:'Let\u2019s find out where opportunity is leaking.';
-      document.getElementById('contactLede').textContent=!vertical
-        ?'Start with a short call-flow review. We will look at how calls arrive, who owns them, what happens after hours, and where follow-up can break down.'
-        :vertical.approved
-          ?vertical.stages.diagnosis.trigger+' Your '+vertical.role.name+' catches what your team can\u2019t; the audit maps how.'
-          :'We\u2019d rather ask than guess about '+vertical.label+'. Your '+vertical.role.name+' is the role we plan around; a short audit maps the rest.';
-    }
-    function renderAll(vertical){
-      selectedVertical=vertical;
-      updateAuditBooking(vertical);
-      if(!vertical){resetStagesAfter('choose');rail.hidden=true;applyPreset(null);renderContact(null);return}
-      renderDiagnosis(vertical);
-      renderReasons(vertical);
-      renderRole(vertical);
-      applyPreset(vertical);
-      renderContact(vertical);
-    }
-    window.addEventListener('dassa:response-library-loaded',function(){
-      if(!selectedVertical)return;
-      var current=findVertical(selectedVertical.id);if(!current)return;
-      // Re-render copy in place; never touch which page is open.
-      selectedVertical=current;updateAuditBooking(current);renderDiagnosis(current);renderReasons(current);renderRole(current);applyPreset(current);renderContact(current);
-      if(activeStage)setRail(activeStage.id);
-    });
-    // Choosing a business (re)starts the wash at Diagnosis.
-    window.DassaSelectBusiness=function(id,historyMode,opts){
-      opts=opts||{};
-      var vertical=findVertical(id);
-      var changed=!selectedVertical||!vertical||selectedVertical.id!==vertical.id;
-      renderAll(vertical);
-      if(!vertical)return null;
-      if(changed)resetStagesAfter('diagnosis');
-      if(historyMode){
-        var url=new URL(window.location.href);
-        if(url.searchParams.get('vertical')!==vertical.id||url.hash!=='#diagnosis'){
-          url.searchParams.set('vertical',vertical.id);url.hash='diagnosis';
-          window.history[historyMode==='replace'?'replaceState':'pushState']({vertical:vertical.id,stage:'diagnosis'},'',url.pathname+url.search+url.hash);
-        }
-      }
-      if(opts.reveal!==false)showStage('diagnosis',{instant:opts.instant,focus:opts.focus});
-      return vertical;
-    };
-    // Restore from a URL: reveal every stage up to the hash target, choreograph only the target.
-    window.DassaRestoreStages=function(id,hash){
-      var vertical=findVertical(id);
-      renderAll(vertical);
-      if(!vertical){resetStagesAfter('choose');return}
-      var target=hash&&STAGE_NUM[hash]?hash:'diagnosis';
-      var idx=ORDER.indexOf(target);
-      resetStagesAfter('diagnosis');
-      ORDER.slice(0,idx).forEach(function(stage){var el=stageEl(stage);if(el){el.dataset.revealed='true'}});
-      if(target==='contact')stageEl('contact').dataset.from=(hash==='contact'&&stageEl('calculator').dataset.revealed==='true')?'calculator':'virtual-role';
-      showStage(target,{instant:true});
-    };
-    document.querySelectorAll('.stage-next').forEach(function(link){
-      link.addEventListener('click',function(event){
-        var target=(link.getAttribute('href')||'').replace('#','');
-        if(!STAGE_NUM[target])return;
-        event.preventDefault();
-        pushStage(target);
-        showStage(target,{animate:target!=='contact'});
-      });
-    });
-    document.querySelectorAll('.stage-back').forEach(function(button){
-      button.addEventListener('click',function(){
-        var target=backFrom(button.dataset.back,button.closest('.stage'));
-        if(!STAGE_NUM[target])return;
-        pushStage(target);
-        showStage(target,{animate:false});
-      });
-    });
-    // Escape returns the hero to its sign state. Nothing scrolls; the rest of the site is already below.
-    function escapeRide(clear){
-      var url=new URL(window.location.href);url.searchParams.delete('vertical');url.hash='';
-      window.history.pushState({},'',url.pathname+url.search);
-      if(clear)document.getElementById('agentSearch').value='';
-      pendingFocusSearch=clear;
-      renderAll(null);
-    }
-    document.querySelectorAll('.stage-escape').forEach(function(button){button.addEventListener('click',function(){escapeRide(true)})});
-    document.getElementById('rideExit').addEventListener('click',function(){escapeRide(false)});
-    // Nav link to the calculator force-reveals it even with no business chosen.
-    document.querySelectorAll('a[href="#calculator"]:not(.stage-next)').forEach(function(link){
-      link.addEventListener('click',function(event){
-        event.preventDefault();
-        if(window.DassaShowHome)window.DassaShowHome();
-        if(!selectedVertical)applyPreset(null);
-        showStage('calculator',{animate:false});
-      });
-    });
-    document.querySelectorAll('a[href="#virtual-roles"]').forEach(function(link){
-      link.addEventListener('click',function(){var panel=document.getElementById('virtual-roles');panel.hidden=false});
-    });
-    usePreset.addEventListener('click',function(){if(selectedVertical&&selectedVertical.calculator)applyPreset(selectedVertical)});
-    document.querySelectorAll('a[href="#agentSearch"]').forEach(function(link){
-      link.addEventListener('click',function(event){event.preventDefault();document.getElementById('agentSearch').focus();document.getElementById('agentSearch').scrollIntoView({block:'center',behavior:'auto'})});
-    });
-    applyPreset(null);
-    calculate();
-  })();
-  </script>
-  <script>
-    (function(){
-      'use strict';
-
-      var catalog=Array.isArray(window.DASSA_AGENT_CATALOG)?window.DASSA_AGENT_CATALOG:[];
-      var industries=Array.isArray(window.DASSA_AGENT_INDUSTRIES)?window.DASSA_AGENT_INDUSTRIES:[];
-      var activeIndustryIndex=0;
-      var activeAgent=null;
-      var currentMatches=[];
-      var currentScores=[];
-      var activeResultIndex=-1;
-
-      var ui={
-        carousel:document.getElementById('agentCarousel'),
-        search:document.getElementById('agentSearch'),
-        searchButton:document.getElementById('agentSearchButton'),
-        searchResults:document.getElementById('agentSearchResults'),
-        searchStatus:document.getElementById('agentFinderStatus'),
-        industryTabs:document.getElementById('agentIndustryTabs'),
-        quickpicks:document.getElementById('heroQuickpicks'),
-        previous:document.getElementById('agentPrev'),
-        next:document.getElementById('agentNext'),
-        previousPreview:document.getElementById('agentPrevPreview'),
-        nextPreview:document.getElementById('agentNextPreview'),
-        industryIcon:document.getElementById('agentFamilyIcon'),
-        industryTitle:document.getElementById('agentFamilyTitle'),
-        industrySummary:document.getElementById('agentFamilySummary'),
-        list:document.getElementById('agentList'),
-        listNote:document.getElementById('agentListNote'),
-        business:document.getElementById('agentRoleBusiness'),
-        role:document.getElementById('agentRoleTitle'),
-        pain:document.getElementById('agentRolePain'),
-        detail:document.getElementById('agentRoleDetail'),
-        caller:document.getElementById('agentCaller'),
-        speaker:document.getElementById('agentSpeaker'),
-        response:document.getElementById('agentResponse'),
-        cta:document.getElementById('agentRoleCta'),
-        dots:document.getElementById('agentFamilyDots'),
-        counter:document.getElementById('agentFamilyCounter'),
-        status:document.getElementById('agentCarouselStatus')
-      };
-
-      if(!catalog.length||!industries.length||!ui.carousel)return;
-
-      function icon(name){
-        var element=document.createElement('span');
-        element.className='material-symbols-rounded';
-        element.setAttribute('aria-hidden','true');
-        element.textContent=name;
-        return element;
-      }
-
-      function industryFor(id){
-        return industries.find(function(industry){return industry.id===id})||industries[0];
-      }
-
-      function agentsFor(id){
-        return catalog.filter(function(agent){return agent.industry===id});
-      }
-
-      function preview(target,industry){
-        target.replaceChildren();
-        var iconShell=document.createElement('span');
-        iconShell.className='agent-family-icon';
-        iconShell.appendChild(icon(industry.icon));
-        var title=document.createElement('h3');
-        title.textContent=industry.title;
-        var summary=document.createElement('p');
-        summary.textContent=industry.summary;
-        target.append(iconShell,title,summary);
-      }
-
-      function visibleAgents(industry){return agentsFor(industry.id)}
-
-      function render(){
-        var industry=industries[activeIndustryIndex];
-        var industryAgents=agentsFor(industry.id);
-        var previous=industries[(activeIndustryIndex-1+industries.length)%industries.length];
-        var next=industries[(activeIndustryIndex+1)%industries.length];
-        if(!activeAgent||activeAgent.industry!==industry.id)activeAgent=industryAgents[0];
-
-        preview(ui.previousPreview,previous);
-        preview(ui.nextPreview,next);
-        ui.industryIcon.textContent=industry.icon;
-        ui.industryTitle.textContent=industry.title;
-        ui.industrySummary.textContent=industry.summary;
-        ui.counter.textContent=(activeIndustryIndex+1)+' of '+industries.length;
-
-        ui.list.replaceChildren();
-        visibleAgents(industry).forEach(function(agent){
-          var button=document.createElement('button');
-          button.type='button';
-          button.className='agent-option'+(agent.id===activeAgent.id?' is-selected':'');
-          button.setAttribute('aria-pressed',agent.id===activeAgent.id?'true':'false');
-          button.appendChild(icon(agent.icon));
-          var copy=document.createElement('span');
-          var business=document.createElement('strong');
-          var role=document.createElement('small');
-          business.textContent=agent.business;
-          role.textContent=agent.role;
-          copy.append(business,role);
-          var check=icon('check_circle');
-          check.classList.add('agent-check');
-          button.append(copy,check);
-          button.addEventListener('click',function(){selectAgent(agent,false);ui.list.querySelector('[aria-pressed="true"]').focus({preventScroll:true})});
-          ui.list.appendChild(button);
-        });
-
-        ui.listNote.textContent=industryAgents.length+' specialized roles in this industry. Pick one, then start its diagnosis.';
-        ui.business.textContent=activeAgent.business;
-        ui.role.textContent=activeAgent.role;
-        ui.pain.textContent=activeAgent.cardData.pain;
-        ui.detail.textContent=activeAgent.cardData.fix;
-        ui.caller.textContent=industry.caller;
-        ui.speaker.textContent=activeAgent.role;
-        ui.response.textContent=industry.response;
-        ui.cta.href='#diagnosis';
-        ui.cta.replaceChildren();ui.cta.append('Start with '+activeAgent.business+' ',icon('arrow_forward'));
-        ui.cta.setAttribute('aria-label','Start the diagnosis for '+activeAgent.business);
-
-        Array.from(ui.dots.children).forEach(function(dot,index){dot.setAttribute('aria-current',index===activeIndustryIndex?'true':'false')});
-        Array.from(ui.industryTabs.children).forEach(function(tab,index){tab.setAttribute('aria-pressed',index===activeIndustryIndex?'true':'false')});
-        ui.status.textContent=industry.title+', industry '+(activeIndustryIndex+1)+' of '+industries.length+'. Showing '+activeAgent.role+' for '+activeAgent.business+'.';
-      }
-
-      // Direction comes from the raw index before wrapping, so last->first still reads as "next".
-      var familyMain=document.querySelector('.agent-family-main');
-      function enterCarousel(direction){
-        if(!direction||!familyMain||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-        var entering=direction>0?'is-enter-next':'is-enter-prev';
-        familyMain.classList.remove('is-enter-next','is-enter-prev');
-        void familyMain.offsetWidth;
-        familyMain.classList.add(entering);
-        requestAnimationFrame(function(){requestAnimationFrame(function(){
-          familyMain.classList.remove('is-enter-next','is-enter-prev');
-        })});
-      }
-
-      function selectIndustry(index,scroll){
-        var direction=index>activeIndustryIndex?1:(index<activeIndustryIndex?-1:0);
-        activeIndustryIndex=(index+industries.length)%industries.length;
-        activeAgent=agentsFor(industries[activeIndustryIndex].id)[0];
-        render();
-        enterCarousel(direction);
-        if(scroll)ui.carousel.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
-      }
-
-      function selectAgent(agent,scroll){
-        activeAgent=agent;
-        activeIndustryIndex=Math.max(0,industries.findIndex(function(industry){return industry.id===agent.industry}));
-        render();
-        if(scroll)ui.carousel.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});
-      }
-
-      function normalize(value){
-        return String(value||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
-      }
-
-      function singular(token){
-        if(token.length>4&&token.endsWith('ies'))return token.slice(0,-3)+'y';
-        if(token.length>3&&token.endsWith('es'))return token.slice(0,-2);
-        if(token.length>3&&token.endsWith('s'))return token.slice(0,-1);
-        return token;
-      }
-
-      function distance(a,b){
-        var previous=Array.from({length:b.length+1},function(_,index){return index});
-        for(var i=1;i<=a.length;i++){
-          var current=[i];
-          for(var j=1;j<=b.length;j++)current[j]=Math.min(current[j-1]+1,previous[j]+1,previous[j-1]+(a[i-1]===b[j-1]?0:1));
-          previous=current;
-        }
-        return previous[b.length];
-      }
-
-      function fieldsFor(agent){
-        return [agent.business,agent.role,industryFor(agent.industry).title].concat(agent.keywords||[]).map(normalize);
-      }
-
-      function score(agent,query){
-        var normalized=normalize(query);
-        if(!normalized)return 0;
-        var fields=fieldsFor(agent);
-        var terms=normalized.split(' ').map(singular);
-        var total=0;
-        // The business NAME outranks keywords, role and industry. Without this, typing "in" put Auto Salvage
-        // and Facilities Management above Insurance Agencies, because a keyword match scored the same as a
-        // name match and the tie broke alphabetically. Typing the first letters of your trade must surface
-        // that trade first.
-        var biz=normalize(agent.business);
-        if(biz===normalized)total+=260;
-        else if(biz.startsWith(normalized))total+=190;
-        else if(biz.split(' ').some(function(word){return word.startsWith(normalized)}))total+=140;
-
-        if(fields.some(function(field){return field===normalized}))total+=120;
-        else if(fields.some(function(field){return field.startsWith(normalized)}))total+=85;
-        else if(fields.some(function(field){return field.indexOf(normalized)>=0}))total+=55;
-
-        for(var i=0;i<terms.length;i++){
-          var term=terms[i];
-          var best=0;
-          fields.forEach(function(field){
-            field.split(' ').map(singular).forEach(function(token){
-              if(token===term)best=Math.max(best,34);
-              else if(token.startsWith(term)||term.startsWith(token))best=Math.max(best,25);
-              else if(token.indexOf(term)>=0||term.indexOf(token)>=0)best=Math.max(best,18);
-              else{
-                var edit=distance(token,term);
-                if(edit===1&&Math.max(token.length,term.length)>=4)best=Math.max(best,15);
-                else if(edit===2&&Math.max(token.length,term.length)>=7)best=Math.max(best,9);
-              }
-            });
-          });
-          if(!best)return -1;
-          total+=best;
-        }
-        return total;
-      }
-
-      function rank(query){
-        currentScores=catalog.map(function(agent){return{agent:agent,score:score(agent,query)}}).filter(function(result){return result.score>=0}).sort(function(a,b){return b.score-a.score||a.agent.business.localeCompare(b.agent.business)});
-        return currentScores.map(function(result){return result.agent});
-      }
-
-      function confident(query,matches){
-        if(!normalize(query)||!matches.length)return false;
-        if(matches.length===1)return true;
-        var first=currentScores[0]?currentScores[0].score:0;
-        var second=currentScores[1]?currentScores[1].score:0;
-        return first>=100&&first-second>=25;
-      }
-
-      function closeResults(){
-        ui.searchResults.hidden=true;
-        ui.search.setAttribute('aria-expanded','false');
-        ui.search.removeAttribute('aria-activedescendant');
-        activeResultIndex=-1;
-      }
-
-      // The dropdown is position:fixed so opening/closing it cannot move the hero's layout; pin it under the field.
-      function placeResults(){
-        var r=ui.search.getBoundingClientRect(),shell=ui.search.closest('.agent-search');
-        var sr=(shell||ui.search).getBoundingClientRect();
-        ui.searchResults.style.left=sr.left+'px';ui.searchResults.style.width=sr.width+'px';ui.searchResults.style.right='auto';
-        var below=window.innerHeight-sr.bottom-24,above=sr.top-24;
-        // Open above the field when a short screen leaves no room beneath it (320x640 phones).
-        if(below<120&&above>below*2){ui.searchResults.style.top='auto';ui.searchResults.style.bottom=(window.innerHeight-sr.top+8)+'px';ui.searchResults.style.maxHeight=Math.max(160,above)+'px'}
-        else{ui.searchResults.style.bottom='auto';ui.searchResults.style.top=(sr.bottom+8)+'px';ui.searchResults.style.maxHeight=Math.max(160,below)+'px'}
-      }
-      window.addEventListener('resize',function(){if(!ui.searchResults.hidden)placeResults()});
-      var lastFieldTop=null;
-      window.addEventListener('scroll',function(){if(ui.searchResults.hidden)return;var t=ui.search.getBoundingClientRect().top;if(t!==lastFieldTop){lastFieldTop=t;placeResults()}},{passive:true});
-      // The results box must live in the root stacking context: .agent-search-shell (z-index:4) and the animated
-      // .hero-sign each open a stacking context, so a z-index inside them can never rise above the sticky header.
-      if(ui.searchResults.parentNode!==document.body)document.body.appendChild(ui.searchResults);
-      // Living on <body>, the results box inherits nothing from the dark hero, so it is recoloured by
-      // an explicit body-scoped rule. Without this it flashes as a white slab on the first keystroke.
-      document.body.classList.add('hero-dark-results');
-      // Normally we show the top ten; the "+N more" chip raises the cap for one render so all 52 are listed.
-      var RESULT_CAP=10,resultLimit=RESULT_CAP;
-      function renderResults(matches){
-        currentMatches=matches;
-        ui.searchResults.replaceChildren();
-        if(!matches.length){
-          var empty=document.createElement('p');
-          empty.className='agent-no-results';
-          empty.append('Don’t see your business? ');
-          var contact=document.createElement('a');
-          contact.href='https://calendly.com/edassa-dassasolutions/30min';contact.setAttribute('data-booking','');
-          contact.textContent='Talk to Eric about a custom fit.';
-          empty.appendChild(contact);
-          ui.searchResults.appendChild(empty);
-        }else{
-          matches.slice(0,resultLimit).forEach(function(agent,index){
-            var button=document.createElement('button');
-            button.type='button';
-            button.id='agent-search-option-'+index;
-            button.className='agent-search-result'+(index===activeResultIndex?' is-active':'');
-            button.setAttribute('role','option');
-            button.setAttribute('aria-selected',index===activeResultIndex?'true':'false');
-            button.appendChild(icon(agent.icon));
-            var copy=document.createElement('span');
-            var business=document.createElement('strong');
-            var role=document.createElement('span');
-            business.textContent=agent.business;
-            role.textContent=agent.role+' · '+industryFor(agent.industry).title;
-            copy.append(business,role);
-            button.appendChild(copy);
-            button.addEventListener('click',function(){choose(agent,true)});
-            ui.searchResults.appendChild(button);
-          });
-        }
-        ui.searchResults.hidden=false;
-        placeResults();
-        ui.search.setAttribute('aria-expanded','true');
-        ui.searchStatus.textContent=matches.length?matches.length+' matching virtual agents found.':'No exact matching virtual agent found.';
-      }
-
-      function choose(agent,scroll){
-        selectAgent(agent,false);
-        ui.search.value=agent.business;
-        ui.search.blur();
-        // A mouse click on a result button makes Chrome scroll the document to keep the click point in view once the
-        // listbox and the hero layer change underneath it (a keyboard Enter never does). Let the click event finish
-        // completely, then change layout on the next frame with the document position pinned.
-        var pinned=window.scrollY;
-        closeResults();
-        requestAnimationFrame(function(){
-          if(window.scrollY!==pinned)window.scrollTo({top:pinned,behavior:'auto'});
-          window.DassaSelectBusiness(agent.id,'push',{reveal:scroll!==false});
-        });
-      }
-
-      function handleSearch(){
-        var query=ui.search.value.trim();
-        activeResultIndex=-1;
-        resultLimit=RESULT_CAP;
-        if(!query){
-          currentMatches=[];
-          currentScores=[];
-          closeResults();
-          ui.searchStatus.textContent='Describe your business or pick one of the common types below.';
-          return;
-        }
-        var matches=rank(query);
-        renderResults(matches);
-        if(confident(query,matches)){
-          ui.searchStatus.textContent='Best match: '+matches[0].business+'. Choose a result or press Enter to start your diagnosis.';
-        }
-      }
-
-      // The hero's trade line asks the same ranker what the visitor means, so the line and the dropdown never disagree.
-      window.DassaBestMatch=function(query){var matches=rank(query||'');return confident(query||'',matches)?matches[0]:null};
-
-      industries.forEach(function(industry,index){
-        var dot=document.createElement('button');
-        dot.type='button';
-        dot.className='agent-family-dot';
-        dot.setAttribute('aria-label','Show '+industry.title);
-        dot.addEventListener('click',function(){selectIndustry(index,false)});
-        ui.dots.appendChild(dot);
-
-        var tab=document.createElement('button');
-        tab.type='button';
-        tab.className='agent-industry-tab';
-        tab.setAttribute('aria-pressed',index===0?'true':'false');
-        tab.appendChild(icon(industry.icon));
-        var label=document.createElement('span');
-        label.textContent=industry.title;
-        tab.appendChild(label);
-        tab.addEventListener('click',function(){
-          ui.search.value='';
-          closeResults();
-          selectIndustry(index,true);
-        });
-        ui.industryTabs.appendChild(tab);
-      });
-
-      ui.previous.addEventListener('click',function(){selectIndustry(activeIndustryIndex-1,false)});
-      ui.next.addEventListener('click',function(){selectIndustry(activeIndustryIndex+1,false)});
-      ui.carousel.addEventListener('keydown',function(event){
-        if(event.key==='ArrowLeft'){event.preventDefault();selectIndustry(activeIndustryIndex-1,false)}
-        else if(event.key==='ArrowRight'){event.preventDefault();selectIndustry(activeIndustryIndex+1,false)}
-      });
-
-      var touchX=0;
-      ui.carousel.addEventListener('touchstart',function(event){touchX=event.changedTouches[0].clientX},{passive:true});
-      ui.carousel.addEventListener('touchend',function(event){var delta=event.changedTouches[0].clientX-touchX;if(Math.abs(delta)>55)selectIndustry(activeIndustryIndex+(delta>0?-1:1),false)},{passive:true});
-      // Refocusing a box that already holds the chosen business must not pop the results back over a later stage.
-      ui.search.addEventListener('focus',function(){if(ui.search.value.trim()&&!(activeAgent&&ui.search.value.trim()===activeAgent.business))handleSearch()});
-      ui.search.addEventListener('input',handleSearch);
-      ui.search.addEventListener('keydown',function(event){
-        var shown=currentMatches.slice(0,resultLimit);
-        if(event.key==='ArrowDown'||event.key==='ArrowUp'){
-          event.preventDefault();
-          if(ui.searchResults.hidden)handleSearch();
-          shown=currentMatches.slice(0,resultLimit);
-          if(!shown.length)return;
-          activeResultIndex=event.key==='ArrowDown'?activeResultIndex+1:activeResultIndex-1;
-          activeResultIndex=(activeResultIndex+shown.length)%shown.length;
-          renderResults(currentMatches);
-          ui.search.setAttribute('aria-activedescendant','agent-search-option-'+activeResultIndex);
-        }else if(event.key==='Enter'){
-          event.preventDefault();
-          if(!ui.search.value.trim())return;
-          var chosen=shown[activeResultIndex>=0?activeResultIndex:0];
-          if(chosen)choose(chosen,true);
-        }else if(event.key==='Escape')closeResults();
-      });
-      ui.searchButton.addEventListener('click',function(){if(!ui.search.value.trim()){ui.search.focus();ui.searchStatus.textContent='Enter a business type or pick one from the band above.';return}var matches=rank(ui.search.value);if(matches[0])choose(matches[0],true);else renderResults([])});
-      // The "+N more" chip lives outside the search shell but deliberately opens the results box,
-      // so it is exempt from the click-away close that would otherwise shut it in the same tick.
-      document.addEventListener('click',function(event){if(!event.target.closest('.agent-search-shell')&&!event.target.closest('.biz-chip.is-more'))closeResults()});
-
-      // ---- Quick picks: seven common trades, then a door to the rest through the combobox.
-      // The drifting 52-chip band is gone — it clipped labels mid-word at both mask edges and read as a
-      // rendering fault. All 52 stay reachable through #agentSearch, which is already a real combobox.
-      var QUICK_PICKS=['auto-repair','towing','dental','high-end-salons','law-firms','churches','warehouses'];
-      function buildQuickPicks(){
-        if(!ui.quickpicks)return;
-        var picked=QUICK_PICKS.map(function(id){
-          return catalog.find(function(a){return a.id===id})||null;
-        }).filter(Boolean);
-        picked.forEach(function(agent){
-          var chip=document.createElement('button');
-          chip.type='button';
-          chip.className='biz-chip';
-          chip.dataset.businessId=agent.id;
-          chip.appendChild(icon(agent.icon));
-          chip.appendChild(document.createTextNode(agent.business));
-          chip.addEventListener('click',function(){choose(agent,true)});
-          ui.quickpicks.appendChild(chip);
-        });
-        var rest=catalog.length-picked.length;
-        if(rest>0){
-          var more=document.createElement('button');
-          more.type='button';
-          more.className='biz-chip is-more';
-          more.textContent='+'+rest+' more';
-          more.setAttribute('aria-label','Show all '+catalog.length+' business types');
-          // Opens the existing results list with everything in it, rather than building a second widget.
-          more.addEventListener('click',function(){
-            resultLimit=catalog.length;
-            activeResultIndex=-1;
-            ui.search.focus();
-            renderResults(catalog.slice());
-          });
-          ui.quickpicks.appendChild(more);
-        }
-      }
-      buildQuickPicks();
-      // Build 036: the tour lives on the home page, so leave the Virtual Roles page before starting it.
-      ui.cta.addEventListener('click',function(event){event.preventDefault();if(window.DassaShowHome)window.DassaShowHome();choose(activeAgent,true)});
-      function restoreSelection(){
-        var id=window.DassaResolveBusinessId(new URLSearchParams(window.location.search).get('vertical'));
-        var restored=id?catalog.find(function(agent){return agent.id===id}):null;
-        activeAgent=restored||catalog[0];
-        activeIndustryIndex=Math.max(0,industries.findIndex(function(industry){return industry.id===activeAgent.industry}));
-        ui.search.value=restored?restored.business:'';
-        closeResults();
-        window.DassaRestoreStages(restored?restored.id:null,window.location.hash.replace('#',''));
-        render();
-      }
-      window.addEventListener('popstate',restoreSelection);
-      restoreSelection();
-    })();
-  </script>
-<script>
-  /* Build 036 (Eric, 09-23): every menu item is its own page. The address hash picks the page;
-     anything else (including the tour's own stage hashes) is the home page with the hero. */
-  (function(){
-    var PAGES={'about':'about','call-flow':'flow','opportunity-flow':'flow','virtual-roles':'roles','what-we-examine':'systems','systems':'systems','phones':'phones','contact-eric':'contact','reach-eric':'contact'};
-    function apply(){
-      var view=PAGES[window.location.hash.replace('#','')]||'home';
-      // The browser jumps to the matching id after a hash change; every page still opens at the top.
-      if(document.body.dataset.view!==view){document.body.dataset.view=view;window.scrollTo(0,0);requestAnimationFrame(function(){window.scrollTo(0,0)})}
-      if(view==='roles'){var roles=document.getElementById('virtual-roles');if(roles)roles.hidden=false}
-      document.querySelectorAll('#navLinks a').forEach(function(a){
-        var target=PAGES[(a.getAttribute('href')||'').replace('#','')];
-        if(target&&target===view)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
-      });
-    }
-    window.DassaShowHome=function(){
-      if(document.body.dataset.view==='home')return;
-      window.history.pushState({},'',window.location.pathname+window.location.search);
-      apply();
-    };
-    window.addEventListener('hashchange',apply);
-    window.addEventListener('popstate',apply);
-    apply();
-  })();
-  </script>
+  <footer class="site-footer">
+    <div class="wrap footer-inner"><span>© 2026 Dassa Solutions</span><a href="#top">Back to top ↑</a></div>
+  </footer>
+  <noscript><p class="noscript-note">The story selector and comparison need JavaScript. You can still <a href="https://calendly.com/edassa-dassasolutions/30min">book a Communication Audit</a> or call <a href="tel:+14073692856">(407) 369-2856</a>.</p></noscript>
 </body>
 </html>

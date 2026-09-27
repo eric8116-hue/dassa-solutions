@@ -1,18 +1,20 @@
 {
   "product": "Dassa Solutions Website",
-  "build": "DS-2026.09.23-037",
-  "status": "draft-untested",
-  "date": "2026-09-23",
-  "description": "Eric's headshot on the About Me page.",
+  "build": "DS-2026.09.27-053",
+  "status": "production-release",
+  "date": "2026-09-27",
+  "description": "Approved five-trade Build 053 experience released to production.",
   "approvedBuild": {
-    "build": "DS-2026.09.22-011",
-    "approvedDate": "2026-09-22",
-    "note": "011 remains the approved build. Baselines committed: 012 (6577154), 013 (9c01cd6), 015 (046529f). 016-019 are uncommitted and need Eric's eyes-on review."
+    "build": "DS-2026.09.27-053",
+    "approvedDate": "2026-09-27",
+    "note": "Eric approved Build 053 after isolated Site Preview review."
   },
   "qa": {
-    "checksPassed": 234,
-    "checksTotal": 234,
-    "note": "037 = 036 + headshot image only; 036 suite 234/234."
+    "checksPassed": null,
+    "checksTotal": null,
+    "note": "Focused Site Preview browser review at 1440px and 390px: no horizontal overflow; five trade states, conditional one-call math, navigation, and booking link verified. Legacy full suite not run for this replacement."
   },
-  "previewUrl": "http://127.0.0.1:8802/"
+  "previewUrl": "http://127.0.0.1:8789/",
+  "mainSiteChanged": true,
+  "publicDeployment": true
 }

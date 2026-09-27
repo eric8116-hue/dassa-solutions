@@ -129,7 +129,10 @@ test.describe('The ride in the hero (Build 015)', () => {
     const helps = page.locator('#diagnosisReasons .reason-help');
     await expect(helps).toHaveCount(2);
     for (const t of await helps.allTextContents()) expect(t.trim().length).toBeGreaterThan(10);
-    await expect(page.locator('#reasons [data-booking]')).toBeVisible();
+    // Build 047: exactly one audit action is visible on page 2 at any width: the header button on
+    // desktop, or a quiet link on the page when the header button is tucked into the phone menu.
+    const audit = page.locator('.nav-actions [data-booking], #reasons [data-booking]').filter({ visible: true });
+    await expect(audit).toHaveCount(1);
     await page.waitForTimeout(isReduced(testInfo) ? 100 : 500);
     await expect(page.locator('#reasonsTitle')).toBeFocused();
 
@@ -234,11 +237,6 @@ test.describe('The ride in the hero (Build 015)', () => {
     expect(await page.evaluate(() => window.scrollY)).toBe(0);
   });
 
-  test('legacy ?vertical=pool-spa resolves through the single resolver', async ({ page }) => {
-    await page.goto('/?vertical=pool-spa');
-    await expect(page.locator('#diagnosisBusiness')).toHaveText('Pool & Spa Services');
-    await expect(page.locator('#fallbackRole')).toHaveText('Virtual Service Desk');
-  });
 
   test('browser back walks the pages back and the rail follows', async ({ page }) => {
     await page.goto('/');
@@ -260,9 +258,9 @@ test.describe('The ride in the hero (Build 015)', () => {
     await expect(page.locator('#virtual-role')).toBeVisible();
     await page.locator('#virtual-role .stage-escape').click();
     await expect(page.locator('.hero')).not.toHaveClass(/is-riding/, { timeout: 3000 });
-    await chooseBusiness(page, 'spa', 'Spas');
+    await chooseBusiness(page, 'auto-repair', 'Auto Repair');
     await expect(page.locator('#virtual-role')).toBeHidden();
-    await expect(page.locator('#roleName')).toHaveText('Virtual Spa Concierge');
+    await expect(page.locator('#roleName')).toHaveText('Virtual Service Advisor');
   });
 
   test('escape returns the hero to its sign state, no scroll', async ({ page }, testInfo) => {
@@ -280,14 +278,15 @@ test.describe('The ride in the hero (Build 015)', () => {
     if (!isProject(testInfo, TOUCH_PROJECTS)) await expect(page.locator('#agentSearch')).toBeFocused();
   });
 
-  test('"Get off the ride" restores the hero, keeps the search value, and does not reopen results', async ({ page }) => {
+  // Build 047: "Get off the ride" was merged into "Choose a different business", the one exit on page 4.
+  test('the wrap-up has one exit: "Choose a different business" restores the hero with an empty search', async ({ page }) => {
     await page.goto('/?vertical=towing#contact');
     await expect(page.locator('#contact')).toBeVisible();
-    await page.locator('#rideExit').click();
+    await expect(page.locator('#rideExit')).toHaveCount(0);
+    await page.locator('#startOver').click();
     await expect(page.locator('.hero')).not.toHaveClass(/is-riding/, { timeout: 3000 });
     await expect(page.locator('#heroSign')).toBeVisible();
-    await expect(page.locator('#agentSearch')).toHaveValue('Towing');
-    await page.locator('#agentSearch').focus();
+    await expect(page.locator('#agentSearch')).toHaveValue('');
     await page.waitForTimeout(200);
     await expect(page.locator('#agentSearchResults')).toBeHidden();
   });
@@ -301,12 +300,13 @@ test.describe('The ride in the hero (Build 015)', () => {
   test('booking links carry the business into the Calendly prefill', async ({ page }) => {
     await page.goto('/?vertical=auto-body#reasons');
     await expect(page.locator('#reasons')).toBeVisible();
-    const href = await page.locator('#reasons [data-booking]').getAttribute('href');
+    const booking = page.locator('.nav-actions [data-booking], #reasons [data-booking]').filter({ visible: true });
+    const href = await booking.getAttribute('href');
     expect(href).toContain('calendly.com');
     const prefill = new URL(href || '').searchParams.get('a1') || '';
     expect(prefill).toContain('Business type: Auto Body');
     expect(prefill).toContain('Audit focus:');
-    await expect(page.locator('#reasons [data-booking]')).toHaveText('Book an Auto Body Communication Audit');
+    await expect(booking).toHaveText('Book an Auto Body Communication Audit');
   });
 
   test('carousel browsing never starts the ride; its CTA scrolls to the top then rides', async ({ page }) => {
@@ -340,31 +340,11 @@ test.describe('The ride in the hero (Build 015)', () => {
     expect(landed.some((x) => x === 'agentSearch' || /biz-chip/.test(x))).toBe(false);
   });
 
-  // Build 022 (Eric): three separate thick glowing arrows drawn as one SVG, pulsing with SHOW ME.
-  test('SHOW ME glows yellow and the arrows point at the field; static under reduced motion', async ({ page }, testInfo) => {
+  test('the hero has no old SHOW ME prompt or animated arrows', async ({ page }) => {
     await page.goto('/');
-    const sign = page.locator('.show-me');
-    const arrows = page.locator('.sign-arrows svg path');
-    await expect(sign).toBeVisible();
-    await expect(sign).toHaveText(/show me/i);
-    await expect(arrows).toHaveCount(3);
-
-    // The pointing is positional, not DOM order: the arrows must sit between the sign and the field.
-    const signBox = await sign.boundingBox();
-    const arrowBox = await page.locator('.sign-arrows').boundingBox();
-    const fieldBox = await page.locator('#agentSearch').boundingBox();
-    expect(arrowBox.y).toBeGreaterThan(signBox.y);
-    expect(arrowBox.y + arrowBox.height).toBeLessThanOrEqual(fieldBox.y + 2);
-
-    const names = await page.evaluate(() => [
-      getComputedStyle(document.querySelector('.show-me')).animationName,
-      getComputedStyle(document.querySelector('.hero .sign-arrows svg')).animationName
-    ]);
-    if (isReduced(testInfo)) {
-      expect(names).toEqual(['none', 'none']);
-      return;
-    }
-    expect(names).toEqual(['yellowGlow', 'arrowGlow']);
+    await expect(page.locator('.show-me')).toHaveCount(0);
+    await expect(page.locator('.sign-arrows')).toHaveCount(0);
+    await expect(page.locator('#tradeLine')).toHaveCount(0);
   });
 
   test('the diagnosis choreography is wired and settles', async ({ page }, testInfo) => {
@@ -385,13 +365,15 @@ test.describe('The ride in the hero (Build 015)', () => {
 });
 
 test.describe('The lit sign hero (Build 016)', () => {
-  test('the quick-pick chips are gone and a pitch paragraph sits under the field', async ({ page }) => {
+  // Build 046: the pitch became a one-line prompt directly above the field.
+  test('the quick-pick chips are gone and a one-line prompt sits above the field', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('.biz-chip')).toHaveCount(0);
     await expect(page.locator('.hero-pitch')).toBeVisible();
     const fieldBox = await page.locator('#agentSearch').boundingBox();
     const pitchBox = await page.locator('.hero-pitch').boundingBox();
-    expect(pitchBox.y).toBeGreaterThan(fieldBox.y);
+    expect(pitchBox.y).toBeLessThan(fieldBox.y);
+    expect((await page.locator('.hero-pitch').textContent()).trim().split(/\s+/).length).toBeLessThanOrEqual(20);
   });
 
   // Build 021 (Eric): the field is rounded now, still slim.
@@ -403,23 +385,25 @@ test.describe('The lit sign hero (Build 016)', () => {
     expect(box.height).toBeLessThanOrEqual(52);
   });
 
-  test('the trade line only shows phrases that are verbatim in a reviewed trigger', async ({ page }) => {
+  test('exactly five fixed scenes pair the active image and the active message', async ({ page }) => {
     await page.goto('/');
-    const frag = page.locator('#tradeLine .trade-line-frag');
-    await expect(frag).not.toHaveText('', { timeout: 6000 });
-    const ok = await page.evaluate(() => {
-      const shown = document.querySelector('#tradeLine .trade-line-frag').textContent;
-      return (window.DASSA_BUSINESS_SUMMARIES || []).some((s) => s.approved && s.stages && s.stages.diagnosis.trigger.indexOf(shown) >= 0);
+    const state = await page.evaluate(() => {
+      const activeImage = document.querySelector('#heroScenes .hero-scene.is-current');
+      const activeText = document.querySelector('#heroSignTitle .hl-saying.is-current');
+      const scene = window.DASSA_HERO_SCENES.find((item) => getComputedStyle(activeImage).backgroundImage.includes(item.src));
+      return {
+        count: window.DASSA_HERO_SCENES.length,
+        sceneText: scene && scene.saying,
+        text: activeText && activeText.textContent.replace(/\s+/g, ' ').trim(),
+        imageTransition: getComputedStyle(activeImage).transition,
+        textTransition: getComputedStyle(activeText).transition
+      };
     });
-    expect(ok).toBe(true);
-  });
-
-  test('typing a reviewed trade makes the line theirs', async ({ page }) => {
-    await page.goto('/');
-    await expect(page.locator('#tradeLine .trade-line-frag')).not.toHaveText('', { timeout: 6000 });
-    await page.locator('#agentSearch').fill('towing');
-    await expect(page.locator('#tradeLine')).toHaveClass(/is-yours/);
-    await expect(page.locator('#tradeLine .trade-line-lead b')).toHaveText('towing company');
+    expect(state.count).toBe(5);
+    expect(state.sceneText).toBeTruthy();
+    expect(state.text).toContain(state.sceneText.split('|')[0]);
+    expect(state.text).toContain(state.sceneText.split('|')[1]);
+    expect(state.imageTransition).toBe(state.textTransition);
   });
 
   test('two scene layers exist and exactly one is current', async ({ page }) => {
@@ -441,7 +425,8 @@ test.describe('The lit sign hero (Build 016)', () => {
       expect(await current(), 'reduced motion must not hard-cut the photo').toBe(first);
       return;
     }
-    await expect.poll(current, { timeout: 9000 }).not.toBe(first);
+    // Scenes hold for 8.5s since Build 045, so allow a little more than one scene.
+    await expect.poll(current, { timeout: 12000 }).not.toBe(first);
 
     // Riding must silence the rotation, or it burns cycles behind an opaque layer.
     await chooseBusiness(page, 'mechanic', 'Auto Repair');

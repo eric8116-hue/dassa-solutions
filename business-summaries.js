@@ -4,10 +4,8 @@
   var catalog = window.DASSA_AGENT_CATALOG || [];
   var legacy = window.DASSA_VERTICALS || [];
 
-  // One resolver for every ?vertical= value: catalog id, a legacy verticalId, or the old pool-spa alias.
   window.DassaResolveBusinessId = function (value) {
     if (typeof value !== 'string' || !value) return null;
-    if (value === 'pool-spa') value = 'pool-spa-services';
     var agent = catalog.find(function (item) { return item.id === value || item.verticalId === value; });
     return agent ? agent.id : null;
   };
