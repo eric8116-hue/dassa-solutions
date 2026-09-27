@@ -1,24 +1,16 @@
-# Dassa Solutions — one-line deploy
-# 1. Stamps a fresh build number into every page (cache-buster)
-# 2. Publishes to the "main" production branch regardless of local git branch name
-# Usage: from this folder, run  .\deploy.ps1
+# Publish only the reviewed public directory.
+# Update publish/ before running this script.
 
-$stamp = Get-Date -Format "yyyyMMddHHmm"
-Write-Host "Stamping build $stamp ..." -ForegroundColor Cyan
+$ErrorActionPreference = 'Stop'
+$siteRoot = Join-Path $PSScriptRoot 'publish'
 
-Get-ChildItem -Path . -Filter *.html | ForEach-Object {
-    $t = Get-Content $_.FullName -Raw
-    $t = $t -replace 'BUILD \d+', "BUILD $stamp"
-    $t = $t -replace '\?v=\d+', "?v=$stamp"
-    Set-Content -Path $_.FullName -Value $t -NoNewline
+if (-not (Test-Path -LiteralPath (Join-Path $siteRoot 'index.html'))) {
+    throw "Missing public site: $siteRoot"
 }
 
-Write-Host "Deploying ..." -ForegroundColor Cyan
-wrangler pages deploy . --project-name dassa-solutions --branch main --commit-dirty=true
+wrangler pages deploy $siteRoot --project-name dassa-solutions --branch main
+if ($LASTEXITCODE -ne 0) {
+    throw "Wrangler deployment failed with exit code $LASTEXITCODE"
+}
 
-$Host.UI.RawUI.WindowTitle = "BUILD $stamp -- LIVE"
-
-Write-Host ""
-Write-Host "=======================================================" -ForegroundColor Green
-Write-Host " BUILD $stamp  ->  https://dassa-solutions.pages.dev/?v=$stamp" -ForegroundColor Green
-Write-Host "=======================================================" -ForegroundColor Green
+Write-Host "Dassa Solutions is live at https://dassasolutions.com/" -ForegroundColor Green

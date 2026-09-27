@@ -1,0 +1,4 @@
+# Serve the reviewed site package when GitHub triggers a Pages deployment.
+name = "dassa-solutions"
+pages_build_output_dir = "./publish"
+compatibility_date = "2026-09-17"

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dassa Communication Audit</title>
+<style>
+  :root{--blue:#1769E0;--navy:#0B1F3A;--ink:#25313C;--muted:#5B6B7A;--line:#D7E1EF;--pale:#F4F8FF;}
+  *{box-sizing:border-box;} body{margin:0;background:#eef2f6;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.42;}
+  .sheet{width:8.5in;min-height:11in;margin:24px auto;background:#fff;padding:.45in;display:flex;flex-direction:column;gap:20px;box-shadow:0 6px 24px rgba(11,31,58,.15);}
+  .top{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--navy);padding-bottom:17px;gap:22px;}
+  .logo{width:205px;height:auto;}.type{margin:8px 0 0;color:var(--blue);font-size:11px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;text-align:right;}
+  h1,h2,p{margin:0;}h1{font-size:35px;line-height:1.03;color:var(--navy);letter-spacing:-.8px;max-width:600px;}h2{font-size:17px;color:var(--navy);}
+  .lead{font-size:16px;line-height:1.48;color:var(--muted);margin-top:11px;max-width:610px;}.lead strong{color:var(--navy);}
+  .trigger{padding:19px 21px;background:var(--pale);border-left:5px solid var(--blue);border-radius:5px;}.label{font-size:10px;font-weight:800;color:var(--blue);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;}
+  .trigger p{font-size:15px;line-height:1.45;color:var(--ink);}
+  .two-up{display:grid;grid-template-columns:1fr 1fr;gap:15px;}.card{border:1px solid var(--line);padding:18px;border-radius:7px;min-height:145px;}.card p{font-size:14px;color:var(--muted);line-height:1.48;margin-top:7px;}
+  .role{background:var(--navy);color:#fff;border-radius:8px;padding:20px 22px;}.role .label{color:#A9D0FF;}.role h2{color:#fff;font-size:23px;margin-bottom:7px;}.role p{color:#D7E7FF;font-size:14px;line-height:1.5;}
+  .audit{display:grid;grid-template-columns:1fr 145px;gap:22px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:18px 20px;}.audit h2{font-size:22px;margin-bottom:7px;}.audit p{font-size:14px;color:var(--muted);line-height:1.48;}.audit .phone{color:var(--blue);font-size:19px;font-weight:800;margin-top:10px;}.qr{width:130px;height:130px;justify-self:end;}.scan{font-size:9px;font-weight:800;text-align:center;letter-spacing:1.3px;color:var(--muted);text-transform:uppercase;margin-top:3px;}
+  .footer{margin-top:auto;display:flex;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:13px;font-size:10px;color:var(--muted);}.footer strong{color:var(--navy);}
+  .booking-note[hidden]{display:none;}
+  @page{size:letter;margin:0;}
+  @media print{body{background:#fff;}.sheet{margin:0;box-shadow:none;width:8.5in;min-height:11in;}.no-print{display:none!important;}}
+  @media screen and (max-width:760px){.sheet{width:100%;min-height:auto;margin:0;padding:28px 20px;}.top,.two-up,.audit{grid-template-columns:1fr;display:grid;}.type{text-align:left;}.qr{justify-self:start;}.footer{flex-direction:column;}}
+</style>
+</head>
+<body>
+  <main class="sheet">
+    <header class="top">
+      <img class="logo" src="assets/dassa-logo.png" alt="Dassa Solutions">
+      <p class="type" id="flyerType">For Auto Repair</p>
+    </header>
+
+    <section>
+      <p class="label">Business communication audit</p>
+      <h1 id="flyerHeadline">Where can communication break down in your business?</h1>
+      <p class="lead">You can work hard to earn a customer’s call and still lose the opportunity when the next step is unclear. <strong>Dassa Solutions starts with what happens when someone tries to reach you.</strong></p>
+    </section>
+
+    <section class="trigger">
+      <p class="label">A moment worth examining</p>
+      <p id="flyerTrigger"></p>
+    </section>
+
+    <section class="two-up">
+      <article class="card">
+        <p class="label">What can break</p>
+        <h2>Communication pressure</h2>
+        <p id="flyerBreakdown"></p>
+      </article>
+      <article class="card">
+        <p class="label">Why it matters</p>
+        <h2>Opportunity at risk</h2>
+        <p id="flyerConsequence"></p>
+      </article>
+    </section>
+
+    <section class="role">
+      <p class="label">A familiar role, not a generic AI label</p>
+      <h2 id="flyerRole"></h2>
+      <p id="flyerRoleDetail"></p>
+    </section>
+
+    <section class="audit">
+      <div>
+        <p class="label">Let’s look at it together</p>
+        <h2>Book a communication audit.</h2>
+        <p id="flyerAuditText">We can look at the calls, routing, follow-up, and communication workflow that matter most to your business.</p>
+        <p class="phone">Call or text (407) 369-2856</p>
+        <p class="booking-note" id="flyerBookingNote" hidden></p>
+      </div>
+      <div>
+        <img class="qr" id="flyerQr" src="assets/qr/auto-repair.svg" alt="QR code to the Dassa Auto Repair Fit Finder">
+        <p class="scan">Scan for your business fit</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span><strong>Dassa Solutions</strong> · Ideas. Systems. Real Results.</span>
+      <span>edassa@dassasolutions.com · dassasolutions.com</span>
+    </footer>
+  </main>
+  <p class="no-print" style="max-width:8.5in;margin:0 auto 32px;padding:0 12px;color:#5B6B7A;font:14px Arial,sans-serif;">Print this page at 100% scale. Add <code>?vertical=hotels</code> (or another approved business-type slug) to create the matching flyer.</p>
+
+  <script src="verticals.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var verticals = Array.isArray(window.DASSA_VERTICALS) ? window.DASSA_VERTICALS : [];
+    var requested = new URLSearchParams(window.location.search).get('vertical');
+    var vertical = verticals.filter(function (item) { return item.id === requested; })[0] || verticals[0];
+    if (!vertical) return;
+
+    document.title = 'Dassa Communication Audit — ' + vertical.label;
+    document.getElementById('flyerType').textContent = 'For ' + vertical.label;
+    document.getElementById('flyerHeadline').textContent = 'Where can communication break down in your ' + vertical.label.toLowerCase() + ' business?';
+    document.getElementById('flyerTrigger').textContent = vertical.trigger;
+    document.getElementById('flyerBreakdown').textContent = vertical.breakdown;
+    document.getElementById('flyerConsequence').textContent = vertical.consequence;
+    document.getElementById('flyerRole').textContent = vertical.role.name;
+    document.getElementById('flyerRoleDetail').textContent = vertical.role.detail;
+    var qr = document.getElementById('flyerQr');
+    qr.src = 'assets/qr/' + vertical.id + '.svg';
+    qr.alt = 'QR code to the Dassa ' + vertical.label + ' Fit Finder';
+    var booking = typeof window.DASSA_BOOKING_URL === 'string' ? window.DASSA_BOOKING_URL.trim() : '';
+    if (/^https:\/\//i.test(booking)) {
+      var note = document.getElementById('flyerBookingNote');
+      note.hidden = false;
+      note.textContent = 'Or book your audit online at ' + booking.replace(/^https:\/\//i, '');
+    }
+  })();
+  </script>
+</body>
+</html>
