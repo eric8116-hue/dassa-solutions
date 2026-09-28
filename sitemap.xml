@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://dassasolutions.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://dassasolutions.com/phone-suite.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dassasolutions.com/phone-internet/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dassasolutions.com/phone-internet/bill-consolidation.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dassasolutions.com/phone-internet/call-rush-protection.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dassasolutions.com/phone-internet/business-mobility.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dassasolutions.com/phone-internet/bill-review.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dassasolutions.com/es/phone-internet/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://dassasolutions.com/es/phone-internet/bill-consolidation.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dassasolutions.com/es/phone-internet/call-rush-protection.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dassasolutions.com/es/phone-internet/business-mobility.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://dassasolutions.com/es/phone-internet/bill-review.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
