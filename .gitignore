@@ -9,3 +9,7 @@
 
 # Syncthing marker for the Site Preview sync (build 036 workflow).
 /.stfolder/
+
+# Local safety copies made before edits (not part of the baseline).
+*.bak-*
+/tmp/

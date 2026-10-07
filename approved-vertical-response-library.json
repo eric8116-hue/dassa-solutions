@@ -5,13 +5,13 @@
     "auto-repair": {
       "status": "reviewed-for-dassa-pilot",
       "batch": "automotive",
-      "sourceRef": "OC VBRS/OneCloud Valid Business Reason - Auto Repair.md",
+      "sourceRef": "VBR - Auto Repair.md",
       "sourceBuild": "Build 4",
       "reviewedOn": "2026-09-22",
       "roleName": "Virtual Service Advisor",
       "hipaa": false,
       "diagnosis": {
-        "trigger": "Phone ringing during a brake job with the counter empty and the lifts full — and the caller books at the next shop.",
+        "trigger": "Phone ringing during a brake job with the counter empty and the lifts full, and the caller books at the next shop.",
         "paragraph": "The problem is not really the phone. It is your service writer checking in drivers, moving cars off the lot, and taking payments while the opening rush rings through. It is the lunch-hour wave that lands when the counter is empty and every lift is full. It is the estimate approval that sits in phone tag for two days while the car takes up a bay. Each ring that goes unanswered is a job that could have gone on an RO, and most of those callers do not leave a message. They dial the next shop on the list and book there."
       },
       "reasons": [
@@ -31,9 +31,9 @@
         "catches": [
           "Answers the opening-rush overflow and captures the caller's name, vehicle, what they need, and the best number for a callback.",
           "Takes the appointment request or the no-show reschedule and passes it to the counter with the details already written down.",
-          "Logs the estimate-approval call — which vehicle, who called, what they said yes to — and routes it to the service writer so there is a clear record instead of a phone-tag chain."
+          "Logs the estimate-approval call (which vehicle, who called, what they said yes to) and routes it to the service writer so there is a clear record instead of a phone-tag chain."
         ],
-        "overflow": "Your service writer answers first — the Virtual Service Advisor catches the calls that ring through while the counter is empty and the writer is under a car."
+        "overflow": "Your service writer answers first. The Virtual Service Advisor catches the calls that ring through while the counter is empty and the writer is under a car."
       },
       "calculator": { "missed": 88, "opportunity": 50, "close": 25, "sale": 400, "recovery": 50 },
       "calculatorSource": "briefs/auto_repair/roi.md",
@@ -43,13 +43,13 @@
     "window-tint": {
       "status": "reviewed-for-dassa-pilot",
       "batch": "automotive",
-      "sourceRef": "OC VBRS/OneCloud Valid Business Reason - Window Tint.md",
+      "sourceRef": "VBR - Window Tint.md",
       "sourceBuild": "Build 4",
       "reviewedOn": "2026-09-22",
       "roleName": "Virtual Scheduling Desk",
       "hipaa": false,
       "diagnosis": {
-        "trigger": "Phone ringing \"how much to tint my car?\" with the installer heads-down in a vehicle, doors open, hands full — and the caller books at the next shop.",
+        "trigger": "Phone ringing \"how much to tint my car?\" with the installer heads-down in a vehicle, doors open, hands full, and the caller books at the next shop.",
         "paragraph": "Your installer is heads-down in a car, doors open, hands full, when the phone rings with the question every tint shop hears all day: how much to tint my car? There is no walking away from a panel mid-application, so the call rings out. That caller is a price-shopper with three tabs open, and they book wherever a human picks up first. Meanwhile a no-show leaves the bay and the installer idle for a slot that could have gone to the caller you just missed. The quote calls and the how-long-does-it-take calls never stop, and the person who can answer them is the one person who cannot stop."
       },
       "reasons": [
@@ -71,7 +71,7 @@
           "Takes booking and reschedule requests and passes them to the counter with the details written down, so a confirmed slot is not left to memory.",
           "Catches the overflow the installer physically cannot stop for and leaves a clear record of who called and what they asked."
         ],
-        "overflow": "Your installer and counter answer first — the Virtual Scheduling Desk catches the quote calls that ring while everyone is mid-panel."
+        "overflow": "Your installer and counter answer first. The Virtual Scheduling Desk catches the quote calls that ring while everyone is mid-panel."
       },
       "calculator": { "missed": 88, "opportunity": 55, "close": 35, "sale": 300, "recovery": 50 },
       "calculatorSource": "briefs/window_tint/roi.md",
@@ -81,7 +81,7 @@
     "auto-body": {
       "status": "reviewed-for-dassa-pilot",
       "batch": "automotive",
-      "sourceRef": "OC VBRS/OneCloud Valid Business Reason - Auto Body.md",
+      "sourceRef": "VBR - Auto Body.md",
       "sourceBuild": "Build 4",
       "reviewedOn": "2026-09-22",
       "roleName": "Virtual Collision Coordinator",
@@ -107,9 +107,9 @@
         "catches": [
           "Answers the status-check calls and captures the customer's name, vehicle, and what they need, so the estimator is not pulled off a car for every update.",
           "Takes the after-hours tow-in call and captures where the vehicle is, who is calling, and the callback number, then routes it to whoever is on for the night.",
-          "Leaves a clear record of each call — who, which job, what was asked — so the front desk has one place to look instead of a pile of sticky notes."
+          "Leaves a clear record of each call (who, which job, what was asked) so the front desk has one place to look instead of a pile of sticky notes."
         ],
-        "overflow": "Your front desk and estimators answer first — the Virtual Collision Coordinator catches the status calls they cannot break away for and the tow-in that comes in after the doors lock."
+        "overflow": "Your front desk and estimators answer first. The Virtual Collision Coordinator catches the status calls they cannot break away for and the tow-in that comes in after the doors lock."
       },
       "calculator": { "missed": 110, "opportunity": 50, "close": 25, "sale": 2500, "recovery": 50 },
       "calculatorSource": "briefs/auto_body/roi.md",
@@ -119,7 +119,7 @@
     "dealerships": {
       "status": "reviewed-for-dassa-pilot",
       "batch": "automotive",
-      "sourceRef": "OC VBRS/OneCloud Valid Business Reason - Dealerships.md",
+      "sourceRef": "VBR - Dealerships.md",
       "sourceBuild": "Build 4",
       "reviewedOn": "2026-09-22",
       "roleName": "Virtual Showroom Operator",
@@ -145,9 +145,9 @@
         "catches": [
           "Answers the sales, service, and parts overflow and routes each caller to the right department instead of whoever happened to pick up.",
           "Captures the service caller's name, vehicle, and what they need while the drive is jammed, and passes it to an advisor with a callback number.",
-          "Leaves a clear record of every call it handled — department, caller, request — so the manager can see what came in across the store."
+          "Leaves a clear record of every call it handled (department, caller, request) so the manager can see what came in across the store."
         ],
-        "overflow": "Your operator, advisors, and BDC answer first — the Virtual Showroom Operator catches the calls that stack up while the drive is jammed and the showroom is busy."
+        "overflow": "Your operator, advisors, and BDC answer first. The Virtual Showroom Operator catches the calls that stack up while the drive is jammed and the showroom is busy."
       },
       "calculator": { "missed": 176, "opportunity": 50, "close": 15, "sale": 2500, "recovery": 50 },
       "calculatorSource": "briefs/dealerships/roi.md",
@@ -157,13 +157,13 @@
     "tire-shops": {
       "status": "reviewed-for-dassa-pilot",
       "batch": "automotive",
-      "sourceRef": "OC VBRS/OneCloud Valid Business Reason - Tire Shops.md",
+      "sourceRef": "VBR - Tire Shops.md",
       "sourceBuild": "Build 4",
       "reviewedOn": "2026-09-22",
       "roleName": "Virtual Service Desk",
       "hipaa": false,
       "diagnosis": {
-        "trigger": "Phone ringing \"do you have my size?\" with the counter ringing up a sale and the tech mounting a set — and the caller buys four tires at the shop that picked up.",
+        "trigger": "Phone ringing \"do you have my size?\" with the counter ringing up a sale and the tech mounting a set, and the caller buys four tires at the shop that picked up.",
         "paragraph": "Saturday morning at a tire shop: two walk-ins at the counter, a tech balancing a set, and the phone ringing with the only question that matters. Do you have my size, and what is the price for four? Your counter person can help one of them. The walk-in gets served and the caller hears ring after ring, then hangs up and calls the shop down the road. In between, the is-my-car-ready calls and the fleet manager checking on a truck pull the same person off the same sale. The phone and the counter peak in the same minutes, and one of them always gets dropped."
       },
       "reasons": [
@@ -183,9 +183,9 @@
         "catches": [
           "Answers the size-and-price overflow and captures the tire size, vehicle, quantity, and the number to call back with a quote.",
           "Takes the is-my-car-ready and fleet calls so the counter is not pulled off a sale, and routes anything urgent to the right person.",
-          "Leaves a clear record of every call — who, what size, what they were told — so the counter and the bays are looking at the same list."
+          "Leaves a clear record of every call (who, what size, what they were told) so the counter and the bays are looking at the same list."
         ],
-        "overflow": "Your counter and techs answer first — the Virtual Service Desk catches the size-and-price calls that ring while the counter is mid-sale."
+        "overflow": "Your counter and techs answer first. The Virtual Service Desk catches the size-and-price calls that ring while the counter is mid-sale."
       },
       "calculator": { "missed": 110, "opportunity": 55, "close": 30, "sale": 450, "recovery": 50 },
       "calculatorSource": "briefs/tire_shops/roi.md",
@@ -195,13 +195,13 @@
     "towing": {
       "status": "reviewed-for-dassa-pilot",
       "batch": "automotive",
-      "sourceRef": "OC VBRS/OneCloud Valid Business Reason - Towing.md",
+      "sourceRef": "VBR - Towing.md",
       "sourceBuild": "Build 4",
       "reviewedOn": "2026-09-22",
       "roleName": "Virtual Dispatch Coordinator",
       "hipaa": false,
       "diagnosis": {
-        "trigger": "2 a.m.: a stranded motorist and a rotation call come in at once while both trucks are on a hook — and the caller dials the next company on the list.",
+        "trigger": "2 a.m.: a stranded motorist and a rotation call come in at once while both trucks are on a hook, and the caller dials the next company on the list.",
         "paragraph": "It is 2 a.m. Both trucks are on a hook, your dispatcher is either asleep or is also the driver, and two calls come in at once: a stranded motorist on the shoulder and a rotation call from the motor-club. One of them rings out. The motorist dials the next company on the list. The rotation call moves down the list too, and enough of those drop your company a slot. Meanwhile your drivers coordinate on personal cells, so when a driver quits, the number customers saved walks out the door with him. The most profitable tows are the ones that arrive when nobody can pick up."
       },
       "reasons": [
@@ -221,9 +221,9 @@
         "catches": [
           "Answers the after-hours overflow and captures the caller's location, vehicle, what happened, and a callback number before they can dial the next company.",
           "Routes the call to the driver or dispatcher on duty, so the tow is assigned to a person instead of ringing on a truck that is already on a hook.",
-          "Leaves a clear record of every call — who, where, when — for dispatch and the office, so nothing is lost between a call at 2 a.m. and the morning."
+          "Leaves a clear record of every call (who, where, when) for dispatch and the office, so nothing is lost between a call at 2 a.m. and the morning."
         ],
-        "overflow": "Your dispatcher and drivers answer first — the Virtual Dispatch Coordinator catches the 2 a.m. call nobody could reach."
+        "overflow": "Your dispatcher and drivers answer first. The Virtual Dispatch Coordinator catches the 2 a.m. call nobody could reach."
       },
       "calculator": { "missed": 132, "opportunity": 60, "close": 35, "sale": 200, "recovery": 50 },
       "calculatorSource": "briefs/towing/roi.md",
@@ -233,13 +233,13 @@
     "auto-salvage": {
       "status": "reviewed-for-dassa-pilot",
       "batch": "automotive",
-      "sourceRef": "OC VBRS/OneCloud Valid Business Reason - Auto Salvage.md",
+      "sourceRef": "VBR - Auto Salvage.md",
       "sourceBuild": "Build 4",
       "reviewedOn": "2026-09-22",
       "roleName": "Virtual Parts & Inventory Desk",
       "hipaa": false,
       "diagnosis": {
-        "trigger": "Three part-hunters on hold, a Spanish-speaking caller nobody can take, and the counter mid-way through a cash sale — every hang-up buys that part at another yard.",
+        "trigger": "Three part-hunters on hold, a Spanish-speaking caller nobody can take, and the counter mid-way through a cash sale. Every hang-up buys that part at another yard.",
         "paragraph": "One counter phone carries the whole yard. Your counter person is mid-way through a cash sale with three part-hunters on hold, and each of those callers has four other yards on the same list. The first yard that answers with the part in stock makes the sale. A Spanish-speaking caller gets passed from the counter to the yard crew and hangs up before anyone who can help picks up. After close, the cash buyer looking for a transmission does not leave a voicemail; by morning he has bought it somewhere else. Every one of those hang-ups is a part sitting on the shelf a day longer."
       },
       "reasons": [
@@ -261,7 +261,7 @@
           "Routes Spanish-speaking callers to the person on your team who can help them, instead of bouncing them around the yard.",
           "Takes the after-hours call from a cash buyer, captures what they are looking for, and leaves a clear record so the counter can call back first thing in the morning."
         ],
-        "overflow": "Your counter and yard crew answer first — the Virtual Parts & Inventory Desk catches the part-hunters on hold that the counter physically cannot get to."
+        "overflow": "Your counter and yard crew answer first. The Virtual Parts & Inventory Desk catches the part-hunters on hold that the counter physically cannot get to."
       },
       "calculator": { "missed": 132, "opportunity": 50, "close": 25, "sale": 250, "recovery": 50 },
       "calculatorSource": "briefs/auto_salvage/roi.md",
@@ -271,13 +271,13 @@
     "spas": {
       "status": "reviewed-for-dassa-pilot",
       "batch": "healthcare-wellness",
-      "sourceRef": "OC VBRS/OneCloud Valid Business Reason - Spas.md",
+      "sourceRef": "VBR - Spas.md",
       "sourceBuild": "Build 4",
       "reviewedOn": "2026-09-22",
       "roleName": "Virtual Spa Concierge",
       "hipaa": false,
       "diagnosis": {
-        "trigger": "A booked treatment slot going empty on a no-show — and a front desk trying to answer calls without breaking the quiet.",
+        "trigger": "A booked treatment slot going empty on a no-show, and a front desk trying to answer calls without breaking the quiet.",
         "paragraph": "Your front desk is checking in a guest, walking her to the treatment room, and handing off to the esthetician when the phone rings. Answering it means breaking the quiet the whole space is built around; not answering it means the caller books her facial somewhere else. A no-show leaves a treatment room and a therapist idle for a slot that a waitlisted guest would have taken. The package and membership follow-up that keeps regulars coming back slips because the desk never gets a clear minute. The same person is receptionist, concierge, and switchboard, and the phone loses every time."
       },
       "reasons": [
@@ -296,10 +296,10 @@
         "intro": "Let me introduce you to your Virtual Spa Concierge. It backs up your front desk when a guest is being checked in and the phone rings, so the call gets answered without breaking the quiet.",
         "catches": [
           "Answers the booking and reschedule calls the front desk cannot take during check-in, and captures the guest's name, the service they want, and a callback number.",
-          "Routes the call quietly to the right person — front desk, a specific therapist, retail — without a phone ringing across the lobby.",
+          "Routes the call quietly to the right person (front desk, a specific therapist, retail) without a phone ringing across the lobby.",
           "Leaves a clear record of membership, package, and gift-card questions so the desk can follow up when the room is calm."
         ],
-        "overflow": "Your front desk answers first — the Virtual Spa Concierge catches the calls that come in while the desk is walking a guest to the treatment room."
+        "overflow": "Your front desk answers first. The Virtual Spa Concierge catches the calls that come in while the desk is walking a guest to the treatment room."
       },
       "calculator": { "missed": 88, "opportunity": 75, "close": 40, "sale": 180, "recovery": 50 },
       "calculatorSource": "briefs/spas/roi.md",

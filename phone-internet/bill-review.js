@@ -10,12 +10,12 @@
     sending: 'Enviando su solicitud…',
     button: 'Enviando…',
     success: 'Gracias. Recibimos su solicitud y Dassa Solutions se comunicará con usted usando los datos proporcionados.',
-    error: 'No pudimos enviar su solicitud. Escriba a eric.dassa@netlinkvoice.com o llame al (407) 369-2856.'
+    error: 'No pudimos enviar su solicitud. Escriba a edassa@dassasolutions.com o llame al (407) 369-2856.'
   } : {
     sending: 'Sending your bill review request…',
     button: 'Sending…',
     success: 'Thanks — your request was received. Dassa Solutions will follow up using the contact details you provided.',
-    error: 'We could not send your request just now. Please email eric.dassa@netlinkvoice.com or call (407) 369-2856.'
+    error: 'We could not send your request just now. Please email edassa@dassasolutions.com or call (407) 369-2856.'
   };
 
   form.addEventListener('submit', async (event) => {

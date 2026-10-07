@@ -1,20 +1,20 @@
 {
   "product": "Dassa Solutions Website",
-  "build": "DS-2026.09.27-053",
-  "status": "production-release",
-  "date": "2026-09-27",
-  "description": "Approved five-trade Build 053 experience released to production.",
+  "build": "DS-2026.10.07-086",
+  "status": "private-review",
+  "date": "2026-10-06",
+  "description": "The ROI calculator also replaces the two-field math on the regular site. Auto Repair, Auto Body, HVAC, Dental, Roofing, Plumbing and Electrical use the approved five-step flow (hook, two problems, two solutions, virtual role with calculator or summary); Eric's ROI calculator replaces the one-call math. Private preview only.",
   "approvedBuild": {
     "build": "DS-2026.09.27-053",
     "approvedDate": "2026-09-27",
     "note": "Eric approved Build 053 after isolated Site Preview review."
   },
   "qa": {
-    "checksPassed": null,
-    "checksTotal": null,
-    "note": "Focused Site Preview browser review at 1440px and 390px: no horizontal overflow; five trade states, conditional one-call math, navigation, and booking link verified. Legacy full suite not run for this replacement."
+    "checksPassed": 10,
+    "checksTotal": 10,
+    "note": "Current ride smoke suite passed at 1440px and 390px: chooser, Auto Repair walkthrough, direct vertical link, no horizontal overflow, planning math, booking destination, and console-error checks. Retired legacy suite remains archived in tests/dassa-qa.spec.js."
   },
   "previewUrl": "http://127.0.0.1:8789/",
-  "mainSiteChanged": true,
-  "publicDeployment": true
+  "mainSiteChanged": false,
+  "publicDeployment": false
 }

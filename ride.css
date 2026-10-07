@@ -1,0 +1,241 @@
+/* Dassa guided ride: one contained hero, no scroll. Colors come from experience.css tokens. */
+body.ride-active{overflow:hidden}
+body.ride-active .site-footer{display:none}
+body.ride-active .desktop-nav,body.ride-active .mobile-menu{display:none}
+/* The booking button stays reachable during the ride, phones included. */
+body.ride-active .header-contact{display:inline-flex;margin-left:auto;min-height:44px}
+body.ride-active .header-inner{justify-content:flex-start}
+.site-rest[hidden]{display:none}
+.ride[hidden]{display:none}
+
+.ride{--ride-h:calc(100svh - var(--header-h,76px));height:var(--ride-h);min-height:480px;background:var(--navy);color:#f7fbff;display:grid;grid-template-rows:auto 1fr;overflow:hidden}
+.ride-bar{display:flex;align-items:center;gap:14px;padding:10px clamp(16px,3vw,40px);border-bottom:1px solid rgba(255,255,255,.12)}
+.ride-back{background:none;border:1px solid rgba(255,255,255,.35);color:#f7fbff;border-radius:8px;min-height:44px;padding:0 16px;font-weight:700;font-size:14px}
+.ride-back[disabled]{opacity:.35;cursor:default}
+.ride-steps{display:flex;gap:8px;list-style:none;margin:0 auto 0 4px;padding:0}
+.ride-steps li{width:34px;height:6px;border-radius:3px;background:rgba(255,255,255,.22);transition:background .25s}
+.ride-steps li.is-done{background:rgba(242,181,68,.55)}
+.ride-steps li.is-current{background:var(--amber)}
+.ride-build{margin-left:auto;font-size:12px;font-weight:700;color:rgba(247,251,255,.6);white-space:nowrap}
+.ride-exit{background:none;border:0;color:#f7fbff;font-weight:700;font-size:14px;min-height:44px;padding:0 6px;text-decoration:underline;text-underline-offset:4px}
+
+.ride-body{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);min-height:0}
+.ride-copy{display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,2.2vh,26px);padding:clamp(20px,4vh,56px) clamp(20px,4vw,64px);min-height:0}
+.ride-stage{display:flex;flex-direction:column;gap:clamp(14px,2.2vh,24px)}
+.ride-stage.is-in{animation:ride-in .26s ease-out}
+@keyframes ride-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.ride-eyebrow{margin:0;color:var(--amber);font-size:14px;font-weight:750;letter-spacing:.08em;text-transform:uppercase}
+.ride-title{margin:0;font-size:clamp(1.85rem,3.9vw,4.1rem);line-height:1.04;outline:none;color:#fff}
+.ride-lead{margin:0;font-size:clamp(1.05rem,1.45vw,1.4rem);line-height:1.4;color:#d4e1ec;max-width:34em}
+.ride-note{margin:0;font-size:15px;line-height:1.45;color:#b4c6d6;max-width:34em}
+.ride-actions{display:flex;flex-wrap:wrap;gap:12px}
+.ride-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:8px;border:2px solid transparent;font-size:16px;font-weight:750;text-decoration:none;cursor:pointer}
+.ride-btn-primary{background:var(--amber);color:var(--navy)}
+.ride-btn-secondary{background:transparent;border-color:rgba(255,255,255,.5);color:#fff}
+.ride-btn:hover{transform:translateY(-2px)}
+.ride-btn:active{transform:translateY(1px)}
+
+.ride-figure{position:relative;margin:0;min-height:0;overflow:hidden}
+.ride-figure picture{display:block;width:100%;height:100%}
+.ride-figure img{width:100%;height:100%;object-fit:cover;object-position:var(--pos,50% 50%);transition:object-position .6s ease}
+
+
+
+
+
+
+
+/* business search */
+.ride-search{position:relative;max-width:520px}
+.ride-search label{display:block;margin-bottom:8px;font-weight:700;font-size:15px;color:#d4e1ec}
+.ride-search input{width:100%;min-height:54px;border-radius:8px;border:2px solid rgba(255,255,255,.4);background:#0d2235;color:#fff;padding:0 16px;font-size:18px}
+.ride-search input:focus{border-color:var(--amber);outline:none}
+.ride-results{list-style:none;margin:6px 0 0;padding:4px;background:#0d2235;border:1px solid rgba(255,255,255,.25);border-radius:8px;max-height:min(30svh,260px);overflow-y:auto}
+.ride-results[hidden]{display:none}
+.ride-results button{display:block;width:100%;text-align:left;background:none;border:0;color:#fff;min-height:44px;padding:0 12px;border-radius:6px;font-size:16px}
+.ride-results button:hover,.ride-results button:focus-visible{background:rgba(242,181,68,.2)}
+.ride-empty{padding:12px;color:#b4c6d6;font-size:15px}
+.ride-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ride-chip{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:15px;font-weight:650}
+.ride-chip:hover{border-color:var(--amber)}
+.ride-count{margin:0;font-size:15px;color:#b4c6d6}
+
+/* two reasons */
+.ride-reasons{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ride-reason{border-left:4px solid var(--amber);padding:2px 0 2px 14px}
+.ride-reason h2{margin:0 0 6px;font-size:clamp(1.05rem,1.4vw,1.35rem);line-height:1.2;color:#fff}
+.ride-reason p{margin:0 0 8px;font-size:15px;line-height:1.4;color:#d4e1ec}
+.ride-fix{color:var(--amber);font-weight:650}
+
+/* calculator */
+.ride-calc{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:560px}
+.ride-calc label{display:block;font-size:14px;font-weight:700;margin-bottom:6px;color:#d4e1ec}
+.ride-calc input{width:100%;min-height:50px;border-radius:8px;border:2px solid rgba(255,255,255,.4);background:#0d2235;color:#fff;padding:0 14px;font-size:18px}
+.ride-calc input:focus{border-color:var(--amber);outline:none}
+.ride-calc input[aria-invalid="true"]{border-color:#ff9b8a}
+.ride-err{grid-column:1/-1;margin:0;font-size:14px;color:#ffb4a6;min-height:1.3em}
+.ride-result{margin:0;font-size:clamp(1.3rem,2.2vw,2rem);font-weight:700;color:var(--amber);line-height:1.2}
+
+@media (max-width:899px){
+  .ride-body{grid-template-columns:1fr;grid-template-rows:minmax(110px,26svh) 1fr}
+  .ride-figure{order:-1}
+  .ride-copy{justify-content:flex-start;padding:16px 18px 14px;gap:12px}
+  .ride-title{font-size:clamp(1.55rem,7vw,2.3rem)}
+  .ride-lead{font-size:1.02rem}
+  .ride-reasons{grid-template-columns:1fr;gap:10px}
+  .ride-reason p{display:none}
+  .ride-actions{gap:10px}
+  .ride-btn{flex:1 1 100%}
+  .ride-steps li{width:20px}
+  .ride-bar{gap:8px;padding:6px 14px}
+  .ride-calc{gap:10px}
+}
+@media (max-width:899px) and (max-height:700px){
+  .ride-body{grid-template-rows:minmax(70px,16svh) 1fr}
+  .ride-note{display:none}
+}
+/* Read-as-page fallback: a viewport too short or zoomed too far to hold a step lets the page scroll. */
+@media (max-height:480px){
+  body.ride-active{overflow:auto}
+  .ride{height:auto;min-height:0;overflow:visible}
+  .ride-figure{min-height:160px}
+}
+@media (prefers-reduced-motion:reduce){
+  .ride-stage.is-in{animation:none}
+.ride-figure img{transition:none}
+  .ride-btn:hover,.ride-btn:active{transform:none}
+}
+
+/* Top part materializes, then the bottom part pops in and answers it. */
+.ride-top,.ride-bottom{display:flex;flex-direction:column;gap:clamp(12px,2vh,22px)}
+.ride-top{animation:ride-materialize .45s cubic-bezier(.2,.8,.2,1) both}
+.ride-bottom{visibility:hidden;opacity:0;transform:scale(.96) translateY(8px);transform-origin:left top;padding-left:16px;border-left:4px solid var(--amber)}
+.ride-bottom.is-shown{visibility:visible;animation:ride-pop .4s cubic-bezier(.2,1.1,.3,1) both}
+@keyframes ride-materialize{from{opacity:0;transform:scale(.97) translateY(10px);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
+@keyframes ride-pop{0%{opacity:0;transform:scale(.94) translateY(10px)}60%{opacity:1;transform:scale(1.015)}100%{opacity:1;transform:none}}
+.ride-stage.is-in{animation:none}
+.ride-answer{margin:0;font-size:clamp(1.25rem,2.2vw,2.1rem);line-height:1.15;font-weight:700;color:var(--amber)}
+.ride-fix-label{margin:0;font-size:13px;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:#bfd0df}
+.ride-fixlist{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.ride-fixlist li{position:relative;padding-left:22px;font-size:clamp(.95rem,1.15vw,1.12rem);line-height:1.35;color:#e6eef5}
+.ride-fixlist li::before{content:"\2713";position:absolute;left:0;color:var(--amber);font-weight:800}
+.ride-steps{gap:6px}
+.ride-steps li{width:26px}
+@media (max-width:899px){
+  .ride-steps{gap:4px;margin-left:0}
+  .ride-steps li{width:11px}
+  .ride-bottom{padding-left:12px}
+  .ride-fixlist{gap:6px}
+  .ride[data-dense="true"] .ride-body{grid-template-rows:minmax(60px,12svh) 1fr}
+  .ride[data-dense="true"] .ride-title{font-size:clamp(1.3rem,6vw,1.7rem)}
+  .ride[data-dense="true"] .ride-lead{font-size:.95rem}
+  .ride[data-dense="true"] .ride-fixlist li{font-size:.92rem}
+  .ride[data-dense="true"] .ride-answer{font-size:1.05rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .ride-top{animation:none}
+  .ride-bottom{visibility:visible;opacity:1;transform:none}
+  .ride-bottom.is-shown{animation:none}
+}
+/* Dense steps (two business reasons): smaller type at every width so the whole step fits one frame. */
+.ride[data-dense="true"] .ride-title{font-size:clamp(1.5rem,2.7vw,2.7rem)}
+.ride[data-dense="true"] .ride-lead{font-size:clamp(.98rem,1.2vw,1.2rem)}
+.ride[data-dense="true"] .ride-answer{font-size:clamp(1.1rem,1.6vw,1.5rem)}
+.ride[data-dense="true"] .ride-copy{gap:12px;padding-top:clamp(14px,3vh,36px);padding-bottom:clamp(14px,3vh,36px)}
+.ride[data-dense="true"] .ride-top,.ride[data-dense="true"] .ride-bottom{gap:10px}
+@media (max-width:899px) and (max-height:700px){
+  .ride[data-dense="true"] .ride-body{grid-template-rows:minmax(0,8svh) 1fr}
+  .ride[data-dense="true"] .ride-fixlist li{font-size:.86rem}
+  .ride[data-dense="true"] .ride-lead{font-size:.9rem}
+}
+@media (max-width:899px) and (max-height:700px){
+  .ride[data-dense="true"] .ride-body{grid-template-rows:0 1fr}
+  .ride[data-dense="true"] .ride-figure{display:none}
+  .ride-exit{white-space:nowrap}
+}
+@media (max-width:899px) and (max-height:700px){
+  body.ride-active .brand-logo{height:56px;width:auto}
+  body.ride-active .brand-values{display:none}
+  body.ride-active .ride-copy{padding-bottom:10px}
+}
+
+/* Phone tap targets: every link and button is at least 44px tall. */
+.desktop-nav a,.header-contact,.mobile-menu summary{min-height:44px}
+.mobile-menu summary{display:inline-flex;align-items:center}
+.site-footer a,.contact-links a{display:inline-flex;align-items:center;min-height:44px}
+
+/* Build 068: Eric's ROI calculator layout (compact so the no-scroll frame holds it) */
+.ride-calc{max-width:760px;gap:8px 12px}
+.ride-calc label{margin-bottom:3px;font-size:13px}
+.ride-calc small{display:none}
+.ride-calc input,.ride-calc select{min-height:42px;font-size:16px}
+.ride-calc select{width:100%;border-radius:8px;border:2px solid rgba(255,255,255,.4);background:#0d2235;color:#fff;padding:0 10px}
+.ride-calc select:focus{border-color:var(--amber);outline:none}
+.ride-calc [hidden]{display:none}
+.ride-roi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:760px}
+.ride-box{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border:1px solid rgba(255,255,255,.25);border-radius:8px;background:rgba(13,34,53,.6)}
+.ride-boxlabel{font-size:12px;font-weight:700;color:#d4e1ec}
+.ride-big{font-size:clamp(1.2rem,2vw,1.6rem);color:var(--amber);line-height:1.1}
+.ride-sub{font-size:11px;color:#b9cadb}
+@media (max-width:640px){.ride-calc{grid-template-columns:1fr 1fr}.ride-roi{grid-template-columns:1fr}.ride-box{padding:6px 10px}}
+.ride-title-calc{font-size:clamp(1.5rem,2.6vw,2.2rem);margin-bottom:10px}
+.ride-about{max-width:760px;margin:0;color:#d4e1ec}
+.ride-about summary{cursor:pointer;font-size:14px;font-weight:700;min-height:32px;display:flex;align-items:center}
+.ride-about .ride-note{margin:4px 0 0;font-size:13px}
+
+/* Build 069: approved five-step flow */
+.ride-steps li[hidden]{display:none}
+.ride[data-wide="one"] .ride-body{grid-template-columns:minmax(0,8fr) minmax(0,4fr)}
+.ride[data-wide="cols"] .ride-body{grid-template-columns:minmax(0,1fr)}
+.ride[data-wide="cols"] .ride-figure{display:none}
+.ride[data-wide="one"] .ride-copy,.ride[data-wide="cols"] .ride-copy{overflow-y:auto;justify-content:flex-start}
+.ride-prose{display:grid;gap:10px;max-width:46em}
+.ride-prose p{margin:0;font-size:clamp(.95rem,1.15vw,1.12rem);line-height:1.42;color:#e6eef5}
+.ride-cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,32px)}
+.ride-col{display:flex;flex-direction:column;gap:10px;padding:14px 16px;border-top:4px solid var(--amber);background:rgba(13,34,53,.55);border-radius:0 0 8px 8px}
+.ride-colhead{margin:0;font-size:clamp(1.1rem,1.5vw,1.45rem);line-height:1.2;color:#fff}
+.ride-coltext{margin:0;font-size:clamp(.92rem,1.1vw,1.05rem);line-height:1.42;color:#d4e1ec}
+@media (max-width:899px){
+  .ride[data-wide="one"] .ride-body,.ride[data-wide="cols"] .ride-body{grid-template-columns:1fr;grid-template-rows:minmax(70px,14svh) 1fr}
+  .ride[data-wide="cols"] .ride-body{grid-template-rows:1fr}
+  .ride-cols{grid-template-columns:1fr}
+}
+
+/* Build 072: the same ROI tool on the regular site (light inputs, navy results) */
+.site-roi-inputs{color:var(--ink)}
+.site-roi-inputs label{display:block;margin:12px 0 4px;color:#203c4f;font-size:15px;font-weight:750}
+.site-roi-inputs small{display:block;margin:0 0 6px;color:#627686;font-size:12px;font-weight:500}
+.site-roi-pick{margin-bottom:6px}
+.site-roi-inputs select,.site-roi-inputs input{width:100%;min-height:48px;border:1px solid #b6c7d3;border-radius:9px;background:#fbfdff;color:var(--ink);padding:0 14px;font-size:16px}
+.site-roi-inputs select:focus,.site-roi-inputs input:focus{outline:2px solid var(--blue);outline-offset:2px}
+.site-roi-fields{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;max-width:none}
+.site-roi-fields [hidden]{display:none}
+.site-roi-fields .ride-err{grid-column:1/-1;color:#b3261e;margin:0;font-size:14px}
+.site-roi-results .ride-roi{grid-template-columns:1fr;max-width:none;width:100%;margin-top:14px}
+.site-roi-results .math-caveat{margin-top:18px!important;padding-top:0}
+@media (max-width:640px){.site-roi-fields{grid-template-columns:1fr}}
+
+/* Build 073 */
+.ride-underline{text-decoration:underline;text-decoration-color:var(--amber);text-decoration-thickness:.09em;text-underline-offset:.14em}
+.ride-cols1{grid-template-columns:1fr}
+.ride-cols3{grid-template-columns:repeat(3,1fr)}
+.ride-stakes{margin:0;max-width:60em;font-size:clamp(1rem,1.3vw,1.25rem);line-height:1.35;font-weight:700;color:var(--amber)}
+@media (max-width:899px){.ride-cols3{grid-template-columns:1fr}}
+
+/* Build 074: smaller chooser headline */
+.ride-title-home{font-size:clamp(1.55rem,2.7vw,2.7rem);line-height:1.1}
+@media (max-width:899px){.ride-title-home{font-size:clamp(1.4rem,6vw,1.9rem)}}
+
+/* Build 075: every first slide opens with 'Does this sound familiar to you?' */
+.ride-subhead{margin:0;font-size:clamp(1.15rem,1.7vw,1.6rem);line-height:1.25;color:var(--amber);font-weight:750}
+
+/* Build 080: font served from this site instead of Google */
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;font-display:swap;src:url(assets/fonts/schibsted-grotesk-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Schibsted Grotesk';font-style:normal;font-weight:400 800;font-display:swap;src:url(assets/fonts/schibsted-grotesk-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+/* Build 086: slimmer header while the guided ride is on screen, so the buttons stay in view on laptop-height screens */
+@media (min-width:900px){
+  body.ride-active .header-inner{min-height:72px}
+  body.ride-active .brand-logo{width:auto;height:58px}
+  body.ride-active .brand-values{display:none}
+}

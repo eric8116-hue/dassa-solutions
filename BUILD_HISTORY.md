@@ -1,5 +1,26 @@
 # Dassa Solutions Website Build History
 
+| DS-2026.10.07-086 | Private review | Slimmer logo header while the guided ride is showing (desktop), so the role-slide buttons stay in view. |
+| DS-2026.10.07-085 | Private review | Fixed the word "null" showing on the virtual-role slide for every business without a storm line. |
+| DS-2026.10.07-084 | Private review | Tire Shops and Med Spa & Aesthetic Clinic moved to the five-step ride (Med Spa is thin: no owner story). Old Auto Repair, Tire Shops and Med Spa ride text removed. |
+| DS-2026.10.07-083 | Private review | Each business's ride copy moved into its own file (flow/ folder) and loads only when that business is picked. Nothing changes on screen. ride.js shrank from about 4,300 to 550 lines. |
+| DS-2026.10.07-082 | Private review | Audit length back to 20 minutes everywhere, since the booking event is now 20 minutes. |
+| DS-2026.10.07-081 | Private review | 38 more business types added to the five-step flow, drafted from their flyers and VBRs with only NetLink-confirmed claims. Thin-source ones are marked in the report. |
+| DS-2026.10.06-080 | Private review | Font now served from the site (no Google request); fuller no-JavaScript message; lead form hardened (same-site check, chat-safe text, contact details no longer logged). |
+| DS-2026.10.06-079 | Private review | Audit length now reads 30 minutes everywhere in the ride, to match the booking link. |
+| DS-2026.10.06-078 | Private review | Audit fixes on the home page: removed the unconfirmed "transcripts" claim and the "pricing" button wording; added canonical, share-preview and business markup tags. |
+| DS-2026.10.06-077 | Private review | Chiropractors, Law Firms, Restaurants, Hotels and Pool Maintenance & Hot-Tub Service added to the five-step flow from their flyers and VBRs. Only NetLink-confirmed claims; no call-recording claims for healthcare or law. No owner stories yet. |
+| DS-2026.10.06-076 | Private review | Auto Body, Plumbing and Electrical added to the five-step flow, drafted from their flyers and VBRs with only NetLink-confirmed claims. No owner stories yet. |
+| DS-2026.10.06-075 | Private review | Every first slide opens with the headline "Does this sound familiar to you?", then the business's own greeting line and story under it. |
+| DS-2026.10.06-074 | Private review | Smaller chooser headline; "The Dassa fix" now reads "The Dassa Solutions fix" (company named in full in customer-facing text). |
+| DS-2026.10.06-073 | Private review | Summary slide recaps the problems, answers and role; role slide lists what the virtual role does (books, directs, notifies) and the roofing storm fail-safe line; headline is now "Let's set up a phone system specifically for the needs of your business" with your business underlined. |
+| DS-2026.10.06-072 | Private review | Eric's ROI calculator now also replaces the two-field one-call math in the regular site section, with a business-type picker. One shared tool in the guided ride and below it. |
+| DS-2026.10.06-071 | Private review | Roofing added to the approved five-step flow (magazine-lead story, Virtual Project Estimating Desk). Unconfirmed claims about shared claim channels left out. |
+| DS-2026.10.06-070 | Private review | Dental added to the approved five-step flow (front desk story, two VBRs, two solutions, Virtual Patient Coordinator). No call-recording or transcript claims, because of HIPAA. |
+| DS-2026.10.06-069 | Private review | Auto Repair and HVAC move to the approved five-step flow built from the flyer hook and two VBRs: hook, two problems side by side, two solutions side by side, the virtual role (backup or full replacement) with calculator or summary, then the normal site. Other businesses keep the earlier ride. |
+| DS-2026.10.06-068 | Private review | Eric's ROI calculator (missed calls, real-customer share, close rate, ticket, days, today's coverage cost) replaces the one-call math. Presets copied from his calculator into roi-presets.js, OneCloud plan prices left out. |
+| DS-2026.10.05-067 | Private review | Re-centered the guided ride and regular site on Dassa Solutions mapping the call workflow, replacing the phone system, and simplifying qualified multi-location phone/internet/equipment billing; removed the unsupported gym entry and clarified Med Spa vs. pool maintenance naming. |
+
 Build numbers use `DS-YYYY.MM.DD-NNN`. Build numbers identify revisions; approval is recorded separately.
 
 | Build | Status | Approved change |

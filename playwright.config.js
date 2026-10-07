@@ -6,6 +6,9 @@ const { defineConfig, devices } = require('@playwright/test');
 // source so a passing test actually means the source is good.
 module.exports = defineConfig({
   testDir: './tests',
+  // The older dassa-qa.spec.js targets the retired multi-panel app. Keep it
+  // as historical reference, but run the current ride smoke suite by default.
+  testMatch: /current-site\.spec\.js/,
   fullyParallel: true,
   // python -m http.server can't keep up with 7 projects fully parallel: at
   // default workers it drops requests and produces phantom console-error and
